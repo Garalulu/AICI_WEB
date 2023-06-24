@@ -1,6 +1,7 @@
 from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import gettext_lazy as _
 
+
 class CustomUserManager(BaseUserManager):
     """
     Custom user model manager where usr_id is the unique identifiers
@@ -22,7 +23,9 @@ class CustomUserManager(BaseUserManager):
         if not uid:
             raise ValueError(_("The engineer id must be set"))
         
+        
         from .models import UidTB  # Import inside the method to avoid circular import
+
 
         try:
             uid_instance = UidTB.objects.get(uid=uid) # Change uid to UidTB instance for matching with forein key correctly.

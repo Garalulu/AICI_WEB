@@ -18,8 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render
 
+
 urlpatterns = [
     path('', include("users.urls")), # 로그인, 회원가입, 약관
+    path("admin/", admin.site.urls), ## admin site
 ]
 
 from django.conf import settings
