@@ -1,0 +1,216 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head lang="ko">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        
+    
+        <title>AICI : 회원가입</title>
+        
+    </head>
+    <body>
+        <div class="wrap container w-50 mb-5">
+
+            <header>
+                <div class="text-center p-5">
+                    <a href="/"><img src="{% static 'privacy/logo.png' %}" class="w-25 me-5" id="logo"></a>
+                </div>
+            </header>
+
+            <div class="terms__check__all border p-5">
+                <div class="border-bottom border-4 mb-4 ms-1 ps-4 pe-4 pb-3">
+                    <h3>회원 가입</h3>
+                </div>
+                
+                <div>
+                    <form class="row">
+
+                        <div class="mb-3 row">
+                            <label for="staticEmail" class="col-sm-3 col-form-label">아이디</label>
+                            <div class="col">
+                                <input type="text" class="form-control" id="inputId" placeholder="아이디를 입력해주세요." required onKeyUp="inputDataCheck(this.id)">
+                                <div class="invalid-feedback" id="validId">
+                                    아이디를 입력해주세요.
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary">중복 확인</button>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-sm-3 col-form-label"></div>
+                            <div class="col">
+                                <p class="text-primary" style="font-size: 14px;">※ 6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합해주세요.</p>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="inputPassword" class="col-sm-3 col-form-label">비밀번호</label>
+                            <div class="col">
+                                <input type="password" class="form-control" id="inputPassword" placeholder="비밀번호를 입력해주세요." required onKeyUp="inputDataCheck(this.id)">
+                                <div class="invalid-feedback" id="validPW">
+                                    비밀번호를 입력해주세요.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="col-sm-3 col-form-label"></div>
+                            <div class="col">
+                                <p class="text-primary" style="font-size: 14px;">※ 영문, 숫자, 특수 문자를 포함해 최소 8자 이상으로 조합해주세요.<br>(사용가능: ~?!@#$%^&*_-)</p>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="inputPasswordCk" class="col-sm-3 col-form-label">비밀번호 확인</label>
+                            <div class="col">
+                                <input type="password" class="form-control" id="inputPasswordCk" placeholder="비밀번호를 한번 더 입력해주세요." required onKeyUp="inputDataCheck(this.id)">
+                                <div class="invalid-feedback" id="validPWCK">
+                                    비밀번호를 한번 더 입력해주세요.
+                                </div>
+                            </div>
+                        </div>
+ 
+                        <div class="mb-3 row">
+                            <label for="inputName" class="col-sm-3 col-form-label">이름</label>
+                            <div class="col">
+                                <input type="text" class="form-control" id="inputName" placeholder="이름을 입력해주세요." required pattern="^[가-힣]{2,5}$" onKeyUp="inputDataCheck(this.id)">
+                                <div class="invalid-feedback" id="validName">
+                                    이름을 입력해주세요.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <label for="inputNumber" class="col-sm-3 col-form-label">사원번호</label>
+                            <div class="col">
+                                <input type="text" class="form-control" id="inputNumber" placeholder="사원번호를 입력해주세요." required onKeyUp="inputDataCheck(this.id)">
+                                <div class="invalid-feedback">
+                                    사원번호를 입력해주세요.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="col-sm-3 col-form-label"></div>
+                            <div class="col">
+                                <p class="text-primary" style="font-size: 14px;">※ AICI 서비스를 이용하기 위해서는 사원번호가 필요합니다.</p>
+                            </div>
+                        </div>
+                        
+
+                    </form>
+                </div>
+
+                
+                <div class="mt-5 mb-3">
+                    <input type="submit" class="next-button btn btn-primary container-fluid btn-lg" value="가입하기" onClick="checkValid()">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script>
+
+    var checkId = document.getElementById("inputId");
+    var checkPW = document.getElementById('inputPassword');
+    var checkPWCK = document.getElementById('inputPasswordCk');
+    var checkName = document.getElementById('inputName');
+    var checkNumber = document.getElementById('inputNumber');
+
+
+    // 입력중인 값이 있을 경우 검사 클래스 제거
+    let inputDataCheck = (id) => {
+	    if (id) {            
+            document.getElementById(id).classList.remove('is-invalid');
+	    }
+	}
+
+    // 버튼 클릭시 유효성 검사
+    function checkValid(){
+        if(checkId.value == "") {
+            checkId.className += ' is-invalid';
+        } else {
+            idValid()
+        }
+
+        if(checkPW.value == "") {
+            checkPW.className += ' is-invalid';
+        } else {
+            passwordValid()
+        }
+        
+        if(checkPWCK.value == "") {
+            checkPWCK.className += ' is-invalid';
+        } else {
+            passwordCkValid()
+        }
+
+        if(checkName.value == "") {
+            checkName.className += ' is-invalid';
+        } else {
+            nameValid()
+        }
+
+        if(checkNumber.value == "") {
+            checkNumber.className += ' is-invalid';
+        }
+    }
+
+    // 아이디 유효성 검사
+    function idValid() {
+
+        var regex = /^[A-Za-z0-9+]{6,16}$/
+
+        if(checkId.value.length < 6 || checkId.value.length > 16) {
+            document.getElementById('validId').innerText = "6자 이상 16자 이하의 아이디를 입력해주세요."
+            checkId.className += ' is-invalid'
+        } else if(!regex.test(checkId.value)) {
+            document.getElementById('validId').innerText = "영문 혹은 영문과 숫자를 조합해주세요."
+            checkId.className += ' is-invalid'
+        }
+        
+    }
+
+    // 비밀번호 유효성 검사
+    function passwordValid() {
+
+        //var regex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[~?!@#$%^&*_-]).{8,}$/
+        var regex = /^(?=.*[a-zA-Z])(?=.*[~?!@#$%^&*_-])(?=.*[0-9]).{8,}$/
+
+        if(checkPW.value.length < 8) {
+            document.getElementById('validPW').innerText = "8자 이상의 비밀번호를 입력해주세요."
+            checkPW.className += ' is-invalid'
+        } else if(!regex.test(checkPW.value)) {
+            document.getElementById('validPW').innerText = "영문, 숫자, 특수 문자를 포함해 조합해주세요."
+            checkPW.className += ' is-invalid'
+        }
+
+    }
+
+    // 비밀번호 확인 검사
+    function passwordCkValid() {
+        if (checkPW.value != checkPWCK.value) {
+            document.getElementById('validPWCK').innerText = "동일한 비밀번호를 입력해주세요."
+            checkPWCK.className += ' is-invalid'
+        }
+    }
+
+    // 이름 유효성 검사
+    function nameValid() {
+        var regex =  /^[가-힣]{2,4}$/
+
+        if(!regex.test(checkName.value)) {
+            document.getElementById('validName').innerText = "알맞은 이름을 입력해주세요."
+            checkName.className += ' is-invalid'
+        }
+    }
+
+</script>
+
+

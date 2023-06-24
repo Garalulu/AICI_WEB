@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICI</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <img src="{% static 'logo(white).png' %}" alt="logo" id="logo">
+    <section class="login-form">
+        <h1>로그인</h1>
+        <form action="" method="post">
+            <div class="int-area">
+                <input type="text" name="usr_id" id="usr_id" autocomplete="off" required>
+                <label for="id">ID</label>
+            </div>
+            <div class="int-area">
+                <input type="password" name="pw" id="pw" autocomplete="off" required>
+                <label for="pw">PASSWORD</label>
+            </div>
+            <div class="btn-area">
+                <button type="submit" onclick="location.href='home/'">LOGIN</button>
+            </div>
+        </form>
+        <div class="caption">
+            <div id="find">
+                <a href="find_id">아이디 찾기</a>
+                <a href="find_pw"id="pw">비밀번호 찾기</a>
+            </div>
+            <div id="signup">
+                <a href="terms">회원가입</a>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer">
+            <ul class="ul">
+                <li><a href="privacy_policy">Privacy Policy</a></li>
+                <li><a href="terms_of_service">Terms of Service</a></li>
+                <li><a href="about_us">About us</a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 AICI_36 Corp. All rights reserved.</p>
+        </div>
+        <div class="contact">
+            <span>Contact us</span> 
+            <a href="https://github.com/jisoo29/AI_36_Project"><img src="{% static 'git.png' %}" alt="git" id="git"></a>
+        </div>
+    </footer>
+</body>
+</html>
