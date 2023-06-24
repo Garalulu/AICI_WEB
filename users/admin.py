@@ -5,6 +5,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import EngineerTB
 
 
+## Custom Admin class for EngineerTB
 class UserAdmin(BaseUserAdmin):
     list_display = ("usr_id", "uid", "name", "phonenum", "is_staff",)
     list_filter = ("is_staff",)
