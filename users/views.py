@@ -45,3 +45,6 @@ def terms_of_service(request):
 def privacy_policy(request):
     return render(request, 'users/privacy_policy.html')
 
+def home(request):
+    return render(request, 'users/home.html')
+

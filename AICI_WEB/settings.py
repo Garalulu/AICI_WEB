@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "users", ## USER
     "board",
     "construction",
+    "voc",
 ]
 
 MIDDLEWARE = [

@@ -20,8 +20,11 @@ from django.shortcuts import render
 
 
 urlpatterns = [
-    path('', include("users.urls")), # 로그인, 회원가입, 약관
     path("admin/", admin.site.urls), ## admin site
+    path('', include("users.urls")), # 로그인, 회원가입, 약관
+    path('board/', include("board.urls")), # 게시판
+    path('voc/', include("voc.urls")), # VOC
+    path('construction/', include("construction.urls")), # 시외공사
 ]
 
 from django.conf import settings
