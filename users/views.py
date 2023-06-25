@@ -1,4 +1,3 @@
-from django.contrib import auth
 from django.shortcuts import render
 from django.http import JsonResponse
 
@@ -7,12 +6,12 @@ from .models import EngineerTB
 
 # Create your views here.
 def login(request):
-    return render(request, 'login.html')
+    return render(request, 'users/login.html')
 
 def join(request):
     ## Default page load
     if request.method == 'GET':
-        return render(request, 'join.html')
+        return render(request, 'users/join.html')
     
     ## Signup request
     if request.method == 'POST':
@@ -38,11 +37,11 @@ def do_duplicate_check(request):
             return JsonResponse({'duplicate': 'true'})
         
 def terms(request):
-    return render(request, 'terms.html')
+    return render(request, 'users/terms.html')
 
 def terms_of_service(request):
-    return render(request, 'terms_of_service.html')
+    return render(request, 'users/terms_of_service.html')
 
 def privacy_policy(request):
-    return render(request, 'privacy_policy.html')
+    return render(request, 'users/privacy_policy.html')
 
