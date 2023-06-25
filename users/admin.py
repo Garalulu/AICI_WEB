@@ -7,18 +7,18 @@ from .models import EngineerTB
 
 ## Custom Admin class for EngineerTB
 class UserAdmin(BaseUserAdmin):
-    list_display = ("usr_id", "uid", "name", "phonenum", "is_staff",)
+    list_display = ("usr_id", "uid", "name", "is_staff",)
     list_filter = ("is_staff",)
     fieldsets = (
         (None, {'fields': ('usr_id', 'password')}),
-        ('Personal Info', {'fields': ('uid', 'name', 'phonenum',)}),
+        ('Personal Info', {'fields': ('uid', 'name')}),
         ('Permissions', {'fields': ('is_staff',)}),
     )
     
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('usr_id', 'uid', 'name', 'phonenum', 'password'),
+            'fields': ('usr_id', 'uid', 'name', 'password'),
             },
         ),
     )
