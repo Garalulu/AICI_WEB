@@ -21,11 +21,11 @@ def join(request):
                 new_user = EngineerTB.objects.create_user(usr_id=request.POST['inputId'],
                                                         password=request.POST['inputPassword'],
                                                         name=request.POST['inputName'],
-                                                        # phonenum=,
+                                                        # phonenum=, // deleted fields
                                                         uid=request.POST['inputNumber']
                                                         )
             except ValueError:
-                return
+                return JsonResponse({'message': 'Registration failed'})
 
 ## ID duplicate check        
 def do_duplicate_check(request):
