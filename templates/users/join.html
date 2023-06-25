@@ -28,8 +28,8 @@
                 </div>
                 
                 <div>
-                    <form class="row" method="POST">
-                        {% csrf_token %}
+                    <form class="row">
+
                         <div class="mb-3 row">
                             <label for="staticEmail" class="col-sm-3 col-form-label">아이디</label>
                             <div class="col">
@@ -105,13 +105,11 @@
                             </div>
                         </div>
                         
+                        <div class="mt-5 mb-3">
+                            <input type="button" id="login_button" class="next-button btn btn-primary container-fluid btn-lg" value="가입하기" onClick="checkValid()">
+                        </div>
 
                     </form>
-                </div>
-
-                
-                <div class="mt-5 mb-3">
-                    <input type="submit" class="next-button btn btn-primary container-fluid btn-lg" value="가입하기" onClick="checkValid()">
                 </div>
             </div>
         </div>
@@ -125,6 +123,8 @@
     var checkPWCK = document.getElementById('inputPasswordCk');
     var checkName = document.getElementById('inputName');
     var checkNumber = document.getElementById('inputNumber');
+
+    let login_button = document.querySelector('#login_button');
 
     let id_ok = "no"
     let pw_ok = "no"
@@ -144,6 +144,7 @@
     function checkValid(){
         if(idck_ok == "no") {
             document.getElementById('validId').innerText = "아이디 중복검사를 해주세요."
+            checkId.className += ' is-invalid'
         }
 
         if(checkPW.value == "") {
@@ -168,6 +169,13 @@
             checkNumber.className += ' is-invalid';
         } else {
             num_ok = "ok"
+        }
+
+        // 유효성 검사 완료 -> 회원가입
+        if((id_ok == "ok") && (idck_ok == "ok") && (pw_ok == "ok") && (pwck_ok == "ok") && (name_ok == "ok") && (num_ok == "ok")) {
+            login_form.submit() // 회원가입 버튼 -> submit으로 변경
+            alert('환영합니다.')
+            window.location.href = '/'
         }
     }
 
@@ -263,6 +271,7 @@
                     } else { // 중복 없음
                         checkId.className += ' is-valid'
                         idck_ok = "ok"
+                        
                     }
                 }
             })
