@@ -34,3 +34,6 @@
 ### users
 - Sign Up / Sign In
 - Custom User model
+- board
+- construction
+- voc
