@@ -32,7 +32,7 @@ class EngineerTB(AbstractBaseUser, PermissionsMixin):
     usr_id = models.CharField(_("engineer ID"), unique=True, max_length=30)
     uid = models.ForeignKey(UidTB, on_delete=models.CASCADE)
     name = models.CharField(_("engineer name"), max_length=30)
-    phonenum = models.CharField(_("engineer phone number"), max_length=11)
+    # phonenum = models.CharField(_("engineer phone number"), max_length=11)
     is_staff = models.BooleanField(_("verify a staff"), default=False)
     is_active = models.BooleanField(_("verify a engineer active"), default=True)
     date_joined = models.DateTimeField(_("date joined"), auto_now_add=True)
@@ -41,7 +41,7 @@ class EngineerTB(AbstractBaseUser, PermissionsMixin):
     ## usr_id replaces username, which is default setting for Django AbstractBaseUser
     USERNAME_FIELD = "usr_id"
     ## User should fill below fields too when register
-    REQUIRED_FIELDS = ["uid", "name", "phonenum"]
+    REQUIRED_FIELDS = ["uid", "name"]
 
     ## Custom user manager for EngineerTB
     ## managers.py
