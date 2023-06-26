@@ -18,11 +18,15 @@ def login_view(request):
             return JsonResponse({'message': 'ID or password is incorrect'})
         
     if request.method == 'GET':
-        return render(request, 'users/login.html')
+        ## Login status check
+        if request.user.is_authenticated:
+            return redirect('/home/') ## insta redirect to home if user is logined already
+        else:
+            return render(request, 'users/login.html')
             
 def logout_view(request):
     logout(request)
-    return redirect('home')
+    return redirect('login_view')
 
 def join(request):
     ## Default page load
