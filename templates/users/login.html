@@ -17,14 +17,14 @@
     <img src="{% static 'logo(white).png' %}" alt="logo" id="logo">
     <section class="login-form">
         <h1>로그인</h1>
-        <form action="" method="post" novalidate>
+        <form id="myForm" method="post">
             {% csrf_token %}
             <div class="int-area">
                 <input type="text" name="usr_id" id="usr_id" autocomplete="off" required>
                 <label for="id">ID</label>
             </div>
             <div class="int-area">
-                <input type="password" name="password1" id="pw" autocomplete="off" required>
+                <input type="password" name="password" id="pw" autocomplete="off" required>
                 <label for="pw">PASSWORD</label>
             </div>
             <div class="btn-area">
