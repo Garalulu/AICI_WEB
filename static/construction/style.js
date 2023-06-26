@@ -11,12 +11,10 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 var geocoder = new kakao.maps.services.Geocoder();
 
 
-document.getElementById('click').onclick = function(){
-    // 주소로 좌표를 검색합니다
-
-    let address = document.getElementById('input').value
-    geocoder.addressSearch(address, function(result, status) {
-
+document.querySelector('table').addEventListener('click', function(event) {
+    if (event.target.tagName === 'BUTTON') {
+        let address = event.target.innerText;
+        geocoder.addressSearch(address, function(result, status) {
         // 정상적으로 검색이 완료됐으면 
          if (status === kakao.maps.services.Status.OK) {
     
@@ -30,7 +28,7 @@ document.getElementById('click').onclick = function(){
     
             // 인포윈도우로 장소에 대한 설명을 표시합니다
             var infowindow = new kakao.maps.InfoWindow({
-                content: '<div style="width:150px;text-align:center;padding:6px 0;">KT 전남 본부</div>'
+                content: `<div style="width:150px;text-align:center;padding:6px 0;">${address}</div>`
             });
             infowindow.open(map, marker);
     
@@ -38,4 +36,5 @@ document.getElementById('click').onclick = function(){
             map.setCenter(coords);
         }
     });    
-}
+}});
+

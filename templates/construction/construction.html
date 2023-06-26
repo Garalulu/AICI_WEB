@@ -105,12 +105,31 @@
                         <div id="kakaomap" style="width:50vw;height:90vh;"></div>
                     </div>
                     <div class="today_construction">
-                        <h4>오늘의 시외공사</h4>
-                        <div class="plus">
-                            <label class="file-label" for="chooseFile">Choose File</label>
+                        <div class="today_header">
+                            <span id="today_text">오늘의 시외공사</span>
+                            <label class="file-label" for="chooseFile">등록</label>
                             <input class="file" id="chooseFile" type="file">
                         </div>
-                        
+                        <div class="main_content">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th></th><th>주소</th><th>관리기관</th><th>공사</th><th>담당자</th><th>연락처</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td><td><button id="search_map1">광주 무등로202번길15</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td><td><button id="search_map2">광주 서구 운천로31번길 17</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td><td><button id="search_map3">광산구 월곡동 607-7</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
+                                        </tr>
+                                    </tbody>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -118,3 +137,17 @@
         <script type="text/javascript" src="{% static 'construction/style.js' %}"></script> 
     </body>
 </html>
+
+<!-- <body>
+    <table>
+        <tr>
+            <td>주소</td>
+            <td><input type="text" name="detailAddress" id="address"></td>
+            <td><button type="button" id="searchBtn">검색</button></td>
+        </tr>
+        <tr>
+            <td>상세 주소</td>
+            <td><input type="text" name="detailAddress2"></td>
+            <td></td>
+        </tr>
+    </table> -->
