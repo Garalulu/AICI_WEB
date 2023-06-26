@@ -27,7 +27,6 @@ def logout_view(request):
 def join(request):
     ## Default page load
     if request.method == 'GET':
-        form = CustomUserCreationForm()
         return render(request, 'users/join.html')
     
     ## Signup request
@@ -36,7 +35,7 @@ def join(request):
         
         ## Input check
         if form.is_valid():
-            uid = request.POST.get('inputNumber').strip()
+            uid = request.POST['uid'].strip()
             uid_instance = UidTB.objects.filter(uid=uid) # Change uid to UidTB instance for matching with forein key correctly.
             
             ## Engineer duplicate check
