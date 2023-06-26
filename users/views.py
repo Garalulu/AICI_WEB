@@ -26,7 +26,7 @@ def login_view(request):
             
 def logout_view(request):
     logout(request)
-    return redirect('login_view')
+    return redirect('/login/') ## redirect to login page
 
 def join(request):
     ## Default page load
