@@ -32,6 +32,11 @@
                 </div>
                 
                 <div>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit">Sign up</button>
+                    </form>
                     <form class="row" id="myForm">
                         {% csrf_token %}
                         <div class="mb-3 row">
