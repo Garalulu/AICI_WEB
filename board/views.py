@@ -20,7 +20,6 @@ def board_list(request):
 
         for board in boards:
             board_data = {
-                'brd_id': board.brd_id,
                 'usr_id': board.usr_id.id,
                 'brd_title': board.brd_title,
                 'brd_content': board.brd_content,
