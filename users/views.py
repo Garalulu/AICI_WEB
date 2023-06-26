@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 
-from .models import EngineerTB
+from .models import EngineerTB, UidTB
 
 
 # Create your views here.
@@ -15,16 +15,21 @@ def join(request):
     
     ## Signup request
     if request.method == 'POST':
-        if request.POST['inputPassword'] == request.POST['inputPasswordCk']:
+        if request.POST.get('inputPassword') == request.POST.get('inputPasswordCk'):
             try:
-                new_user = EngineerTB.objects.create_user(usr_id=request.POST['inputId'],
-                                                        password=request.POST['inputPassword'],
-                                                        name=request.POST['inputName'],
+                uid = request.POST.get('inputNumber').strip()
+                uid_instance = UidTB.objects.get(uid=uid) # Change uid to UidTB instance for matching with forein key correctly.
+                new_user = EngineerTB.objects.create_user(usr_id=request.POST.get('inputId'),
+                                                        password=request.POST.get('inputPassword'),
+                                                        name=request.POST.get('inputName'),
                                                         # phonenum=, // deleted fields
-                                                        uid=request.POST['inputNumber']
+                                                        uid=uid_instance
                                                         )
+                return JsonResponse({'message': 'Registration success'})
             except ValueError:
                 return JsonResponse({'message': 'Registration failed'})
+            except UidTB.DoesNotExist:
+                return JsonResponse({'message': "Invalid engineer id"})
 
 ## ID duplicate check        
 def do_duplicate_check(request):
@@ -32,9 +37,9 @@ def do_duplicate_check(request):
         usr_id = request.GET.get('inputId')
         try:
             _id = EngineerTB.objects.get(usr_id=usr_id)
-            return JsonResponse({'duplicate': 'false'})
-        except:
             return JsonResponse({'duplicate': 'true'})
+        except:
+            return JsonResponse({'duplicate': 'false'})
         
 def terms(request):
     return render(request, 'users/terms.html')
