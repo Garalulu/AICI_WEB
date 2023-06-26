@@ -154,19 +154,36 @@
 
                     <!-- 제목 -->
                     <form class="ps-4 pe-4">
-                        <div class="row">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-default">제목</span>
-                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">유형</button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">공지</a></li>
-                                    <li><a class="dropdown-item" href="#">머하징</a></li>
-                                    <li><a class="dropdown-item" href="#">뭐가있더라</a></li>
-                                </ul>
-                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        <div>
+                            <table class="table table-light table-borderless border" style="border-collapse: separate; border-spacing: 0;">
+                                <tbody>
+                                    <colgroup>
+                                        <col width=20%>
+                                        <col width=80%>
+                                    </colgroup>
+                                    <tr>
+                                        <td class="align-middle text-center">제목</td>
+                                        <td><input type="text" class="form-control"></td>
+                                    </tr>
+                                    <tr class="mb-4">
+                                        <td class="align-middle text-center">내용</td>
+                                        <td><textarea class="form-control h-50" rows="20" style="resize: none;" placeholder="내용을 입력해주세요."></textarea></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="mb-3">
+                                <input type="file" class="form-control">
                             </div>
                         </div>
     
+                        {% comment %}
+                        <div class="row">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">제목</span>
+                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                        </div>
+
                         <!-- 글 내용 -->
                         <div class="mb-3">
                             <textarea class="form-control h-50" rows="20" style="resize: none;" placeholder="내용을 입력해주세요."></textarea>
@@ -178,7 +195,7 @@
                                 <input type="file" class="form-control" id="inputGroupFile02">
                                 <label class="input-group-text" for="inputGroupFile02">Upload</label>
                             </div>
-                        </div>
+                        </div> {% endcomment %}
     
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-secondary btn-sm"> 게시하기 </button>
