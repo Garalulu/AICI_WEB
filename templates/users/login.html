@@ -17,7 +17,7 @@
     <img src="{% static 'logo(white).png' %}" alt="logo" id="logo">
     <section class="login-form">
         <h1>로그인</h1>
-        <form id="myForm" method="post">
+        <form action="" method="post" novalidate>
             {% csrf_token %}
             <div class="int-area">
                 <input type="text" name="usr_id" id="usr_id" autocomplete="off" required>
@@ -37,7 +37,7 @@
                 <a href="find_pw"id="pw">비밀번호 찾기</a>
             </div>
             <div id="signup">
-                <a href="terms">회원가입</a>
+                <a href="../terms">회원가입</a>
             </div>
         </div>
     </section>

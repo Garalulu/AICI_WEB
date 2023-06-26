@@ -9,23 +9,42 @@ from .forms import CustomUserCreationForm
 
 # Create your views here.
 def login(request):
-    return render(request, 'users/login.html')
+    if request.method == 'GET':
+        return render(request, 'users/login.html')
 
 def join(request):
     ## Default page load
     if request.method == 'GET':
         form = CustomUserCreationForm()
-        return render(request, 'users/join.html', {'form': form})
+        return render(request, 'users/join.html')
     
     ## Signup request
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
+        
+        ## Input check
         if form.is_valid():
-            user = form.save()
-            if user is not None:
-                login(request, user)
+            uid = request.POST.get('inputNumber').strip()
+            uid_instance = UidTB.objects.filter(uid=uid) # Change uid to UidTB instance for matching with forein key correctly.
+            
+            ## Engineer duplicate check
+            try:
+                _user = EngineerTB.objects.get(uid=uid_instance)
+            except Exception as e:
+                _user = None          
+            
+            ## Success
+            if _user is None:
+                user = form.save()
+                return JsonResponse({'message': 'Registration success'})
+            
+            ## Failed
             else:
-                return JsonResponse({'message': 'Login failed'})
+                return JsonResponse({'message': 'Registration failed'})
+        
+        ## UID not match    
+        else:
+            return JsonResponse({'message': 'Invalid engineer id'})
                 
         '''if request.POST.get('inputPassword') == request.POST.get('inputPasswordCk'):
             uid = request.POST.get('inputNumber').strip()
