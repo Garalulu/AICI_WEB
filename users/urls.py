@@ -1,13 +1,12 @@
 from django.urls import path
-from django.contrib.auth.views import LoginView, LogoutView
 
 from . import views
 
 
 app_name = 'users'  
 urlpatterns = [
-    path('login/', LoginView.as_view(template_name='users/login.html'), name='login'), # 로그인(첫 화면)
-    path('logout/', LogoutView.as_view(next_page='users/login.html'), name='logout'), # logout
+    path('login/', views.login_view, name='login'), # 로그인(첫 화면)
+    path('logout/', views.logout_view, name='logout'), # logout
     
     path('terms/join/', views.join, name='join'), # 회원가입
     path('terms/join/do_duplicate_check/', views.do_duplicate_check),

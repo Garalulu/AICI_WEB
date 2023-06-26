@@ -1,53 +1,66 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from django.contrib.auth import login
-import json
+from django.contrib.auth import login, logout, authenticate
 
 from .models import EngineerTB, UidTB
 from .forms import CustomUserCreationForm
 
 
-# Create your views here.
-def login(request):
-    return render(request, 'users/login.html')
+def login_view(request):
+    if request.method == 'POST':
+        usr_id = request.POST['usr_id']
+        password = request.POST['password']
+        user = authenticate(request, usr_id=usr_id, password=password)
+        if user is not None:
+            login(request, user)
+            return JsonResponse({'message': 'Login success'})
+        else:
+            return JsonResponse({'message': 'ID or password is incorrect'})
+        
+    if request.method == 'GET':
+        ## Login status check
+        if request.user.is_authenticated:
+            return redirect('/home/') ## insta redirect to home if user is logined already
+        else:
+            return render(request, 'users/login.html')
+            
+def logout_view(request):
+    logout(request)
+    return redirect('login_view')
 
 def join(request):
     ## Default page load
     if request.method == 'GET':
-        form = CustomUserCreationForm()
-        return render(request, 'users/join.html', {'form': form})
+        return render(request, 'users/join.html')
     
     ## Signup request
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
+        
+        ## Input check
         if form.is_valid():
-            user = form.save()
-            if user is not None:
-                login(request, user)
-            else:
-                return JsonResponse({'message': 'Login failed'})
-                
-        '''if request.POST.get('inputPassword') == request.POST.get('inputPasswordCk'):
-            uid = request.POST.get('inputNumber').strip()
+            uid = request.POST['uid'].strip()
             uid_instance = UidTB.objects.filter(uid=uid) # Change uid to UidTB instance for matching with forein key correctly.
-            if uid_instance:
-                ## Name match check
-                if EngineerTB.objects.filter(name=uid_instance[0].name):
-                    new_user = EngineerTB.objects.create_user(usr_id=request.POST.get('inputId'),
-                                                            password=request.POST.get('inputPassword'),
-                                                            name=request.POST.get('inputName'),
-                                                            ## phonenum=, // deleted fields
-                                                            uid=uid_instance
-                                                            )
-                    return JsonResponse({'message': 'Registration success'})
-                else:
-                    return JsonResponse({'message': 'engineer name does not match'})
+            
+            ## Engineer duplicate check
+            try:
+                _user = EngineerTB.objects.get(uid=uid_instance)
+            except Exception as e:
+                _user = None          
+            
+            ## Success
+            if _user is None:
+                user = form.save()
+                return JsonResponse({'message': 'Registration success'})
+            
+            ## Failed
             else:
-                return JsonResponse({'message': "Invalid engineer id"})
-        return JsonResponse({'message': 'Registration failed'})'''
+                return JsonResponse({'message': 'Registration failed'})
+        
+        ## UID not match    
+        else:
+            return JsonResponse({'message': 'Invalid engineer id'})       
             
-            
-
 ## ID duplicate check        
 def do_duplicate_check(request):
     if request.method == 'GET':

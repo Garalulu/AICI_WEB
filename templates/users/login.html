@@ -17,14 +17,14 @@
     <img src="{% static 'logo(white).png' %}" alt="logo" id="logo">
     <section class="login-form">
         <h1>로그인</h1>
-        <form action="{% url 'users:login' %}" method="post">
+        <form id="myForm" method="post">
             {% csrf_token %}
             <div class="int-area">
                 <input type="text" name="usr_id" id="usr_id" autocomplete="off" required>
                 <label for="id">ID</label>
             </div>
             <div class="int-area">
-                <input type="password" name="pw" id="pw" autocomplete="off" required>
+                <input type="password" name="password" id="pw" autocomplete="off" required>
                 <label for="pw">PASSWORD</label>
             </div>
             <div class="btn-area">
@@ -37,16 +37,16 @@
                 <a href="find_pw"id="pw">비밀번호 찾기</a>
             </div>
             <div id="signup">
-                <a href="terms">회원가입</a>
+                <a href="../terms">회원가입</a>
             </div>
         </div>
     </section>
     <footer>
         <div class="footer">
             <ul class="ul">
-                <li><a href="privacy_policy">Privacy Policy</a></li>
-                <li><a href="terms_of_service">Terms of Service</a></li>
-                <li><a href="about_us">About us</a></li>
+                <li><a href="/privacy_policy">Privacy Policy</a></li>
+                <li><a href="/terms_of_service">Terms of Service</a></li>
+                <li><a href="/about_us">About us</a></li>
             </ul>
         </div>
         <div class="footer-bottom">
@@ -59,3 +59,35 @@
     </footer>
 </body>
 </html>
+
+<script>
+    // 로그인 폼 전송
+    $('#myForm').submit(function(event) {
+        event.preventDefault(); // 폼의 기본 동작을 막음
+    
+        // 폼 데이터 가져오기
+        var formData = $(this).serialize();
+    
+        // AJAX 요청 보내기
+        $.ajax({
+            url: '/login/', // 회원가입 처리 URL을 지정
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                // 응답 처리
+                if (response.message === 'Login success') {
+                // 로그인 성공
+                    window.location.href = '/home'; // 홈 페이지로 이동
+                }  else { // 로그인 실패
+                    alert('아이디 또는 비밀번호를 잘못 입력했습니다.');
+                }
+            },
+            error: function(xhr, status, error) {
+                // 요청 실패
+                alert('요청실패');
+                console.log('Error:', error);
+            }
+        });
+    });    
+</script>
