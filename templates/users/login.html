@@ -17,7 +17,8 @@
     <img src="{% static 'logo(white).png' %}" alt="logo" id="logo">
     <section class="login-form">
         <h1>로그인</h1>
-        <form action="" method="post">
+        <form action="{% url 'users:login' %}" method="post">
+            {% csrf_token %}
             <div class="int-area">
                 <input type="text" name="usr_id" id="usr_id" autocomplete="off" required>
                 <label for="id">ID</label>
@@ -27,7 +28,7 @@
                 <label for="pw">PASSWORD</label>
             </div>
             <div class="btn-area">
-                <button type="submit" onclick="location.href='home/'">LOGIN</button>
+                <button type="submit">LOGIN</button>
             </div>
         </form>
         <div class="caption">
