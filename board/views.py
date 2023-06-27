@@ -54,8 +54,8 @@ def board_list(request):
                 'usr_id': board.usr_id.id,
                 'brd_title': board.brd_title,
                 'brd_content': board.brd_content,
-                'brd_create': board.brd_create.strftime('%Y-%m-%d %H:%M:%S'),
-                'brd_update': board.brd_update.strftime('%Y-%m-%d %H:%M:%S')
+                'brd_create': board.brd_create.strftime('%Y-%m-%d %H:%M:%S') if board.brd_create else None,
+                'brd_update': board.brd_update.strftime('%Y-%m-%d %H:%M:%S') if board.brd_create else None,
             }
             data.append(board_data)
 
