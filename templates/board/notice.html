@@ -256,7 +256,7 @@
                 // 성공적으로 데이터를 받아온 경우 처리 로직 작성
                 str = '<tr>'; 
                     $.each(data , function(i){
-                        str += '<td class="text-center"> [공지] </td>' 
+                        str += '<td class="text-center">' + data[i].brd_id + '</td>' 
                         str += '<td><a href="/board/content">' + data[i].brd_title + '</td>' 
                         str += '<td>' + data[i].brd_create + '</td>' 
                         str += '</tr>'

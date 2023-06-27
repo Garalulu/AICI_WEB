@@ -30,7 +30,7 @@ def board_list(request):
 
         for board in boards:
             board_data = {
-                'usr_id': board.usr_id.id,
+                'brd_id': board.brd_id,
                 'brd_title': board.brd_title,
                 'brd_content': board.brd_content,
                 'brd_create': board.brd_create.strftime('%Y-%m-%d %H:%M:%S') if board.brd_create else None,
