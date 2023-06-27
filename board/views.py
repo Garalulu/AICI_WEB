@@ -29,8 +29,6 @@ def post(request):
 
         else:
             response_data = {'message': '게시글을 게시하는데 실패하였습니다.'}
-            print('board_form 오류:', board_form.errors)
-            print('file_form 오류:', file_form.errors)
             return JsonResponse(response_data, status=400)
 
     else:
