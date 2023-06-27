@@ -52,7 +52,7 @@ class CustomerTB(models.Model):
     
     cust_importance = models.BooleanField(_("customer level. 0: normal, 1: emergency"), default=0)
     is_tm = models.BooleanField(_("check TM status"), default=False)
-    is_answer = models.BooleanField(_("check TM answer"))
-    tm_result = models.BooleanField(_("check TM result"))
-    tm_judge = models.CharField(_("TM messages"), max_length=50)
+    is_answer = models.BooleanField(_("check TM answer"), default=False)
+    tm_result = models.BooleanField(_("check TM result"), default=False)
+    tm_judge = models.CharField(_("TM messages"), max_length=50, default=None)
     
