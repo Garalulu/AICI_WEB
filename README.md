@@ -8,26 +8,38 @@
 
 ## Directory
 ```
-├── AICI_WEB                    // main 
-│   └── __pycache__
-├── static                      // static files
-│   └── admin
-│       ├── css
-│       │   └── vendor
-│       │       └── select2
-│       ├── img
-│       │   └── gis
-│       └── js
-│           ├── admin
-│           └── vendor
-│               ├── jquery
-│               ├── select2
-│               │   └── i18n
-│               └── xregexp
-└── users                       // users app
-    ├── migrations
-    │   └── __pycache__
-    └── __pycache__
+├── AICI_WEB                    # configuration
+├── board                       # main page
+├── construction                # construction page
+├── users                       # sign in / sign up page
+├── voc                         # voc page
+│
+├── media                       # file storage
+│   ├── board                   # attatched file in board
+│   └── voc                     # attatched excel file in voc
+├── static
+│   ├── admin
+│   │   ├── css
+│   │   │   └── vendor
+│   │   │       └── select2
+│   │   ├── img
+│   │   │   └── gis
+│   │   └── js
+│   │       ├── admin
+│   │       └── vendor
+│   │           ├── jquery
+│   │           ├── select2
+│   │           │   └── i18n
+│   │           └── xregexp
+│   ├── construction
+│   ├── home
+│   ├── privacy
+│   └── service
+└── templates
+    ├── board
+    ├── construction
+    ├── users
+    └── voc
 ```
 
 ## Apps
