@@ -3,14 +3,17 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from .managers import CustomUserManager
+from voc.models import CenterTB
 
 
 ## Engineer identification number DB
 ## - uid
 ## - name
+## - cent_id
 class UidTB(models.Model):
     uid = models.CharField(_("engineer identification number"), primary_key=True, unique=True, max_length=30) 
     name = models.CharField(_("engineer name"), max_length=30)
+    # cent_id = models.ForeignKey(CenterTB, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.uid
