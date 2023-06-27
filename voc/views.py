@@ -19,3 +19,19 @@ def upload_voc(request):
             return JsonResponse({'message': 'Upload success'})
     return JsonResponse({'message': 'Upload failed'})
 
+def customer_list(request):
+    if request.method == 'GET':
+        customers = BoardTB.objects.all()
+        data = []
+
+        for customer in customers:
+            customer_data = {
+                'cust_name': customer.cust_name,
+                'declaration': customer.declaration,
+                'cust_type': customer.cust_type,
+                'cust_num': customer.cus_num,
+                'brd_updateust_ads': customer.brd_updateust_ads,
+            }
+            data.append(customer_data)
+
+        return JsonResponse(data, safe=False)
