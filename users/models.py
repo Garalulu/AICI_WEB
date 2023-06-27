@@ -13,7 +13,7 @@ from voc.models import CenterTB
 class UidTB(models.Model):
     uid = models.CharField(_("engineer identification number"), primary_key=True, unique=True, max_length=30) 
     name = models.CharField(_("engineer name"), max_length=30)
-    # cent_id = models.ForeignKey(CenterTB, on_delete=models.CASCADE)
+    cent = models.ForeignKey(CenterTB, on_delete=models.CASCADE, default=1)
     
     def __str__(self):
         return self.uid

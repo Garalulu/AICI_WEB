@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 ## Engineer working position
 ## cent_name
 class CenterTB(models.Model):
-    cent_name = models.CharField(_("center name"), max_length=10)
+    cent_name = models.CharField(_("center name"), unique=True, max_length=10)
 
     def __str__(self):
         return self.cent_name
@@ -14,7 +14,7 @@ class CenterTB(models.Model):
 ## cent_id
 ## voc_file        
 class VOCTB(models.Model):
-    cent_id = models.ForeignKey(CenterTB, on_delete=models.CASCADE)
+    cent = models.ForeignKey(CenterTB, on_delete=models.CASCADE)
     voc_file = models.FileField(_("uploaded file"), upload_to="voc/")
 
 
@@ -29,7 +29,7 @@ class VOCTB(models.Model):
 ## is_tm
 ## is_answser
 class CustomerTB(models.Model):
-    voc_id = models.ForeignKey(VOCTB, on_delete=models.CASCADE)
+    voc = models.ForeignKey(VOCTB, on_delete=models.CASCADE)
     receipt = models.DateTimeField(_("date joined"), auto_now_add=True)
     cust_name = models.CharField(_("customer name"), max_length=30)
     declaration = models.CharField(_("additional info"), max_length=300)
