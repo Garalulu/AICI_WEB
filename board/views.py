@@ -2,13 +2,23 @@ from django.shortcuts import redirect, render
 from django.http import JsonResponse
 from .models import BoardTB
 from .forms import BoardForm
-# Create your views here.
 
 def notice(request):
     return render(request, 'board/notice.html')
 
 def post(request):
-    return render(request, 'board/post.html')
+    if request.method == 'POST':
+        form = BoardForm(request.POST)
+        if form.is_valid():
+            board = form.save()
+            response_data = {'message': '게시물이 성공적으로 생성되었습니다.'}
+            return JsonResponse(response_data)
+        else:
+            response_data = {'message': '유효하지 않은 데이터입니다.'}
+            return JsonResponse(response_data, status=400)
+    else:
+        form = BoardForm()
+        return render(request, 'board/post.html', {'form': form})
 
 def content(request):
     return render(request, 'board/content.html')
@@ -29,11 +39,3 @@ def board_list(request):
             data.append(board_data)
 
         return JsonResponse(data, safe=False)
-
-    elif request.method == 'POST':
-        form = BoardForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return JsonResponse({'message': '게시물이 성공적으로 생성되었습니다.'})
-        else:
-            return JsonResponse({'message': '유효하지 않은 데이터입니다.'}, status=400)
