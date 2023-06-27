@@ -4,7 +4,7 @@ from django.contrib.auth import login, logout, authenticate
 
 from .models import EngineerTB, UidTB
 from .forms import CustomUserCreationForm
-from .decorators import login_required
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -20,13 +20,13 @@ def login_view(request):
     if request.method == 'GET':
         ## Login status check
         if request.user.is_authenticated:
-            return redirect('/home/') ## insta redirect to home if user is logined already
+            return redirect('/') ## insta redirect to home if user is logined already
         else:
             return render(request, 'users/login.html')
             
 def logout_view(request):
     logout(request)
-    return redirect('/login/') ## redirect to login page
+    return redirect('users:login') ## redirect to login page
 
 def join(request):
     ## Default page load
@@ -81,9 +81,6 @@ def terms_of_service(request):
 def privacy_policy(request):
     return render(request, 'users/privacy_policy.html')
 
-@login_required
-def home(request):
-    if request.method == 'GET':
-        return render(request, 'users/home.html')
+
         
 

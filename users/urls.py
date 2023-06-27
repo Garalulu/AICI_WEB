@@ -13,6 +13,4 @@ urlpatterns = [
     path('terms/', views.terms, name='terms'), # 회원가입 이용약관
     path('terms_of_service/', views.terms_of_service, name='terms_of_service'), # 서비스 이용약관
     path('privacy_policy/', views.privacy_policy, name='privacy_policy'), # 개인정보 처리방침
-    
-    path('home/', views.home, name='home'), # 메인 홈
 ]

@@ -9,7 +9,7 @@ def login_required(func):
     def wrapper(request, *args, **kwargs):
         ## Login status check
         if not request.user.is_authenticated:
-            return redirect('/login/')
+            return redirect('users:login')
         
         return func(request, *args, **kwargs)
     

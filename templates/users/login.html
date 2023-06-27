@@ -70,7 +70,7 @@
     
         // AJAX 요청 보내기
         $.ajax({
-            url: '/login/', // 회원가입 처리 URL을 지정
+            url: '', // 회원가입 처리 URL을 지정
             type: 'POST',
             data: formData,
             dataType: 'json',
@@ -78,7 +78,7 @@
                 // 응답 처리
                 if (response.message === 'Login success') {
                 // 로그인 성공
-                    window.location.href = '/home'; // 홈 페이지로 이동
+                    window.location.href = '/'; // 홈 페이지로 이동
                 }  else { // 로그인 실패
                     alert('아이디 또는 비밀번호를 잘못 입력했습니다.');
                 }

@@ -196,7 +196,7 @@
             
                 // AJAX 요청 보내기
                 $.ajax({
-                    url: '/terms/join/', // 회원가입 처리 URL을 지정
+                    url: 'users/terms/join/', // 회원가입 처리 URL을 지정
                     type: 'POST',
                     data: formData,
                     dataType: 'json',
@@ -205,7 +205,7 @@
                         if (response.message === 'Registration success') {
                         // 회원가입 성공
                             alert('회원가입이 완료되었습니다.');
-                            window.location.href = '/login'; // 홈 페이지로 이동
+                            window.location.href = 'users/login'; // 홈 페이지로 이동
                         } else if(response.message === 'Registration failed') {
                         // 회원가입 실패
                             alert('회원가입에 실패했습니다. 다시 시도해주세요.');
