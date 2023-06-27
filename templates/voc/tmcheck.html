@@ -51,10 +51,10 @@
             .btn-upload {
                 cursor: pointer;
                 display: flex;
-                &:hover {
-                  color: #0073ff;
-                }
-              }
+            }
+            .btn-upload:hover{
+                color: #0073ff;
+            }
         </style>
     </head>
     <body style="min-height: 100vh;">
@@ -73,7 +73,7 @@
                         {% if request.user.is_authenticated %}
                             <h5 class="m-0"><p style="display: inline;">{{ request.user.name }}</p>엔지니어님, 환영합니다.</h5>    
                         {% else %}
-                            <p>User is not logged in :(</p>
+                            <p>User is not logged in :</p>
                         {% endif %}
                     </div>
                     <div class="col-auto">
@@ -195,7 +195,7 @@
                                 </colgroup>
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td>Mark</td>
+                                    <td>u</td>
                                     <td>Otto</td>
                                     <td>@mdo</td>
                                     <td>Otto</td>
@@ -285,8 +285,7 @@
                                     <td>@mdo</td>
                                 </tr>
                             </tbody>
-                        </table>
-                        
+                        </table>                     
                     </div>
                 </div>
             </div>
