@@ -4,7 +4,7 @@ from django.contrib.auth import login, logout, authenticate
 
 from .models import EngineerTB, UidTB
 from .forms import CustomUserCreationForm
-
+from .decorators import login_required
 
 def login_view(request):
     if request.method == 'POST':
@@ -81,6 +81,9 @@ def terms_of_service(request):
 def privacy_policy(request):
     return render(request, 'users/privacy_policy.html')
 
+@login_required
 def home(request):
-    return render(request, 'users/home.html')
+    if request.method == 'GET':
+        return render(request, 'users/home.html')
+        
 
