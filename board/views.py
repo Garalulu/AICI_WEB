@@ -45,6 +45,7 @@ def content(request):
 def board_list(request):
     if request.method == 'GET':
         boards = BoardTB.objects.all()
+        boards = BoardTB.objects.order_by('-brd_id')  # brd_id 내림차순 정렬
         data = []
 
         for board in boards:
