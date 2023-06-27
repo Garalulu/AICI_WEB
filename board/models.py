@@ -15,7 +15,7 @@ class BoardTB(models.Model):
 class UploadFile(models.Model):
     file_id = models.AutoField(primary_key=True)  # 자동으로 증가하는 기본 키 필드
     brd_id = models.ForeignKey(BoardTB, on_delete=models.CASCADE)
-    file = models.FileField(_("uploaded file"), upload_to="uploads/")  # 파일 업로드를 위한 속성값
+    file = models.FileField(_("uploaded file"), upload_to="board/")  # 파일 업로드를 위한 속성값
 
     def __str__(self):
         return str(self.file_id)
