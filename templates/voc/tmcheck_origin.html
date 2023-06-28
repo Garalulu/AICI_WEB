@@ -55,73 +55,11 @@
             .btn-upload:hover{
                 color: #0073ff;
             }
-            .main_content {
-                overflow: scroll;
-                white-space: nowrap;
-                height: 78vh;
-                width: 92vw;
-            }
-            table{
-                width: 90vw;
-            }
-            td {
-                border: 1px solid rgb(215, 219, 224);
-            }
-            th,td {
-                height: 50px;
-                padding: 5px;
-                
-            }
-            th {
-                text-align: center;
-                background-color: rgb(197,218,254);
-                font-weight: 800;
-                
-            }
-            thead tr th {
-                position: sticky;
-                top: 0px;
-                background-color: rgb(197,218,254) !important;
-            }
-            .main_text {
+            #main_content {
+                overflow: hidden;
+                background-color: red;
                 height: 90vh;
-                width: 90vw;
-                padding: 0;
             }
-            .management {
-                font-size: 30px;
-                margin-left: 30px;
-                margin-top: 10px;
-                margin-bottom: 10px;
-            }
-            .flex {
-                display: flex;
-                justify-content:space-between;
-            }
-            #myForm {
-                align-items: center;
-            }
-            #post_button {
-                height: 30px;
-                background-color: gray;
-                border-radius: 7px;
-                color: black;
-                border: none;
-                transition: 0.6s ease;
-            }
-            #post_button:hover {
-                height: 40px;
-                background-color: #1EC28F;
-                color: white;
-                border: none;
-
-            }
-
-
-            .p {
-                margin: 0;
-            }
-
         </style>
     </head>
     <body style="min-height: 100vh;">
@@ -160,7 +98,7 @@
             </nav>
 
         </header>
-        <div class="row container-fluid p-0 m-0" style="min-height: 100vh; display:flex">
+        <div class="row container-fluid p-0 m-0" style="min-height: 100vh;">
             <!-- 사이드바 -->
             <div class="col-md-1 border-end text-center">
 
@@ -213,53 +151,200 @@
             </div>
 
             <!-- 메인 컨텐츠 -->
-            <div class="main_text">
-                <div class="flex">
-                    <div class="management" style="display:inline-block">고객관리</div>
-                    <form method="POST" enctype="multipart/form-data" id="myForm" style="display:flex;">
-                        {% csrf_token %}
-                        <p class="p">
-                            <label for="id_voc_file"></label>
-                            <input type="file" name="voc_file" required id="id_voc_file"> 
-                        </p>
-                        <p class="p">
-                            <label for="id_voc_desc">파일 이름:</label>
-                            <input type="text" name="voc_desc" maxlength="20" id="id_voc_desc">
-                        </p>
-                        <button type="submit" id="post_button" style="margin-left:20px;">업로드</button>
-                    </form>
-                </div>
-                <div class="col p-0">
-                    <div class="main_content">
-                        <table>
+            <div class="col p-0 d-flex justify-content-center">
+                <!-- 메인 내용 -->
+                <div class="row w-100 h-100 p-0 m-0">
+                    <div class="col-7 border-end border-3 p-0" id="main-content">
+                        <div class="row m-4" style="height: 4%">
+                            <div class="col">
+                                <h4 class="m-0 pt-2">고객 관리</h4>
+                            </div>
+                            <div class="col text-end">
+                                <form method="POST" enctype="multipart/form-data" id="myForm">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <!-- <input type="file" name='voc_file' id="valid" id="id_voc_file" required> -->
+                                    <!-- <input type="text" name="voc_desc" id="valid" maxlength="20" id="id_voc_desc"> -->
+                                    <button type="submit" id="post_button">Upload</button>
+                                </form>
+                                
+                            </div>
+                        </div>
+                        <table class="table mb-0 table-primary  text-center" style="font-size: 0.9rem;">
                             <thead>
+                                <colgroup>
+                                    <col width=5%>
+                                    <col width=5%>
+                                    <col width=5%>
+                                    <col width=5%>
+                                    <col width=5%>
+                                    <col width=5%>
+                                    <col width=5%>
+                                </colgroup>
                                 <tr>
-                                    <th>접수 시각</th><th>고객</th><th>신고자 의견</th><th>전화번호</th><th>주소</th><th>중요도</th><th>TM 상황</th><th>응답</th><th>응답결과</th><th>판단근거</th>
-                                </tr>
-                            <tbody>
-                                {% if data %}
-                                        {% for vocs in data %}
-                                        <tr>
-                                            <td >{{ vocs.receipt }}</td>
-                                            <td >{{ vocs.cust_name }}</td>
-                                            <td >{{ vocs.declaration }}</td>
-                                            <td >{{ vocs.cust_num }}</td>
-                                            <td >{{ vocs.cust_ads }}</td>
-                                            <td >{{ vocs.cust_importance }}</td>
-                                            <td >{{ vocs.is_tm }}</td>
-                                            <td >{{ vocs.is_answer }}</td>
-                                            <td >{{ vocs.tm_result }}</td>
-                                            <td >{{ vocs.tm_judge }}</td>
+                                  <th scope="col"></th>
+                                  <th scope="col">접수시각</th>
+                                  <th scope="col">고객</th>
+                                  <th scope="col">신고자 의견</th>
+                                  <th scope="col">전화번호</th>
+                                  <th scope="col">주소</th>
+                                  <th scope="col">중요도</th>
+                              </tr>
+                              </thead>
+                        </table>
+                        <div class="main_content">
+                            <table class="table table-bordered text-center" style="font-size: 0.9rem;">
+                                <tbody>
+                                    <!-- <colgroup>
+                                        <col width=3%>
+                                        <col width=3%>
+                                        <col width=3%>
+                                        <col width=3%>
+                                        <col width=3%>
+                                        <col width=3%>
+                                        <col width=3%>
+                                    </colgroup> -->
+                                    <tr class="mb-4">
+                                        <th >{{ boards.receipt }}</th>
+                                        <th >{{ boards.cust_name }}</th>
+                                        <th >{{ boards.declaration }}</th>
+                                        <th >{{ boards.cust_num }}</th>
+                                        <th >{{ boards.cust_ads }}</th>
+                                        <th >{{ boards.cust_importance }}</th>
+                                        <th >{{ boards.is_tm }}</td>
+                                        <th >{{ boards.is_answer }}</th>
+                                        <th >{{ boards.tm_result }}</th>
+                                        <th >{{ boards.tm_judge }}</th>
+                                    </tr>
+                                    {% if data %}
+                                        {% for boards in data %}
+                                        <tr class="mb-4">
+                                            <td >{{ boards.receipt }}</td>
+                                            <td >{{ boards.cust_name }}</td>
+                                            <td >{{ boards.declaration }}</td>
+                                            <td >{{ boards.cust_num }}</td>
+                                            <td >{{ boards.cust_ads }}</td>
+                                            <td >{{ boards.cust_importance }}</td>
+                                            <td >{{ boards.is_tm }}</td>
+                                            <td >{{ boards.is_answer }}</td>
+                                            <td >{{ boards.tm_result }}</td>
+                                            <td >{{ boards.tm_judge }}</td>
                                         </tr>
                                         {% endfor %}
-                                {% endif %}
-                            </tbody>
-                            </thead>
+                                    {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+                    <div class="col p-0">
+                        <div class="m-4" style="height: 4%">
+                            <h4 onclick="location.reload();"><i class="bi bi-arrow-repeat btn-upload" style="justify-content: end;"></i></h4>
+                        </div>
+                        <table class="table table-primary m-0 text-center" style="font-size: 0.9rem;">
+                            <thead>
+                                <colgroup>
+                                    <col width=20%>
+                                    <col width=20%>
+                                    <col width=20%>
+                                    <col width=40%>
+                                </colgroup>
+                                <tr>
+                                    <th scope="col">TM상황</th>
+                                    <th scope="col">응답</th>
+                                    <th scope="col">응답결과</th>
+                                    <th scope="col">판단근거</th>
+                                </tr>
+                                </thead>
                         </table>
+                        <table class="table table-bordered text-center" style="font-size: 0.9rem;">
+                            <tbody>
+                                <colgroup>
+                                    <col width=20%>
+                                    <col width=20%>
+                                    <col width=20%>
+                                    <col width=40%>
+                                </colgroup>
+                                <tr>
+                                    <td>Mark</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <td>Mark</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <td>Mark</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <td>Mark</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                            </tbody>
+                        </table>                     
                     </div>
                 </div>
             </div>
         </div>
     </body>
 </html>
-<script>
+<script>/*
+    var files = document.getElementById('valid');
+
+    function contentValid() {
+        alert('hello')
+        if(files.value == "") {
+            post_button.setAttribute('type', 'button') 
+            alert("파일을 추가해 주세요.")
+        } else {
+            post_button.setAttribute('type', 'submit') // 회원가입 버튼 -> submit으로 변경
+            post()
+        }
+    }
+
+    function post(){
+        // 게시글 게시 폼 전송
+        $('#myForm').submit(function(event) {
+            event.preventDefault(); // 폼의 기본 동작을 막음
+        
+            // 폼 데이터 가져오기
+           var voc_file = $("#id_voc_file")[0].files[0];
+           var voc_desc = $("#id_voc_desc").val();
+        
+            // AJAX 요청 보내기
+            $.ajax({
+                url: '/voc/upload/', // 회원가입 처리 URL을 지정
+                type: 'POST',
+                enctype: 'multipart/form-data',
+                data: {'voc_file':voc_file,
+                        'voc_desc':voc_desc},
+                dataType: 'json',
+                success: function(response) {
+                    // 응답 처리
+                    if (response.message === '게시물이 성공적으로 생성되었습니다.') {
+                    // 게시 성공
+                        window.location.href = '/voc'; // 공지사항 페이지로 이동
+                    }  else if (response.message === 'Invalid form data'){ // 게시 실패
+                        alert('게시글을 게시하는데 실패하였습니다.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // 요청 실패
+                    alert('요청실패');
+                    console.log('Error:', error);
+                }
+            });
+        });
+    }*/
+    
+</script>
+<!-- var formData = $(this).serialize(); -->
