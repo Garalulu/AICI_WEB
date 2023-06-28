@@ -12,6 +12,7 @@ def home(request):
             board_data = {
                 'brd_id': board[i].brd_id,
                 'brd_title': board[i].brd_title,
+                'usr_name': board[i].usr_id.name,
                 'brd_create': board[i].brd_create.strftime('%Y-%m-%d %H:%M:%S') if board[i].brd_create else None,
             }
             data.append(board_data)

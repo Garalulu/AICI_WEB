@@ -173,20 +173,22 @@
                         <table class="table table-hover" style="border-collapse: separate; border-spacing: 0 10px;">
                             <tbody id="table-body">
                                 <colgroup>
+                                    <col width=10%>
                                     <col width=20%>
-                                    <col width=50%>
+                                    <col width=40%>
                                     <col width=30%>
                                 </colgroup>
                                 {% if data %}
                                     {% for boards in data %}
                                     <tr class="mb-4">
-                                        <td class="text-center">{{ boards.brd_id }}</td>
+                                        <td >{{ boards.brd_id }}</td>
+                                        <td >{{ boards.usr_id.name }}</td>
                                         <td>
                                             <a href="{% url 'board:content' boards.brd_id %}">
                                                 {{ boards.brd_title }}
                                             </a>
                                         </td>
-                                        <td>{{ boards.brd_create }}</td>
+                                        <td class="text-end">{{ boards.brd_create }}</td>
                                     </tr>
                                     {% endfor %}
                                 {% else %}
