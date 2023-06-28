@@ -11,7 +11,8 @@ from .models import CustomerTB
 @login_required
 def tmcheck(request):
     if request.method == 'GET':
-        data = CustomerTB.objects.all().order_by('receipt')
+        ## load voc but only for engineer's work center
+        data = CustomerTB.objects.filter(cent=request.user.uid.cent).order_by('receipt') 
         return render(request, 'voc/tmcheck.html', {'data': data})
 
 ## upload_voc
