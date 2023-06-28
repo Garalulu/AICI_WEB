@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.utils import timezone
 
 from users.decorators import login_required
 from .forms import ConstructionCallForm
@@ -9,8 +10,11 @@ from .models import ConstructionTB
 @login_required
 def construction(request):
     if request.method == 'GET':
+        now = timezone.now()
+        
         ## load constructions but only for engineer's work center
-        data = ConstructionTB.objects.filter(cent=request.user.uid.cent).order_by('started_at') 
+        _data = ConstructionTB.objects.filter(cent=request.user.uid.cent).order_by('receipt') 
+        data = _data.filter(receipt__lte=now)
         return render(request, 'construction/construction.html', {'data': data})
     
 @login_required
