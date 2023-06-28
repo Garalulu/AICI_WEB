@@ -12,18 +12,21 @@ def post(request):
     if request.method == 'POST':
         board_form = BoardForm(request.POST)
         file_form = UploadFileForm(request.POST, request.FILES)
-
+        print(file_form.errors)
         if board_form.is_valid():
             board = board_form.save(commit=False)
-            board_form.instance.usr_id = EngineerTB.objects.get(id=request.user.id)  # 현재 로그인한 사용자의 EngineerTB 인스턴스를 가져와 usr_id에 할당
+            board.usr_id = EngineerTB.objects.get(id=request.user.id)
             board.save()
 
-            if file_form.is_valid() or not request.FILES:
-                files = request.FILES.getlist('file')
-                for file in files:
-                    upload_file = UploadFile(file=file)
+            if file_form.is_valid():
+                file = request.FILES.get('file')
+                if file:
+                    upload_file = UploadFile(brd_id=board, file=file)
                     upload_file.save()
-                    board.uploadfile_set.add(upload_file)  # 게시물과 파일 연결
+                else:
+                # 파일이 선택되지 않은 경우에 대한 처리
+                    upload_file = UploadFile(brd_id=board)
+                    upload_file.save()
 
             response_data = {'message': '게시물이 성공적으로 생성되었습니다.'}
             return JsonResponse(response_data)
@@ -36,6 +39,7 @@ def post(request):
         board_form = BoardForm()
         file_form = UploadFileForm()
         return render(request, 'board/post.html', {'board_form': board_form, 'file_form': file_form})
+
 
 
 
