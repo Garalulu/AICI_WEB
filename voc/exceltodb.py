@@ -14,11 +14,10 @@ def exceltodb(table_content):
     ## add related center name to VOCTB
     cent_name = _data['국사'].str[:2][1]
     center_instance = CenterTB.objects.get(cent_name=cent_name)
-    table_content.cent = center_instance
-    table_content.save()
     
     df = pd.DataFrame()
     df['voc'] = table_content                               ## related VOCTB
+    df['cent_id'] = center_instance                         ## related CenterTB
     df['receipt'] = pd.to_datetime(_data['접수시각'])          
     df['cust_name'] = _data['회선명']
     df['declaration'] = _data['신고자의견']
@@ -29,6 +28,7 @@ def exceltodb(table_content):
     customer_objects = [
     CustomerTB(
         voc=row['voc'],
+        cent=row['cent_id'],
         receipt=row['receipt'],
         cust_name=row['cust_name'],
         declaration=row['declaration'],

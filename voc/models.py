@@ -15,7 +15,7 @@ class CenterTB(models.Model):
 ## cent_id
 ## voc_file        
 class VOCTB(models.Model):
-    cent = models.ForeignKey(CenterTB, on_delete=models.CASCADE, blank=True)
+    
     # returns a string(>=1 char(s)) or a empty string('', with len()==0)
     # at first it hasn't any value, will get center position after data cleaning
     voc_desc = models.CharField(_("file name"), max_length=20, blank=True) 
@@ -44,6 +44,7 @@ class VOCTB(models.Model):
 ## tm_judge
 class CustomerTB(models.Model):
     voc = models.ForeignKey(VOCTB, on_delete=models.CASCADE)
+    cent = models.ForeignKey(CenterTB, on_delete=models.CASCADE)
     receipt = models.DateTimeField(_("date joined"))
     cust_name = models.CharField(_("customer name"), max_length=30)
     declaration = models.CharField(_("additional info"), max_length=300)
