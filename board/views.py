@@ -70,3 +70,10 @@ def board_list(request):
 
         return JsonResponse(data, safe=False)
    
+def edit(request, brd_id):
+    data = BoardTB.objects.all()
+    for board in data:
+        if board.brd_id == brd_id:
+            data = board
+            
+    return render(request, 'board/edit.html', {'data': data})
