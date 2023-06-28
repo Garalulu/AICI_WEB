@@ -157,9 +157,10 @@
                             <div class="col text-end">
                                 <form method="POST" enctype="multipart/form-data" id="myForm">
                                     {% csrf_token %}
-                                    <input type="file" name='voc_file' id="valid" required>
-                                    <input type="text" name="voc_desc" id="valid" maxlength="20" id="id_voc_desc">
-                                    <button type="submit" id="post_button" onclick="contentValid()">Upload</button>
+                                    {{ form.as_p }}
+                                    <!-- <input type="file" name='voc_file' id="valid" id="id_voc_file" required> -->
+                                    <!-- <input type="text" name="voc_desc" id="valid" maxlength="20" id="id_voc_desc"> -->
+                                    <button type="submit" id="post_button">Upload</button>
                                 </form>
                                 
                             </div>
@@ -296,10 +297,11 @@
         </div>
     </body>
 </html>
-<script>
+<script>/*
     var files = document.getElementById('valid');
 
     function contentValid() {
+        alert('hello')
         if(files.value == "") {
             post_button.setAttribute('type', 'button') 
             alert("파일을 추가해 주세요.")
@@ -310,26 +312,28 @@
     }
 
     function post(){
-        alert('hi')
         // 게시글 게시 폼 전송
         $('#myForm').submit(function(event) {
             event.preventDefault(); // 폼의 기본 동작을 막음
         
             // 폼 데이터 가져오기
-            var formData = $(this).serialize();
+           var voc_file = $("#id_voc_file")[0].files[0];
+           var voc_desc = $("#id_voc_desc").val();
         
             // AJAX 요청 보내기
             $.ajax({
-                url: 'upload', // 회원가입 처리 URL을 지정
+                url: '/voc/upload/', // 회원가입 처리 URL을 지정
                 type: 'POST',
-                data: formData,
+                enctype: 'multipart/form-data',
+                data: {'voc_file':voc_file,
+                        'voc_desc':voc_desc},
                 dataType: 'json',
                 success: function(response) {
                     // 응답 처리
                     if (response.message === '게시물이 성공적으로 생성되었습니다.') {
                     // 게시 성공
                         window.location.href = '/voc'; // 공지사항 페이지로 이동
-                    }  else { // 게시 실패
+                    }  else if (response.message === 'Invalid form data'){ // 게시 실패
                         alert('게시글을 게시하는데 실패하였습니다.');
                     }
                 },
@@ -340,6 +344,7 @@
                 }
             });
         });
-    }
+    }*/
     
 </script>
+<!-- var formData = $(this).serialize(); -->
