@@ -199,40 +199,49 @@
 
     var title = document.getElementById('brd_title');
     var content = document.getElementById('brd_content');
+    var post_button = document.getElementById('post_button');
 
     function contentValid() {
-        if(title.value == "") {
-            post_button.setAttribute('type', 'button') 
-            alert("제목을 입력해주세요.")
-        } else if(content.value == "") {
-            post_button.setAttribute('type', 'button') 
-            alert("내용을 입력해주세요.")
+        if (title.value == "") {
+            post_button.setAttribute('type', 'button');
+            alert("제목을 입력해주세요.");
+        } else if (content.value == "") {
+            post_button.setAttribute('type', 'button');
+            alert("내용을 입력해주세요.");
         } else {
-            post_button.setAttribute('type', 'submit') // 회원가입 버튼 -> submit으로 변경
-            post()
+            post_button.setAttribute('type', 'submit'); // 회원가입 버튼 -> submit으로 변경
+            post();
         }
     }
 
-    function post(){
+    function post() {
         // 게시글 게시 폼 전송
         $('#myForm').submit(function(event) {
             event.preventDefault(); // 폼의 기본 동작을 막음
-        
+
             // 폼 데이터 가져오기
-            var formData = $(this).serialize();
-        
+            var formData = new FormData($(this)[0]);
+
+            var fileInput = document.getElementById('file');
+            var file = fileInput.files[0]; // 파일 선택
+
+            formData.append('file', file);
+
             // AJAX 요청 보내기
             $.ajax({
                 url: '/board/post/', // 회원가입 처리 URL을 지정
                 type: 'POST',
                 data: formData,
+                processData: false,
+                contentType: false,
                 dataType: 'json',
                 success: function(response) {
                     // 응답 처리
                     if (response.message === '게시물이 성공적으로 생성되었습니다.') {
-                    // 게시 성공
+                        // 게시 성공
                         window.location.href = '/board'; // 공지사항 페이지로 이동
-                    }  else { // 게시 실패
+                    } else {
+                        // 게시 실패
                         alert('게시글을 게시하는데 실패하였습니다.');
                     }
                 },
@@ -244,5 +253,6 @@
             });
         });
     }
+
     
 </script>
