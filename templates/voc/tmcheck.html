@@ -236,6 +236,7 @@
                                 <tr>
                                     <th>접수 시각</th><th>고객</th><th>신고자 의견</th><th>전화번호</th><th>주소</th><th>중요도</th><th>TM 상황</th><th>응답</th><th>응답결과</th><th>판단근거</th>
                                 </tr>
+                            </thead>
                             <tbody>
                                 {% if data %}
                                         {% for vocs in data %}
@@ -254,7 +255,6 @@
                                         {% endfor %}
                                 {% endif %}
                             </tbody>
-                            </thead>
                         </table>
                     </div>
                 </div>
@@ -262,4 +262,3 @@
         </div>
     </body>
 </html>
-<script>

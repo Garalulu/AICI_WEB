@@ -178,24 +178,34 @@
                                 <a href="/voc">더보기</a>
                             </div>
                         </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th></th><th>접수시각</th><th>고객</th><th>신고자 의견</th><th>고객유형</th><th>전화번호</th><th>주소</th>
-                                </tr>
+                        <div class="voc_content">
+                            <table class="voc_table">
+                                <thead>
+                                    <tr>
+                                        <th>접수 시각</th><th>고객</th><th>신고자 의견</th><th>전화번호</th><th>주소</th><th>중요도</th><th>TM 상황</th><th>응답</th><th>응답결과</th><th>판단근거</th>
+                                    </tr>
+                                </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td><td>Mark</td><td>Otto</td><td>@mdo</td><td>Otto</td><td>010-1234-5678</td><td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td><td>Mark</td><td>Otto</td><td>@mdo</td><td>Otto</td><td>010-1234-5678</td><td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td><td>Mark</td><td>Otto</td><td>@mdo</td><td>Otto</td><td>010-1234-5678</td><td>@mdo</td>
-                                    </tr>
+                                    {% if df %}
+                                            {% for vocs in df %}
+                                            <tr>
+                                                <td >{{ vocs.receipt }}</td>
+                                                <td >{{ vocs.cust_name }}</td>
+                                                <td >{{ vocs.declaration }}</td>
+                                                <td >{{ vocs.cust_num }}</td>
+                                                <td >{{ vocs.cust_ads }}</td>
+                                                <td >{{ vocs.cust_importance }}</td>
+                                                <td >{{ vocs.is_tm }}</td>
+                                                <td >{{ vocs.is_answer }}</td>
+                                                <td >{{ vocs.tm_result }}</td>
+                                                <td >{{ vocs.tm_judge }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                    {% endif %}
                                 </tbody>
-                            </thead>
-                        </table>
+                                
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <!-- 메인 내용 -->

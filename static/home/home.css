@@ -52,8 +52,7 @@ i {
 .board:hover{
     width: 41vw;
     height: 31vh;
-    margin-right: 0.5vw;
-    
+    margin-right: 0.5vw;   
 }
 .construction{
     border: 1px solid gray;
@@ -80,7 +79,7 @@ i {
 }
 table{
     width: 100%;
-    text-align: center;
+    
 }
 tr, td{
     padding: 10px;  
@@ -122,12 +121,9 @@ tr, td{
 .tm_check th{
     background-color: rgb(196,218,254);
     border-bottom: .5px solid rgb(215,219,224);
-    padding: 10px;
+    text-align: center;
 }
-.tm_check tr{
-    border-bottom: .5px solid rgb(215,219,224);
-    padding: 10px;
-}
+
 .text_cus{
     font-weight: 600;
     margin:10px;
@@ -151,4 +147,21 @@ tr, td{
     color: #1EC28F;
     border: 0.5px solid #1EC28F;
     padding: 8px;
+}
+
+.voc_content {
+    overflow: scroll;
+    white-space: nowrap;
+    height: 41.5vh;
+    width: 82.5vw;
+    transition: all .4s;
+}
+.voc_table thead tr th {
+    position: sticky;
+    top: 0px;
+    background-color: rgb(197,218,254) !important;
+}
+.tm_check:hover .voc_content{
+    width: 83.8vw;
+    height: 42.7vh;
 }
