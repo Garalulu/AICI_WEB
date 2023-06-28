@@ -15,7 +15,7 @@ class CenterTB(models.Model):
 ## cent_id
 ## voc_file        
 class VOCTB(models.Model):
-    cent = models.ForeignKey(CenterTB, on_delete=models.CASCADE, blank=True)
+    cent = models.ForeignKey(CenterTB, on_delete=models.CASCADE, blank=True, null=False)
     # returns a string(>=1 char(s)) or a empty string('', with len()==0)
     # at first it hasn't any value, will get center position after data cleaning
     voc_desc = models.CharField(_("file name"), max_length=20, blank=True) 

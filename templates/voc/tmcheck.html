@@ -154,11 +154,13 @@
                                 <h4 class="m-0 pt-2">고객 관리</h4>
                             </div>
                             <div class="col text-end">
-                                <form method="post" enctype="multipart/form-data">
+                                <form method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
-                                    {{ form.as_p }}
+                                    <input type="file" name='voc_file' required>
+                                    <input type="text" name="voc_desc" maxlength="20" id="id_voc_desc">
                                     <button type="submit">Upload</button>
                                 </form>
+                                
                             </div>
                         </div>
                         <table class="table mb-0 table-primary  text-center" style="font-size: 0.9rem;">

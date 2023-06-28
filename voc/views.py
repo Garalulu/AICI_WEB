@@ -10,7 +10,7 @@ def tmcheck(request):
     if request.method == 'GET':
         form = VOCForm()
         return render(request, 'voc/tmcheck.html', {'form': form})
-    if request.method == 'POST' and request.FILES['file']:
+    if request.method == 'POST':
         form = VOCForm(request.POST, request.FILES)
         if form.is_valid():
             _file = form.save()
@@ -23,7 +23,7 @@ def tmcheck(request):
     
 @login_required
 def upload_voc(request):
-    if request.method == 'POST' and request.FILES['file']:
+    if request.method == 'POST' and request.FILES['cstr_file']:
         form = VOCForm(request.POST, request.FILES)
         if form.is_valid():
             _file = form.save()
