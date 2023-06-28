@@ -1,10 +1,10 @@
 from django import forms
 
-from .models import ConstructionTB
+from .models import ConstructionCallTB
 
 
-class ConstructionForm(forms.ModelForm):
+class ConstructionCallForm(forms.ModelForm):
     class Meta:
-        model = ConstructionTB
+        model = ConstructionCallTB
         fields = {'cstr_desc', 'cstr_file',}
         

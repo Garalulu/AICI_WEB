@@ -22,8 +22,6 @@ class VOCTB(models.Model):
     voc_file = models.FileField(_("uploaded file"), upload_to="voc/%Y/%m/%d")
     uploaded_at = models.DateTimeField(_("date uploaded"), auto_now_add=True)
     
-    def get_filename(self):
-        return os.path.basename(self.voc_file.name)
 
 
 ## Customer VOC information
