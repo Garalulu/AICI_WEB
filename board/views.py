@@ -19,7 +19,6 @@ def post(request):
             board.save()
 
             if file_form.is_valid():
-                print("여기")
                 file = file_form.cleaned_data['file']
                 upload_file = UploadFile(brd_id=board, file=file)
                 upload_file.save()
