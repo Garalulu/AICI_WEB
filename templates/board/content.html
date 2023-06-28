@@ -53,7 +53,7 @@
 
             a {
                 text-decoration: none;
-                color: black;
+                color: white;
             }
 
         </style>
@@ -157,6 +157,11 @@
                             <div class="col-4">
                                 <h4 style="display:inline;">공지사항</h4> <i class="bi bi-chevron-compact-right" style="font-size: 16px;"></i> 게시글 보기
                             </div>
+
+                            <!-- 목록으로 -->
+                            <div class="d-flex justify-content-end col">
+                                <button type="submit" class="btn btn-secondary btn" onclick ="location.href='/board'"> 목록 </button>
+                            </div>
                         </div>
                     </div>
 
@@ -194,14 +199,33 @@
                     </div>
 
                     <!-- 내용 -->
-                    <div class="border mb-5">
+                    <div class="border mb-3">
                         <p class="m-4">{{ data.brd_content }}</p>
                     </div>
 
-                    <!-- 목록으로 -->
-                    <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-secondary btn" onclick ="location.href='/board'"> 목록 </button>
+                    <!-- 파일 -->
+                    <div class="border mb-5">
+                        <p class="m-4"> 파일 들어갈거지롱 </p>
                     </div>
+
+                    {% if data.usr_id.name == request.user.name %}
+                        <div class="row row-cols-auto d-flex justify-content-end">
+                            <!-- 수정하기 -->
+                            <div class="col p-0">
+                                <button type="submit" class="btn btn-secondary btn m-0">
+                                    <a href="{% url 'board:edit' data.brd_id %}">
+                                        수정하기
+                                    </a>
+                                </button>
+                            </div>
+                            <!-- 삭제하기 -->
+                            <div class="col" >
+                                <button type="button" class="btn btn-secondary btn" onclick ="delete_btn()">삭제하기</button>
+                                
+                            </div>
+                        </div>
+                    {% else %}
+                    {% endif %}
 
                 </div>
             </div>
@@ -209,6 +233,12 @@
     </body>
 </html>
 
+<script>
+    function delete_btn(){
+        var returnValue = confirm('삭제하시겠습니까?')
+        alert(returnValue);
+    }
+</script>
 
 <script>
     /*
