@@ -13,5 +13,5 @@ class ConstructionTB(models.Model):
     cstr_location = models.CharField(_("construction location"), max_length=30, blank=True)
     cstr_company = models.CharField(_("construction company"), max_length=30, blank=True)
     cstr_num = models.CharField(_("company tel number"), max_length=11, blank=True)
-    cent = models.ForeignKey(CenterTB, on_delete=models.CASCADE, blank=True)
-
+    cent = models.ForeignKey(CenterTB, on_delete=models.CASCADE)
+    cstrcall = models.ForeignKey(ConstructionCallTB, on_delete=models.CASCADE)

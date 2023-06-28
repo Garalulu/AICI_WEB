@@ -169,3 +169,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 ## Login / Logout redirect URL 
 LOGIN_REDIRECT_URL = '/home/'
 LOGOUT_REDIRECT_URL = '/login/'
+
+## Maintain Session in 1 hour
+ACCOUNT_SESSION_REMEMBER = True
+SESSION_COOKIE_AGE = 3600
