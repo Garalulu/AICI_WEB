@@ -15,7 +15,7 @@ def construction(request):
     
 @login_required
 def upload_construction(request):
-    if request.method == 'POST' and request.FILES:
+    if request.method == 'POST':
         form = ConstructionCallForm(request.POST, request.FILES)
         if form.is_valid():
             _file = form.save()

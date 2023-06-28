@@ -19,7 +19,7 @@ def tmcheck(request):
 ## get excel file and extract data to db    
 @login_required
 def upload_voc(request):
-    if request.method == 'POST' and request.FILES:
+    if request.method == 'POST':
         form = VOCForm(request.POST, request.FILES)
         if form.is_valid():
             _file = form.save()
