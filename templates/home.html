@@ -118,15 +118,21 @@
                             <hr>
                             <table>
                                 <thead>
-                                    <tr>
-                                        <td>[공지]</td><td>6/22(목) AICI 정기점검 안내</td><td>2023-06-21</td>
-                                    </tr>
-                                    <tr>
-                                        <td>[공지]</td><td>6/22(목) AICI 정기점검 안내</td><td>2023-06-21</td>
-                                    </tr>
-                                    <tr>
-                                        <td>[공지]</td><td>6/22(목) AICI 정기점검 안내</td><td>2023-06-21</td>
-                                    </tr>
+                                    {% if data %}
+                                        {% for board in data %}
+                                            <tr>
+                                                <td>{{ board.brd_id }}</td>
+                                                <td>
+                                                    <a href="{% url 'board:content' board.brd_id %}" style="text-decoration: none; color: black;">
+                                                        {{ board.brd_title }}
+                                                    </a>
+                                                </td>
+                                                <td>{{ board.brd_create }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% else %}
+                                        <h3 class="text-center">게시글이 존재하지 않습니다.</h3>
+                                    {% endif %}
                                 </thead>
                             </table>
                             
