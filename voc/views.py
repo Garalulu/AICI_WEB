@@ -4,13 +4,12 @@ from django.http import JsonResponse
 from users.decorators import login_required
 from .exceltodb import exceltodb
 from .forms import VOCForm
-import openpyxl
-from django.views import View
 
 @login_required
 def tmcheck(request):
     if request.method == 'GET':
-        return render(request, 'voc/tmcheck.html')
+        form = VOCForm()
+        return render(request, 'voc/tmcheck.html', {'form': form})
     if request.method == 'POST' and request.FILES['file']:
         form = VOCForm(request.POST, request.FILES)
         if form.is_valid():
