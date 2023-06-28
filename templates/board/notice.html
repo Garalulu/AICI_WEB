@@ -170,7 +170,6 @@
                     <!-- 글 목록 -->
                     
                     <div class="mb-5">
-                        
                         <table class="table table-hover" style="border-collapse: separate; border-spacing: 0 10px;">
                             <tbody id="table-body">
                                 <colgroup>
@@ -178,32 +177,21 @@
                                     <col width=60%>
                                     <col width=20%>
                                 </colgroup>
-                                {% comment %} {% if data %}
-                                    {% for board in data %}
+                                {% if data %}
+                                    {% for boards in data %}
                                     <tr class="mb-4">
-                                        <td class="text-center">[공지]</td>
-                                        <td>{{ board.brd_title }}</td>
-                                        <td>{{ board.brd_content }}</td>
+                                        <td class="text-center">{{ boards.brd_id }}</td>
+                                        <td>
+                                            <a href="{% url 'board:content' boards.brd_id %}">
+                                                {{ boards.brd_title }}
+                                            </a>
+                                        </td>
+                                        <td>{{ boards.brd_create }}</td>
                                     </tr>
                                     {% endfor %}
                                 {% else %}
-                                    <p>게시글이 존재하지 않습니다.</p>
-                                {% endif %} {% endcomment %}
-                                <tr class="mb-4">
-                                    <td class="text-center">[공지]</td>
-                                    <td><a href="/board/content">6/22(목) AICI 정기점검 안내</a></td>
-                                    <td>2023-06-21</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">[공지]</td>
-                                    <td><a href="#">6/22(목) AICI 정기점검 안내</a></td>
-                                    <td>2023-06-21</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">[공지]</td>
-                                    <td><a href="#">6/22(목) AICI 정기점검 안내</a></td>
-                                    <td>2023-06-21</td>
-                                </tr>
+                                    <h3 class="text-center">게시글이 존재하지 않습니다.</h3>
+                                {% endif %}
                             </tbody>
                         </table>
                     </div>
@@ -246,14 +234,16 @@
     </body>
 </html>
 
-<script>
+<script>/*
     $(document).ready(function() {
         $.ajax({
             url: '/board/board_list/',
             type: 'GET',
-            dataType: 'json',
+            //dataType: 'json',
             success: function(data) {
+                alert(data[3].brd_title)
                 // 성공적으로 데이터를 받아온 경우 처리 로직 작성
+                /*
                 str = '<tr>'; 
                     $.each(data , function(i){
                         str += '<td class="text-center">' + data[i].brd_id + '</td>' 
@@ -269,5 +259,5 @@
             }
         });
     });
-
+*/
 </script>

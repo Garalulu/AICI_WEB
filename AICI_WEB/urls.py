@@ -25,7 +25,7 @@ urlpatterns = [
     
     path('', home, name='home'), # 메인 홈
     path('users/', include("users.urls")), # 로그인, 회원가입, 약관
-    path('board/', include("board.urls")), # 게시판
+    path('board/', include("board.urls"), name='board'), # 게시판
     path('voc/', include("voc.urls")), # VOC
     path('construction/', include("construction.urls")), # 시외공사
 ]
