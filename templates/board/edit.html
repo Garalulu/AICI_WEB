@@ -180,7 +180,7 @@
                                     </colgroup>
                                     <tr>
                                         <td class="align-middle text-center">제목</td>
-                                        <td><textarea class="form-control" id="brd_title" name="brd_title" style="resize: none; height:10px;">{{ data.brd_title }}</textarea></td>
+                                        <td><textarea class="form-control" id="brd_title" name="brd_title" maxlength="20" style="resize: none; height:10px;">{{ data.brd_title }}</textarea></td>
                                         
                                     </tr>
                                     <tr class="mb-4">
@@ -213,9 +213,20 @@
 </html>
 
 <script>
+
     function edit_btn(){
         var returnValue = confirm('수정하시겠습니까?')
-        alert(returnValue);
+        if (returnValue) {
+            event.preventDefault() // 기본 동작 중지
+            alert('수정이 완료되었습니다.')
+            window.location.href = '/board/'
+            //window.history.back()
+        } else {
+            // 취소 버튼을 눌렀을 때의 동작
+            event.preventDefault(); // 기본 동작 중지
+        }
     }
+
+    
 </script>
 
