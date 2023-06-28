@@ -5,14 +5,14 @@ from users.decorators import login_required
 from .exceltodb import exceltodb
 from .forms import VOCForm
 from .models import CustomerTB
-
+# .filter(cent=request.user.uid.cent).order_by('receipt') 
 ## tmcheck
-## get voc main page with voc data from db
+## get voc main page with voc data from dbCustomerTB
 @login_required
 def tmcheck(request):
     if request.method == 'GET':
         ## load voc but only for engineer's work center
-        data = CustomerTB.objects.filter(cent=request.user.uid.cent).order_by('receipt') 
+        data = CustomerTB.objects.all()
         form = VOCForm()
         return render(request, 'voc/tmcheck.html', {'data': data,
                                                     'form': form,})
@@ -21,7 +21,7 @@ def tmcheck(request):
         if form.is_valid():
             _file = form.save()
             exceltodb(_file) ## extract data in VOCTB to CustomerTB
-            return JsonResponse({'message': '게시물이 성공적으로 생성되었습니다.'})
+            return render(request, 'voc/tmcheck.html')
         else:
             return JsonResponse({'message': 'Invalid form data'})
 
@@ -40,3 +40,6 @@ def upload_voc(request):
             return JsonResponse({'message': 'Invalid form data'})
     return JsonResponse({'message': 'Upload failed'})
     
+def voc(request):
+    data = CustomerTB.object.all()
+    return render(request, 'voc/tmcheck.html', {'data':data})
