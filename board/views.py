@@ -40,8 +40,12 @@ def post(request):
 
 
 
-def content(request):
+def content(request, brd_id):
     data = BoardTB.objects.all()
+    for board in data:
+        if board.brd_id == brd_id:
+            data = board
+            
     return render(request, 'board/content.html', {'data': data})
 
 def board_list(request):

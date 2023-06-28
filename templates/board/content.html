@@ -170,7 +170,7 @@
                                 </colgroup>
                                 <tr>
                                     <td class="table-active">제목</td>
-                                    <td>6/22(목) AICI 정기점검 안내</td>
+                                    <td>{{ data.brd_title }}</td>
                                 </tr>
                                 
                             </tbody>
@@ -187,7 +187,7 @@
                                     <td class="table-active">유형</td>
                                     <td >공지</td>
                                     <td class="table-active">날짜</td>
-                                    <td>2023-06-21</td>
+                                    <td>{{ data.brd_create }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -195,7 +195,7 @@
 
                     <!-- 내용 -->
                     <div class="border mb-5">
-                        안녕하세용
+                        <p class="m-4">{{ data.brd_content }}</p>
                     </div>
 
                     <!-- 목록으로 -->
@@ -211,6 +211,7 @@
 
 
 <script>
+    /*
     $(document).ready(function() {
         $.ajax({
             url: '/board/board_list/',
@@ -227,5 +228,5 @@
             }
         });
     });
-
+    */
 </script>
