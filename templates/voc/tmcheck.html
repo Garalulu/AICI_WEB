@@ -68,8 +68,9 @@
                         <div>
                             <a href="/home"><img src="{% static 'privacy/logo.png' %}" class="w-50" id="logo"></a>
                         </div>
-                    </div>
+                    </div>z
                     <div class="col-8">
+                        
                         {% if request.user.is_authenticated %}
                             <h5 class="m-0"><p style="display: inline;">{{ request.user.name }}</p>엔지니어님, 환영합니다.</h5>    
                         {% else %}
