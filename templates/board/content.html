@@ -204,10 +204,41 @@
                     </div>
 
                     <!-- 파일 -->
+                    <!-- 파일 -->
                     <div class="border mb-5">
-                        <p class="m-4"> 파일 들어갈거지롱 </p>
+                        <table class="table table-borderless text-center">
+                            <tbody>
+                                <colgroup>
+                                    <col width=60%>
+                                    <col width=20%>
+                                    <col width=20%>
+                                </colgroup>
+                                {% for file in data.uploadfile_set.all %}
+                                {% if file.brd_id_id == data.brd_id %}
+                                {% if file.file.name %}
+                                <tr>
+                                    <td>
+                                        <a href="{{ file.file.url }}" download>{{ file.file.name }}</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ file.file.url }}" download>
+                                            <i class="fa fa-download"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {{ file.file.name }}
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% endif %}
+                                {% empty %}
+                                <tr>
+                                    <td colspan="3">파일이 없습니다.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
-
                     {% if data.usr_id.name == request.user.name %}
                         <div class="row row-cols-auto d-flex justify-content-end">
                             <!-- 수정하기 -->
