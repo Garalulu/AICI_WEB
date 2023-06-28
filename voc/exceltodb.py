@@ -33,7 +33,8 @@ def exceltodb(table_content):
         cust_name=row['cust_name'],
         declaration=row['declaration'],
         cust_num=row['cust_num'],
-        cust_ads=row['cust_ads']
+        cust_ads=row['cust_ads'],
+        tm_judge='',
     )
     for _, row in df.iterrows()
     ]
