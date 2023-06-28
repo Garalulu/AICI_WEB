@@ -155,11 +155,11 @@
                                 <h4 class="m-0 pt-2">고객 관리</h4>
                             </div>
                             <div class="col text-end">
-                                <form method="POST" enctype="multipart/form-data">
+                                <form method="POST" enctype="multipart/form-data" id="myForm">
                                     {% csrf_token %}
-                                    <input type="file" name='voc_file' required>
-                                    <input type="text" name="voc_desc" maxlength="20" id="id_voc_desc">
-                                    <button type="submit">Upload</button>
+                                    <input type="file" name='voc_file' id="valid" required>
+                                    <input type="text" name="voc_desc" id="valid" maxlength="20" id="id_voc_desc">
+                                    <button type="submit" id="post_button" onclick="contentValid()">Upload</button>
                                 </form>
                                 
                             </div>
@@ -294,30 +294,52 @@
                 </div>
             </div>
         </div>
-        <!-- <script>
-            $('upload-excel').click(() => {
-                alert('hi')
-                var form = $("#modal-excel-form")[0];
-                var formData = new FormData(form);
-                formData.append("message", "ajax로 파일 전송하기");
-                formData.append("file", $("input-excel")[0].files[0]);
-                $.ajax({
-                    url: "/upload",
-                    processData: false,
-                    contentType: false,
-                    type: "POST",
-                    headers:{"X-CSRFToken": csrftoken},
-                    data : formData,
-                    success: function(data) {
-                        alert(data.message);
-                        location.reload();
-                    },
-                    error:function(data) {
-                        alert(data.message);
-                    },        
-                });
-            });
-            
-        </script> -->
     </body>
 </html>
+<script>
+    var files = document.getElementById('valid');
+
+    function contentValid() {
+        if(files.value == "") {
+            post_button.setAttribute('type', 'button') 
+            alert("파일을 추가해 주세요.")
+        } else {
+            post_button.setAttribute('type', 'submit') // 회원가입 버튼 -> submit으로 변경
+            post()
+        }
+    }
+
+    function post(){
+        alert('hi')
+        // 게시글 게시 폼 전송
+        $('#myForm').submit(function(event) {
+            event.preventDefault(); // 폼의 기본 동작을 막음
+        
+            // 폼 데이터 가져오기
+            var formData = $(this).serialize();
+        
+            // AJAX 요청 보내기
+            $.ajax({
+                url: 'voc/upload', // 회원가입 처리 URL을 지정
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    // 응답 처리
+                    if (response.message === '게시물이 성공적으로 생성되었습니다.') {
+                    // 게시 성공
+                        window.location.href = '/voc'; // 공지사항 페이지로 이동
+                    }  else { // 게시 실패
+                        alert('게시글을 게시하는데 실패하였습니다.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // 요청 실패
+                    alert('요청실패');
+                    console.log('Error:', error);
+                }
+            });
+        });
+    }
+    
+</script>
