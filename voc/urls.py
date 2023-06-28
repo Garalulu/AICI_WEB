@@ -4,5 +4,5 @@ from voc import views
 app_name = 'voc'
 urlpatterns = [
     path('', views.tmcheck, name='tmcheck'),
-    path('upload_voc/', views.upload_voc, name='upload_voc'),
+    path('upload/', views.upload_voc, name='voc_upload'),
 ]
