@@ -18,7 +18,7 @@ class VOCTB(models.Model):
     cent = models.ForeignKey(CenterTB, on_delete=models.CASCADE, blank=True)
     # returns a string(>=1 char(s)) or a empty string('', with len()==0)
     # at first it hasn't any value, will get center position after data cleaning
-    voc_desc = models.CharField(_("file name"), max_length=255, blank=True) 
+    voc_desc = models.CharField(_("file name"), max_length=20, blank=True) 
     voc_file = models.FileField(_("uploaded file"), upload_to="voc/%Y/%m/%d")
     uploaded_at = models.DateTimeField(_("date uploaded"), auto_now_add=True)
     
