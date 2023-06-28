@@ -198,10 +198,26 @@
                                     <col width=20%>
                                     <col width=10%>
                                 </colgroup>
+                                {% if data %}
+                                    {% for boards in data %}
+                                    <tr class="mb-4">
+                                        <td >{{ boards.receipt }}</td>
+                                        <td >{{ boards.cust_name }}</td>
+                                        <td >{{ boards.declaration }}</td>
+                                        <td >{{ boards.cust_num }}</td>
+                                        <td >{{ boards.cust_ads }}</td>
+                                        <td >{{ boards.cust_importance }}</td>
+                                        <td >{{ boards.is_tm }}</td>
+                                        <td >{{ boards.is_answer }}</td>
+                                        <td >{{ boards.tm_result }}</td>
+                                        <td >{{ boards.tm_judge }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                {% endif %}
                                 <tr>
                                     <th scope="row">1</th>
-                                    <td>u</td>
-                                    <td>Otto</td>
+                                    <td>{{ data.cust_name}}</td>
+                                    <td>{{ data.cust_name }}</td>
                                     <td>@mdo</td>
                                     <td>Otto</td>
                                     <td>@mdo</td>
