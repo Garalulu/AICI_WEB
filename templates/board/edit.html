@@ -203,9 +203,6 @@
                         {% else %}
                         {% endif %}
                     </form>
-
-                    
-
                 </div>
             </div>
         </div>
@@ -218,6 +215,9 @@
         var returnValue = confirm('수정하시겠습니까?')
         if (returnValue) {
             event.preventDefault() // 기본 동작 중지
+
+            post() // 게시글 전송
+
             alert('수정이 완료되었습니다.')
             window.location.href = '/board/'
             //window.history.back()
@@ -225,6 +225,46 @@
             // 취소 버튼을 눌렀을 때의 동작
             event.preventDefault(); // 기본 동작 중지
         }
+    }
+
+    function post() {
+        // 게시글 게시 폼 전송
+        $('#myForm').submit(function(event) {
+            event.preventDefault(); // 폼의 기본 동작을 막음
+
+            // 폼 데이터 가져오기
+            var formData = new FormData($(this)[0]);
+
+            var fileInput = document.getElementById('file');
+            var file = fileInput.files[0]; // 파일 선택
+
+            formData.append('file', file);
+
+            // AJAX 요청 보내기
+            $.ajax({
+                url: '/board/post/', // 회원가입 처리 URL을 지정
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                success: function(response) {
+                    // 응답 처리
+                    if (response.message === '게시물이 성공적으로 생성되었습니다.') {
+                        // 게시 성공
+                        window.location.href = '/board'; // 공지사항 페이지로 이동
+                    } else {
+                        // 게시 실패
+                        alert('게시글을 게시하는데 실패하였습니다.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // 요청 실패
+                    alert('요청실패');
+                    console.log('Error:', error);
+                }
+            });
+        });
     }
 
     
