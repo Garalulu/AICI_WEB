@@ -5,7 +5,8 @@ from .models import BoardTB, UploadFile
 from users.models import EngineerTB
 
 def notice(request):
-    return render(request, 'board/notice.html')
+    data = BoardTB.objects.all().order_by('-brd_id')
+    return render(request, 'board/notice.html', {'data': data})
 
 def post(request):
     if request.method == 'POST':
@@ -40,7 +41,8 @@ def post(request):
 
 
 def content(request):
-    return render(request, 'board/content.html')
+    data = BoardTB.objects.all()
+    return render(request, 'board/content.html', {'data': data})
 
 def board_list(request):
     if request.method == 'GET':
@@ -59,3 +61,4 @@ def board_list(request):
             data.append(board_data)
 
         return JsonResponse(data, safe=False)
+   
