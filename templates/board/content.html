@@ -53,7 +53,6 @@
 
             a {
                 text-decoration: none;
-                color: white;
             }
 
         </style>
@@ -204,47 +203,43 @@
                     </div>
 
                     <!-- 파일 -->
-                    <!-- 파일 -->
                     <div class="border mb-5">
-                        <table class="table table-borderless text-center">
-                            <tbody>
-                                <colgroup>
-                                    <col width=60%>
-                                    <col width=20%>
-                                    <col width=20%>
-                                </colgroup>
-                                {% for file in data.uploadfile_set.all %}
+                        <div class="m-4">
+                            {% load custom_filters %}
+                            {% for file in data.uploadfile_set.all %}
                                 {% if file.brd_id_id == data.brd_id %}
-                                {% if file.file.name %}
-                                <tr>
-                                    <td>
-                                        <a href="{{ file.file.url }}" download>{{ file.file.name }}</a>
-                                    </td>
-                                    <td>
-                                        <a href="{{ file.file.url }}" download>
-                                            <i class="fa fa-download"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        {{ file.file.name }}
-                                    </td>
-                                </tr>
+                                    {% if file.file.name %}
+                                        <!-- 이미지 파일일 경우 화면에 띄우기, 아닐 경우 첨부파일 다운로드 -->
+                                        {% if file.file.name|lower|endswith:".jpg" or file.file.name|endswith:".png" or file.file.name|endswith:".gif" %}
+                                            <!-- 이미지 파일 로드 -->
+                                            <div>
+                                                <img src="{{ file.file.url }}" alt="{{ file.file.name }}">
+                                            </div>
+                                        {% else %}
+                                            <!-- 첨부파일 다운로드 -->
+                                            <div class="row">
+                                                <p class="col-auto border ms-3"> 첨부파일 </p>
+                                                <div class="col">
+                                                    <a href="{{ file.file.url }}" download id="file-link">{{ file.file.name }}</a>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
                                 {% endif %}
-                                {% endif %}
-                                {% empty %}
-                                <tr>
-                                    <td colspan="3">파일이 없습니다.</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                            {% empty %}
+                                <!-- 파일이 없을 때의 처리 -->
+                            {% endfor %}
+                        
+
+
+                        </div>
                     </div>
                     {% if data.usr_id.name == request.user.name %}
                         <div class="row row-cols-auto d-flex justify-content-end">
                             <!-- 수정하기 -->
                             <div class="col p-0">
                                 <button type="submit" class="btn btn-secondary btn m-0">
-                                    <a href="{% url 'board:edit' data.brd_id %}">
+                                    <a href="{% url 'board:edit' data.brd_id %}" style="color:white;">
                                         수정하기
                                     </a>
                                 </button>
