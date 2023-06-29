@@ -83,7 +83,7 @@
                                     <a class="nav-link me-5" href="#"><i class="bi bi-person-circle"></i></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link me-2" href="users/logout"><i class="bi bi-box-arrow-right"></i></a>
+                                    <a class="nav-link me-2" href="/users/logout"><i class="bi bi-box-arrow-right"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -228,6 +228,12 @@
                                 {% endif %}
                             {% empty %}
                                 <!-- 파일이 없을 때의 처리 -->
+                                <div class="row">
+                                    <p class="col-auto border ms-3"> 첨부파일 </p>
+                                    <div class="col">
+                                        <p> 파일이 존재하지 않습니다. </p>
+                                    </div>
+                                </div>
                             {% endfor %}
                         
 
@@ -260,6 +266,9 @@
 </html>
 
 <script>
+    data = 
+    alert(data)
+
     function delete_btn(){
         var returnValue = confirm('삭제하시겠습니까?')
         alert(returnValue);
