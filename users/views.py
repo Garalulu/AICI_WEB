@@ -81,6 +81,10 @@ def terms_of_service(request):
 def privacy_policy(request):
     return render(request, 'users/privacy_policy.html')
 
+def aboutus(request):
+    return render(request, 'users/aboutus.html')
+
+
 
         
 
