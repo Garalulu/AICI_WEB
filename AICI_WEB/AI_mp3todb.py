@@ -263,3 +263,4 @@ def construction(audio_data):
         
     location = ' '.join(location)
     
+    return formatted_date, content, location
