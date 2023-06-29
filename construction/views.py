@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.utils import timezone
 
 from users.decorators import login_required
+from AICI_WEB.AI_mp3todb import construction
 from .forms import ConstructionCallForm
 from .models import ConstructionTB
 
@@ -23,6 +24,13 @@ def upload_construction(request):
         form = ConstructionCallForm(request.POST, request.FILES)
         if form.is_valid():
             _file = form.save()
-           ## insert AI model here
-            return JsonResponse({'message': 'Upload success'})
+            receipt, cstr_company, cstr_location = construction(request.FILES)
+            _call = ConstructionTB(receipt=receipt,
+                                  cstr_company=cstr_company,
+                                  cstr_location=cstr_location,
+                                  cent=request.user.uid.cent,
+                                  cstrcall=_file)
+            _call.save()
+           
+            return redirect('/')
     return JsonResponse({'message': 'Upload failed'})

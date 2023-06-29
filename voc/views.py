@@ -3,6 +3,7 @@ from django.http import JsonResponse
 import magic
 
 from users.decorators import login_required
+from AICI_WEB.AI_mp3todb import voc
 from .exceltodb import exceltodb
 from .forms import VOCForm
 from .models import CustomerTB
@@ -30,7 +31,10 @@ def tmcheck(request):
                 else:
                     return JsonResponse({'message': 'Invalid form data'})
             elif mime_type == 'audio/mpeg':
-                return None ## insert AI code here
+                _data = CustomerTB.objects.get()
+                _data.tm_judge, _data.tm_result, _data.cust_importance = voc(request.FILES)
+                _data.save()
+                return redirect('/')
         except:
             ## if the file is not .xls, .mp3
             return JsonResponse({'message': 'Invalid file type'})
