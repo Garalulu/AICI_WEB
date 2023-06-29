@@ -198,6 +198,7 @@
                         </table>
                     </div>
                     
+                    
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-secondary btn-sm" onclick ="location.href='post'"><i class="bi bi-plus-square" style="font-size: 14px;"></i> New </button>
                     </div>
@@ -235,31 +236,3 @@
 
     </body>
 </html>
-
-<script>/*
-    $(document).ready(function() {
-        $.ajax({
-            url: '/board/board_list/',
-            type: 'GET',
-            //dataType: 'json',
-            success: function(data) {
-                alert(data[3].brd_title)
-                // 성공적으로 데이터를 받아온 경우 처리 로직 작성
-                /*
-                str = '<tr>'; 
-                    $.each(data , function(i){
-                        str += '<td class="text-center">' + data[i].brd_id + '</td>' 
-                        str += '<td><a href="/board/content">' + data[i].brd_title + '</td>' 
-                        str += '<td>' + data[i].brd_create + '</td>' 
-                        str += '</tr>'
-                    });
-                $('#table-body').append(str);
-            },
-            error: function(xhr, status, error) {
-                // 요청 실패 처리
-                alert('요청실패')
-            }
-        });
-    });
-*/
-</script>
