@@ -65,14 +65,45 @@ def board_list(request):
 
         return JsonResponse(data, safe=False)
    
-def edit(request, brd_id):
-    data = BoardTB.objects.all()
-    for board in data:
-        if board.brd_id == brd_id:
-            data = board
-            
-    return render(request, 'board/edit.html', {'data': data})
 
+
+
+def edit(request, brd_id):
+    print("여긴가?")
+    if request.method == 'POST':
+        # 게시물 정보 가져오기
+        board = BoardTB.objects.get(brd_id=brd_id)
+        print("힝")
+        # 게시물 수정 처리
+        board_form = BoardForm(request.POST, instance=board)
+        if board_form.is_valid():
+            print("여기")
+            board = board_form.save(commit=False)
+            board.save()
+
+            # 파일 업로드 처리
+            file_form = UploadFileForm(request.POST, request.FILES)
+            if file_form.is_valid():
+                print("요쪽")
+                board.uploadfile_set.all().delete()  # 기존 파일 삭제
+                file = file_form.cleaned_data['file']
+                upload_file = UploadFile(brd_id=board, file=file)
+                upload_file.save()
+
+            data = {
+                'message': '게시물이 성공적으로 수정되었습니다.'
+            }
+            return JsonResponse(data)
+        else:
+            data = {
+                'message': '게시글을 수정하는데 실패하였습니다.'
+            }
+            return JsonResponse(data, status=400)
+    else:
+        board = BoardTB.objects.get(brd_id=brd_id)
+        board_form = BoardForm(instance=board)
+        file_form = UploadFileForm()
+        return render(request, 'board/edit.html', {'data': board, 'board_form': board_form, 'file_form': file_form})
 
 def delete_board(request):
     if request.method == 'POST':
