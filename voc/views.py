@@ -33,7 +33,6 @@ def tmcheck(request):
                     return redirect('/')
                 else:
                     return JsonResponse({'message': 'Invalid form data'})
-<<<<<<< HEAD
             elif mime_type == 'audio/mpeg' or mime_type == 'audio/x-m4a':
                 _data = CustomerTB.objects.last()
                 tm_judge, tm_result, cust_importance = voc(request.FILES['voc_file'])
@@ -51,16 +50,6 @@ def tmcheck(request):
         except Exception as e:
             return JsonResponse({'message': str(e)})
             
-=======
-            elif mime_type == 'audio/mpeg':
-                _data = CustomerTB.objects.get()
-                _data.tm_judge, _data.tm_result, _data.cust_importance = voc(request.FILES)
-                _data.save()
-                return redirect('/')
-        except:
-            ## if the file is not .xls, .mp3
-            return JsonResponse({'message': 'Invalid file type'})
->>>>>>> cc6cb02e501231a98a4c1383f3d4f058b954a3fa
     
 '''def voc(request):
     data = CustomerTB.objects.all()
