@@ -62,10 +62,11 @@
                 width: 92vw;
             }
             table{
-                width: 90vw;
+                table-layout: fixed; /* 테이블 너비 고정 */
             }
             td {
                 border: 1px solid rgb(215, 219, 224);
+                word-wrap: break-word;
             }
             th,td {
                 height: 50px;
@@ -111,17 +112,73 @@
             }
             #post_button:hover {
                 height: 40px;
-                background-color: #1EC28F;
+                background-color: rgba(35,184,124);
                 color: white;
                 border: none;
-
             }
-
-
             .p {
                 margin: 0;
             }
+            .fix1_th {
+                position: sticky;
+                right: 0px;
+                z-index: 1;
+            }
+            .fix2_th {
+                position: sticky;
+                right: 65px;
+                z-index: 1;
+            }
+            .fix3_th {
+                position: sticky;
+                right: 130px;
+                z-index: 1;
+            }
+            .fix4_th {
+                position: sticky;
+                right: 180px;
+                z-index: 1;
+            }
+            .fix5_th {
+                position: sticky;
+                right: 245px;
+                z-index: 1;
+            }
+            .fix1_td {
+                position: sticky;
+                right: 0px;
+                background-color: #2B3A4B;
+                color: white;
+            }
+            .fix2_td {
+                position: sticky;
+                right: 65px;
+                background-color: #2B3A4B;
+                color: white;
+            }
+            .fix3_td {
+                position: sticky;
+                right: 130px;
+                background-color: #2B3A4B;
+                color: white;
+            }
+            .fix4_td {
+                position: sticky;
+                right: 180px;
+                background-color: #2B3A4B;
+                color: white;
+            }
+            .fix5_td {
+                position: sticky;
+                right: 245px;
+                background-color: #2B3A4B;
+                color: white;
+            }
 
+
+
+
+            
         </style>
     </head>
     <body style="min-height: 100vh;">
@@ -151,7 +208,7 @@
                                     <a class="nav-link me-5" href="#"><i class="bi bi-person-circle"></i></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link me-2" href="/"><i class="bi bi-box-arrow-right"></i></a>
+                                    <a class="nav-link me-2" href="/users/logout"><i class="bi bi-box-arrow-right"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -163,7 +220,6 @@
         <div class="row container-fluid p-0 m-0" style="min-height: 100vh; display:flex">
             <!-- 사이드바 -->
             <div class="col-md-1 border-end text-center">
-
                 <!-- 아이콘 -->
                 <div>
                     <ul class="nav flex-column">
@@ -211,7 +267,6 @@
                       </ul>
                 </div>
             </div>
-
             <!-- 메인 컨텐츠 -->
             <div class="main_text">
                 <div class="flex">
@@ -232,9 +287,19 @@
                 <div class="col p-0">
                     <div class="main_content">
                         <table>
+
                             <thead>
                                 <tr>
-                                    <th>접수 시각</th><th>고객</th><th>신고자 의견</th><th>전화번호</th><th>주소</th><th>중요도</th><th>TM 상황</th><th>응답</th><th>응답결과</th><th>판단근거</th>
+                                    <th>접수 시각</th>
+                                    <th>고객</th>
+                                    <th>신고자 의견</th>
+                                    <th>전화번호</th>
+                                    <th>주소</th>
+                                    <th class="fix5_th">중요도</th>
+                                    <th class="fix4_th">TM 상황</th>
+                                    <th class="fix3_th">응답</th>
+                                    <th class="fix2_th">응답결과</th>
+                                    <th class="fix1_th">판단근거</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -246,11 +311,11 @@
                                             <td >{{ vocs.declaration }}</td>
                                             <td >{{ vocs.cust_num }}</td>
                                             <td >{{ vocs.cust_ads }}</td>
-                                            <td >{{ vocs.cust_importance }}</td>
-                                            <td >{{ vocs.is_tm }}</td>
-                                            <td >{{ vocs.is_answer }}</td>
-                                            <td >{{ vocs.tm_result }}</td>
-                                            <td >{{ vocs.tm_judge }}</td>
+                                            <td class="fix5_td">{{ vocs.cust_importance }}</td>
+                                            <td class="fix4_td">{{ vocs.is_tm }}</td>
+                                            <td class="fix3_td">{{ vocs.is_answer }}</td>
+                                            <td class="fix2_td">{{ vocs.tm_result }}</td>
+                                            <td class="fix1_td">{{ vocs.tm_judge }}</td>
                                         </tr>
                                         {% endfor %}
                                 {% endif %}
