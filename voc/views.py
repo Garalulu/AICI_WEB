@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
+import magic
 
 from users.decorators import login_required
 from .exceltodb import exceltodb
@@ -18,15 +19,21 @@ def tmcheck(request):
                                                     'form': form,})
     ## get excel file and extract data to db    
     if request.method == 'POST':
-        form = VOCForm(request.POST, request.FILES)
-        if form.is_valid():
-            _file = form.save()
-            exceltodb(_file) ## extract data in VOCTB to CustomerTB
-            return redirect('/')
-        else:
-            return JsonResponse({'message': 'Invalid form data'})
-
-
+        try:
+            mime_type = magic.from_buffer(request.FILES.read(1024), mime=True)
+            if mime_type == 'application/vnd.ms-excel':
+                form = VOCForm(request.POST, request.FILES)
+                if form.is_valid():
+                    _file = form.save()
+                    exceltodb(_file) ## extract data in VOCTB to CustomerTB
+                    return redirect('/')
+                else:
+                    return JsonResponse({'message': 'Invalid form data'})
+            elif mime_type == 'audio/mpeg':
+                return None ## insert AI code here
+        except:
+            ## if the file is not .xls, .mp3
+            return JsonResponse({'message': 'Invalid file type'})
     
 def voc(request):
     data = CustomerTB.object.all()
