@@ -198,10 +198,14 @@
                         </table>
                     </div>
                     
-                    
-                    <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-secondary btn-sm" onclick ="location.href='post'"><i class="bi bi-plus-square" style="font-size: 14px;"></i> New </button>
-                    </div>
+                    <!-- 권한 있는 사용자만 게시글 작성 허용 -->
+                    {% csrf_token %}
+                    {% if request.user.is_staff %}
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-secondary btn-sm" onclick ="location.href='post'"><i class="bi bi-plus-square" style="font-size: 14px;"></i> New </button>
+                        </div>
+                    {% else %}
+                    {% endif %}
                     
                     <!-- 페이지 넘기기 -->
                     <div class="d-flex justify-content-center">

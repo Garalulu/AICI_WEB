@@ -6,7 +6,8 @@ from users.models import EngineerTB
 
 def notice(request):
     data = BoardTB.objects.all().order_by('-brd_id')
-    return render(request, 'board/notice.html', {'data': data})
+    user_data = EngineerTB.objects.all()
+    return render(request, 'board/notice.html', {'data': data, 'user_data': user_data})
 
 def post(request):
     if request.method == 'POST':
