@@ -14,7 +14,7 @@
         
         <!-- 카카오지도api -->
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	36c9307504ad12a913b96157e964cf15&libraries=services"></script> 
-        <title>AICI : 홈</title>
+        <title>AICI : 시외공사</title>
     </head>
     <body style="height: 100vh;">
         <header>
@@ -118,20 +118,29 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th></th><th>주소</th><th>관리기관</th><th>공사</th><th>담당자</th><th>연락처</th>
+                                        <th>주소</th><th>관리기관</th><th>공사</th>
                                     </tr>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td><td><button id="search_map1">광주 무등로202번길15</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td><td><button id="search_map2">광주 서구 운천로31번길 17</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td><td><button id="search_map3">광산구 월곡동 607-7</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
-                                        </tr>
-                                    </tbody>
                                 </thead>
+                                <tbody>
+                                    {% if data %}
+                                        {% for const in data %}
+                                        <tr>
+                                            <td>{{ const.receipt }}</td>
+                                            <td>{{ const.cstr_company }}</td>
+                                            <td>{{ const.cstr_location }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                    {% comment %} <tr>
+                                        <td>1</td><td><button id="search_map1">광주 무등로202번길15</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td><td><button id="search_map2">광주 서구 운천로31번길 17</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td><td><button id="search_map3">광산구 월곡동 607-7</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
+                                    </tr> {% endcomment %}
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -141,17 +150,12 @@
         <script type="text/javascript" src="{% static 'construction/style.js' %}"></script> 
     </body>
 </html>
-
-<!-- <body>
-    <table>
-        <tr>
-            <td>주소</td>
-            <td><input type="text" name="detailAddress" id="address"></td>
-            <td><button type="button" id="searchBtn">검색</button></td>
-        </tr>
-        <tr>
-            <td>상세 주소</td>
-            <td><input type="text" name="detailAddress2"></td>
-            <td></td>
-        </tr>
-    </table> -->
+                                {% comment %} {% if data %}
+                                        {% for const in data %}
+                                        <tr>
+                                            <td >{{ const.receipt }}</td>
+                                            <td >{{ const.cstr_company }}</td>
+                                            <td >{{ const.cstr_location }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                {% endif %} {% endcomment %}
