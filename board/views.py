@@ -72,3 +72,18 @@ def edit(request, brd_id):
             data = board
             
     return render(request, 'board/edit.html', {'data': data})
+
+
+def delete_board(request):
+    if request.method == 'POST':
+        board_id = request.POST.get('brd_id')
+        # 게시판 삭제 로직을 구현합니다.
+        try:
+            board = BoardTB.objects.get(brd_id=board_id)
+            board.delete()
+            return JsonResponse({'message': '게시판이 성공적으로 삭제되었습니다.'})
+        except BoardTB.DoesNotExist:
+            return JsonResponse({'error': '게시판을 찾을 수 없습니다.'})
+    
+    return JsonResponse({'error': '잘못된 요청입니다.'})
+
