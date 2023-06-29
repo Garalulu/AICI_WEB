@@ -169,7 +169,7 @@
                         </div>
                     </div>
 
-                    <form class="ps-4 pe-4" id="myForm" enctype="multipart/form-data">
+                    <form class="ps-4 pe-4" id="myForm" enctype="multipart/form-data" method ="POST" >
                         {% csrf_token %}
                         <div>
                             <table class="table table-light table-borderless border" style="border-collapse: separate; border-spacing: 0;">
@@ -212,20 +212,20 @@
 <script>
 
     function edit_btn(){
-        var returnValue = confirm('수정하시겠습니까?')
+        var returnValue = confirm('수정하시겠습니까?');
         if (returnValue) {
-            event.preventDefault() // 기본 동작 중지
+            event.preventDefault(); // 기본 동작 중지
 
-            post() // 게시글 전송
+            post(); // 게시글 전송
 
-            alert('수정이 완료되었습니다.')
-            window.location.href = '/board/'
+            alert('수정이 완료되었습니다.');
+            window.location.href = '/board/';
             //window.history.back()
         } else {
             // 취소 버튼을 눌렀을 때의 동작
             event.preventDefault(); // 기본 동작 중지
-        }
-    }
+        };
+    };
 
     function post() {
         // 게시글 게시 폼 전송
@@ -242,7 +242,7 @@
 
             // AJAX 요청 보내기
             $.ajax({
-                url: '/board/post/', // 회원가입 처리 URL을 지정
+                url: '/board/edit/', // 회원가입 처리 URL을 지정
                 type: 'POST',
                 data: formData,
                 processData: false,
@@ -265,7 +265,7 @@
                 }
             });
         });
-    }
+    };
 
     
 </script>

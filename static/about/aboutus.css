@@ -3,10 +3,17 @@
     padding: 0;
 }
 body {
-    background-color: black;
-    height: 6000px;
+    background-color: red;
 }
-div {
+.a123{
+    color: red;
+}
+/* .color{
+    background: black;
+    width: 100%;
+    height: 6000px;
+} */
+/* div {
     margin-top:1000px;
     color: white;
     text-align:center;
@@ -33,34 +40,6 @@ div {
 #our_img {
     height: 400px;
 }
-/* .individual {
-
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 footer{
@@ -94,4 +73,4 @@ li a{
     justify-content: center;
     padding-top: 20px;
     background-color: #333;
-}
+} */

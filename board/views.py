@@ -100,6 +100,7 @@ def edit(request, brd_id):
             }
             return JsonResponse(data, status=400)
     else:
+        print("너 혹사 여기로 가니?")
         board = BoardTB.objects.get(brd_id=brd_id)
         board_form = BoardForm(instance=board)
         file_form = UploadFileForm()
