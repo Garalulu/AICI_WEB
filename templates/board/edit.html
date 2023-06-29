@@ -169,7 +169,7 @@
                         </div>
                     </div>
 
-                    <form class="ps-4 pe-4" id="myForm" enctype="multipart/form-data" method ="POST" >
+                    <form class="ps-4 pe-4" id="myForm" enctype="multipart/form-data"method = "post" action = "content/{{ BoardTB.brd_id }}/edit/">
                         {% csrf_token %}
                         <div>
                             <table class="table table-light table-borderless border" style="border-collapse: separate; border-spacing: 0;">

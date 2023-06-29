@@ -52,5 +52,5 @@ class CustomerTB(models.Model):
     is_tm = models.BooleanField(_("check TM status"), default=False)
     is_answer = models.BooleanField(_("check TM answer"), default=False)
     tm_result = models.BooleanField(_("check TM result"), default=False)
-    tm_judge = models.CharField(_("TM messages"), max_length=50, default=None)
+    tm_judge = models.CharField(_("TM messages"), max_length=300, default=None)
     
