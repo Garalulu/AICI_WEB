@@ -28,6 +28,7 @@ urlpatterns = [
     path('board/', include("board.urls"), name='board'), # 게시판
     path('voc/', include("voc.urls")), # VOC
     path('construction/', include("construction.urls")), # 시외공사
+    
 ]
 
 from django.conf import settings
