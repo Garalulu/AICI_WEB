@@ -21,6 +21,7 @@ def construction(request):
     
     if request.method == 'POST':
         try:
+            current_user = request.user
             uploaded_file = request.FILES['cstr_file']
             file_content = uploaded_file.read(1024)
             mime_type = magic.from_buffer(file_content, mime=True)
@@ -34,7 +35,7 @@ def construction(request):
                     _call = ConstructionTB(receipt=receipt,
                                         cstr_company=cstr_company,
                                         cstr_location=cstr_location,
-                                        cent=request.user.uid.cent,
+                                        cent=current_user.uid.cent,
                                         cstrcall=_file)
                     _call.save()
                     ## redirect to current page
