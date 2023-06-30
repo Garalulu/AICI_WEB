@@ -22,19 +22,12 @@ def construction_upload(request):
     if request.method == 'POST':
         try:
             current_user = request.POST['user_data']
-            # Create a mutable copy of the QueryDict
-            post_data = request.POST.copy()
-
-            # Delete 'user_data' field from the copied QueryDict
-            if 'user_data' in post_data:
-                del post_data['user_data']
-
             uploaded_file = request.FILES['cstr_file']
             file_content = uploaded_file.read(1024)
             mime_type = magic.from_buffer(file_content, mime=True)
 
             if mime_type == 'audio/mpeg' or mime_type == 'audio/x-m4a':
-                form = ConstructionCallForm(post_data, request.FILES)
+                form = ConstructionCallForm(request.POST, request.FILES)
                 if form.is_valid():
                     _file = form.save()
 
