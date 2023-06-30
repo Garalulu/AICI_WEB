@@ -10,4 +10,3 @@ class UploadFileForm(forms.ModelForm):
     class Meta:
         model = UploadFile
         fields = ['file']
-        required = {'file': False}  # 선택적 필드로 변경

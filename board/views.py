@@ -14,27 +14,28 @@ def post(request):
         board_form = BoardForm(request.POST)
         file_form = UploadFileForm(request.POST, request.FILES)
         print(file_form.errors)
-        if board_form.is_valid():
+        if board_form.is_valid() and file_form.is_valid():
             board = board_form.save(commit=False)
             board.usr_id = EngineerTB.objects.get(id=request.user.id)
             board.save()
 
-            if file_form.is_valid():
-                file = file_form.cleaned_data['file']
+            file = file_form.cleaned_data['file']
+            if file:
                 upload_file = UploadFile(brd_id=board, file=file)
                 upload_file.save()
-                
-            response_data = {'message': '게시물이 성공적으로 생성되었습니다.'}
-            return JsonResponse(response_data)
 
         else:
             response_data = {'message': '게시글을 게시하는데 실패하였습니다.'}
             return JsonResponse(response_data, status=400)
 
+        response_data = {'message': '게시물이 성공적으로 생성되었습니다.'}
+        return JsonResponse(response_data)
+
     else:
         board_form = BoardForm()
         file_form = UploadFileForm()
         return render(request, 'board/post.html', {'board_form': board_form, 'file_form': file_form})
+
 
 
 
