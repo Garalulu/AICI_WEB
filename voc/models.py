@@ -48,7 +48,7 @@ class CustomerTB(models.Model):
     cust_num = models.CharField(_("customer phone number"), max_length=11)
     cust_ads = models.CharField(_("customer address"), max_length=30)
     
-    cust_importance = models.BooleanField(_("customer level. 0: normal, 1: emergency"), default=0)
+    cust_importance = models.BooleanField(_("customer level. 0: normal, 1: emergency"), default=False)
     is_tm = models.BooleanField(_("check TM status"), default=False)
     is_answer = models.BooleanField(_("check TM answer"), default=False)
     tm_result = models.BooleanField(_("check TM result"), default=False)

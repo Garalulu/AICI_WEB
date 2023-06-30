@@ -38,6 +38,8 @@ def tmcheck(request):
             elif mime_type == 'audio/mpeg' or mime_type == 'audio/x-m4a':
                 _data = CustomerTB.objects.last()
                 tm_judge, tm_result, cust_importance = voc(request.FILES['voc_file'])
+                _data.is_tm = True
+                _data.is_answer = True
                 _data.tm_judge = tm_judge
                 _data.tm_result = tm_result
                 _data.cust_importance = cust_importance
