@@ -114,10 +114,10 @@
                 background-color: rgb(197,218,254) !important;;
             }
             .th1 {
-                width: 11vw;
+                width: 9vw;
             }
             .th2 {
-                width: 4vw;
+                width: 5vw;
             }
             .th3 {
                 width: 20vw;
@@ -236,7 +236,7 @@
                 </div>
                 <div class="col p-0">
                     <div class="main_content mb-5">
-                        <table>
+                        <table>      
                             <tr>
                                 <th class="th1">접수 시각</th>
                                 <th class="th2">고객</th>
@@ -265,15 +265,15 @@
                                             {% endif %}
                                         {% csrf_token %}
                                             {% if vocs.is_tm %}
-                                                <td style="color:#1EC28F; font-weight:600; font-size:large">O</td>
+                                                <td style="color:#1EC28F; font-weight:600; font-size:large"><i class="bi bi-check"></i></td>
                                             {% else %}
-                                            <td style="color:red; font-weight:600; font-size:large">X</td>
+                                            <td style="color:red; font-weight:600; font-size:large"><i class="bi bi-x"></i></td>
                                             {% endif %}
                                         {% csrf_token %}
                                             {% if vocs.answer %}
-                                                <td style="color:#1EC28F; font-weight:600; font-size:large">O</td>
+                                                <td style="color:#1EC28F; font-weight:600; font-size:large"><i class="bi bi-check"></i></td>
                                             {% else %}
-                                            <td style="color:red; font-weight:600; font-size:large">X</td>
+                                            <td style="color:red; font-weight:600; font-size:large"><i class="bi bi-x"></i></td>
                                             {% endif %}
                                             {% csrf_token %}
                                             {% if vocs.result %}
