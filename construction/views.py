@@ -4,7 +4,7 @@ from django.utils import timezone
 import magic
 
 from users.decorators import login_required
-from AICI_WEB.AI_mp3todb import construction
+from AICI_WEB.AI_mp3todb import construction, voc
 from .forms import ConstructionCallForm
 from .models import ConstructionTB
 
@@ -28,9 +28,8 @@ def construction_upload(request):
             if mime_type == 'audio/mpeg' or mime_type == 'audio/x-m4a':
                 form = ConstructionCallForm(request.POST, request.FILES)
                 if form.is_valid():
-                    _file = form.save()
-
                     receipt, cstr_company, cstr_location = construction(request.FILES['cstr_file'])
+                    _file = form.save()
                     _call = ConstructionTB(receipt=receipt,
                                            cstr_company=cstr_company,
                                            cstr_location=cstr_location,
@@ -38,8 +37,10 @@ def construction_upload(request):
                     _call.save()
                     # Redirect to current page
                     return redirect('construction:construction')
-        except KeyError:
-            return JsonResponse({'message': 'No file uploaded'})
+            else:
+                # Form is not valid
+                print(form.errors)
+                return JsonResponse({'message': 'Invalid form data'})
         except Exception as e:
             return JsonResponse({'message': str(e)})
 

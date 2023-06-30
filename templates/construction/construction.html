@@ -119,7 +119,7 @@
                             <span id="today_text">오늘의 사외공사</span>
                             <form method="POST" enctype="multipart/form-data" id="myForm" action="{% url 'construction:construction_upload' %}" style="display:flex;">
                                 {% csrf_token %}
-                                <input type="hidden" name="cent" value="{{ request.user.uid.cent }}">
+                                <input type="hidden" name="cent" value="{{ request.user.uid.cent.id }}">
                                 <p class="p">
                                   <label for="id_cstr_file">Construction File:</label>
                                   <input type="file" name="cstr_file" required id="id_cstr_file">
