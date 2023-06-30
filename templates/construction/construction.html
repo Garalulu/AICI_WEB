@@ -113,6 +113,7 @@
                             <span id="today_text">오늘의 사외공사</span>
                             <form method="POST" enctype="multipart/form-data" id="myForm" style="display:flex;">
                                 {% csrf_token %}
+                                <input type="hidden" name="user_data" value="{{ request.user.uid.cent }}">
                                 <p class="p">
                                     <label for="id_cstr_file"></label>
                                     <input type="file" name="cstr_file" required id="id_cstr_file"> 

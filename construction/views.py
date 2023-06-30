@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponseRedirect
+from django.utils.datastructures import MultiValueDict
 from django.utils import timezone
 import magic
 
@@ -21,13 +22,17 @@ def construction(request):
     
     if request.method == 'POST':
         try:
-            current_user = request.user
+            _data_post = MultiValueDict()
+            _data_post['cstr_desc'] = request.POST['cstr_desc']
+            _data_post['cstr_file'] = request.POST['cstr_file']
+            current_user = request.POST['user_data']
+            
             uploaded_file = request.FILES['cstr_file']
             file_content = uploaded_file.read(1024)
             mime_type = magic.from_buffer(file_content, mime=True)
             
             if mime_type == 'audio/mpeg' or mime_type == 'audio/x-m4a':
-                form = ConstructionCallForm(request.POST, request.FILES)
+                form = ConstructionCallForm(_data_post, request.FILES)
                 if form.is_valid():
                     _file = form.save()
                     
@@ -35,7 +40,7 @@ def construction(request):
                     _call = ConstructionTB(receipt=receipt,
                                         cstr_company=cstr_company,
                                         cstr_location=cstr_location,
-                                        cent=current_user.uid.cent,
+                                        cent=current_user,
                                         cstrcall=_file)
                     _call.save()
                     ## redirect to current page
