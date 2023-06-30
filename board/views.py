@@ -21,10 +21,7 @@ def post(request):
 
             if file_form.is_valid():
                 file = file_form.cleaned_data['file']
-                if file:
-                    upload_file = UploadFile(brd_id=board, file=file)
-                else:
-                    upload_file = UploadFile(brd_id=board, file=None)
+                upload_file = UploadFile(brd_id=board, file=file if file else None)
                 upload_file.save()
 
         else:
