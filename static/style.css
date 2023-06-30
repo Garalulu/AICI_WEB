@@ -51,10 +51,11 @@ body{
 }
 .btn-area{
     margin-top: 30px;
+    margin-left: 3%;
     text-align: center;
 }
 .btn-area button{
-    width: 60%; height: 50px;
+    width: 65%; height: 50px;
     background-color: #166cea;
     color:white;
     font-size: 20px;

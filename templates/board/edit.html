@@ -74,9 +74,9 @@
                             <a href="/"><img src="{% static 'privacy/logo.png' %}" class="w-50" id="logo"></a>
                         </div>
                     </div>
-                    <div class="col-8">
+                    <div class="col">
                         {% if request.user.is_authenticated %}
-                            <h5 class="m-0"><p style="display: inline;">{{ request.user.name }}</p>엔지니어님, 환영합니다.</h5>    
+                            <h5 class="m-0"><p style="display: inline;">{{ request.user.name }}</p> 엔지니어님, 환영합니다.</h5>    
                         {% else %}
                             <p>User is not logged in</p>
                         {% endif %}
@@ -84,9 +84,6 @@
                     <div class="col-auto">
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link me-5" href="#"><i class="bi bi-person-circle"></i></a>
-                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link me-2" href="/users/logout"><i class="bi bi-box-arrow-right"></i></a>
                                 </li>
