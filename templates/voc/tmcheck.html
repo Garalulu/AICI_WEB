@@ -11,10 +11,8 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- bootstrap 아이콘 -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="{% static 'tmcheck/tmcheck.css' %}">
         <title>AICI : VOC확인</title>
-        
-        {% comment %} <style>
+        <style>
             i {
                 font-size: 28px;
             }
@@ -44,19 +42,13 @@
                 --bs-btn-active-bg: #1EC28F;
                 --bs-btn-active-border-color: #1EC28F;
             }
-
+            
             .btn-upload {
                 cursor: pointer;
                 display: flex;
             }
             .btn-upload:hover{
                 color: #0073ff;
-            }
-            .main_content {
-                overflow: scroll;
-                white-space: nowrap;
-                height: 78vh;
-                width: 92vw;
             }
             .main_text {
                 height: 90vh;
@@ -93,84 +85,29 @@
             .p {
                 margin: 0;
             }
-            table{
-                table-layout: fixed; /* 테이블 너비 고정 */
+            .main_content {
+                overflow: auto;
+                height: 78vh;
+                width: 90vw;
             }
-            th,td {
+            table {
+                width: 140vw;
+                table-layout: fixed;
+                text-align: center;
+            }
+            tr {
+                border: 1px solid gray;
+            }
+            td {
+                height: 50px;
+                word-break: break-all; 
+                padding: 5px;               
+            }
+            th {
                 height: 50px;
                 padding: 5px;
             }
-            th {
-                text-align: center;
-                position: sticky;
-                top: 0px;
-                background-color: rgb(197,218,254) !important;;
-                font-weight: 800;
-            }
-            td {
-                border: 1px solid rgb(215, 219, 224);
-            }
-            .fix1_th {
-                position: sticky;
-                right: 0px;
-                z-index: 1;
-                width:5%;
-            }
-            .fix2_th {
-                position: sticky;
-                right: 65px;
-                z-index: 1;
-                width:5%;
-            }
-            .fix3_th {
-                position: sticky;
-                right: 130px;
-                z-index: 1;
-                width:5%;
-            }
-            .fix4_th {
-                position: sticky;
-                right: 180px;
-                z-index: 1;
-                width:5%;
-            }
-            .fix5_th {
-                position: sticky;
-                right: 245px;
-                z-index: 1;
-                width:5%;
-            }
-            .fix1_td {
-                position: sticky;
-                right: 0px;
-                background-color: #2B3A4B;
-                color: white;
-            }
-            .fix2_td {
-                position: sticky;
-                right: 65px;
-                background-color: #2B3A4B;
-                color: white;
-            }
-            .fix3_td {
-                position: sticky;
-                right: 130px;
-                background-color: #2B3A4B;
-                color: white;
-            }
-            .fix4_td {
-                position: sticky;
-                right: 180px;
-                background-color: #2B3A4B;
-                color: white;
-            }
-            .fix5_td {
-                position: sticky;
-                right: 245px;
-                background-color: #2B3A4B;
-                color: white;
-            }
-        </style> {% endcomment %}
+        </style>
     </head>
     <body style="min-height: 100vh;">
         <header>
@@ -277,38 +214,34 @@
                 <div class="col p-0">
                     <div class="main_content">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>접수 시각</th>
-                                    <th>고객</th>
-                                    <th>신고자 의견</th>
-                                    <th>전화번호</th>
-                                    <th>주소</th>
-                                    <th class="fix5_th">중요도</th>
-                                    <th class="fix4_th">TM 상황</th>
-                                    <th class="fix3_th">응답</th>
-                                    <th class="fix2_th">응답결과</th>
-                                    <th class="fix1_th">판단근거</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% if data %}
-                                        {% for vocs in data %}
-                                        <tr>
-                                            <td >{{ vocs.receipt }}</td>
-                                            <td >{{ vocs.cust_name }}</td>
-                                            <td >{{ vocs.declaration }}</td>
-                                            <td >{{ vocs.cust_num }}</td>
-                                            <td >{{ vocs.cust_ads }}</td>
-                                            <td class="fix5_td">{{ vocs.cust_importance }}</td>
-                                            <td class="fix4_td">{{ vocs.is_tm }}</td>
-                                            <td class="fix3_td">{{ vocs.is_answer }}</td>
-                                            <td class="fix2_td">{{ vocs.tm_result }}</td>
-                                            <td class="fix1_td">{{ vocs.tm_judge }}</td>
-                                        </tr>
-                                        {% endfor %}
-                                {% endif %}
-                            </tbody>
+                            <tr>
+                                <th>접수 시각</th>
+                                <th>고객</th>
+                                <th>신고자 의견</th>
+                                <th>전화번호</th>
+                                <th>주소</th>
+                                <th class="fix5_th">중요도</th>
+                                <th class="fix4_th">TM 상황</th>
+                                <th class="fix3_th">응답</th>
+                                <th class="fix2_th">응답결과</th>
+                                <th class="fix1_th">판단근거</th>
+                            </tr>
+                            {% if data %}
+                                    {% for vocs in data %}
+                                    <tr>
+                                        <td class="fix10_td">{{ vocs.receipt }}</td>
+                                        <td class="fix9_td">{{ vocs.cust_name }}</td>
+                                        <td class="fix8_td">{{ vocs.declaration }}</td>
+                                        <td class="fix7_td">{{ vocs.cust_num }}</td>
+                                        <td class="fix6_td">{{ vocs.cust_ads }}</td>
+                                        <td class="fix5_td">{{ vocs.cust_importance }}</td>
+                                        <td class="fix4_td">{{ vocs.is_tm }}</td>
+                                        <td class="fix3_td">{{ vocs.is_answer }}</td>
+                                        <td class="fix2_td">{{ vocs.tm_result }}</td>
+                                        <td class="fix1_td">{{ vocs.tm_judge }}</td>
+                                    </tr>
+                                    {% endfor %}
+                            {% endif %}
                         </table>
                     </div>
                 </div>
