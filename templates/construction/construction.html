@@ -111,18 +111,18 @@
                     <div class="today_construction">
                         <div class="today_header">
                             <span id="today_text">오늘의 사외공사</span>
-                            <form method="POST" enctype="multipart/form-data" id="myForm" style="display:flex;">
+                            <form method="POST" enctype="multipart/form-data" id="myForm" action="{% url 'construction:construction_upload' %}" style="display:flex;">
                                 {% csrf_token %}
                                 <input type="hidden" name="user_data" value="{{ request.user.uid.cent }}">
                                 <p class="p">
-                                    <label for="id_cstr_file"></label>
-                                    <input type="file" name="cstr_file" required id="id_cstr_file"> 
+                                  <label for="id_cstr_file">Construction File:</label>
+                                  <input type="file" name="cstr_file" required id="id_cstr_file">
                                 </p>
                                 <p class="p">
-                                    <label for="id_cstr_desc">파일 이름:</label>
-                                    <input type="text" name="cstr_desc" maxlength="20" id="id_cstr_desc">
+                                  <label for="id_cstr_desc">File Description:</label>
+                                  <input type="text" name="cstr_desc" maxlength="20" id="id_cstr_desc">
                                 </p>
-                                <button type="submit" id="post_button">업로드</button>
+                                <button type="submit" id="post_button">Upload</button>
                             </form>
                             <!-- 
                             <p class="p">
