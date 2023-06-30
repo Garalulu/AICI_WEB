@@ -134,6 +134,10 @@
             .th10 {
                 width: 15vw;
             }
+
+            .tm_table:hover {
+                background-color: #F0F0F0;
+            }
         </style>
     </head>
     <body style="min-height: 100vh;">
@@ -251,7 +255,7 @@
                             </tr>
                             {% if data %}
                                     {% for vocs in data %}
-                                    <tr>
+                                    <tr class="tm_table">
                                         <td>{{ vocs.receipt }}</td>
                                         <td>{{ vocs.cust_name }}</td>
                                         <td>{{ vocs.declaration }}</td>
