@@ -257,10 +257,30 @@
                                         <td>{{ vocs.declaration }}</td>
                                         <td>{{ vocs.cust_num }}</td>
                                         <td>{{ vocs.cust_ads }}</td>
-                                        <td>{{ vocs.cust_importance }}</td>
-                                        <td>{{ vocs.is_tm }}</td>
-                                        <td>{{ vocs.is_answer }}</td>
-                                        <td>{{ vocs.tm_result }}</td>
+                                        {% csrf_token %}
+                                            {% if vocs.cust_importance %}
+                                                <td style="color:red; font-weight:800">긴급</td>
+                                            {% else %}
+                                            <td>일반</td>
+                                            {% endif %}
+                                        {% csrf_token %}
+                                            {% if vocs.is_tm %}
+                                                <td style="color:#1EC28F; font-weight:600; font-size:large">O</td>
+                                            {% else %}
+                                            <td style="color:red; font-weight:600; font-size:large">X</td>
+                                            {% endif %}
+                                        {% csrf_token %}
+                                            {% if vocs.answer %}
+                                                <td style="color:#1EC28F; font-weight:600; font-size:large">O</td>
+                                            {% else %}
+                                            <td style="color:red; font-weight:600; font-size:large">X</td>
+                                            {% endif %}
+                                            {% csrf_token %}
+                                            {% if vocs.result %}
+                                                <td>양호</td>
+                                            {% else %}
+                                            <td>불량</td>
+                                            {% endif %}
                                         <td>{{ vocs.tm_judge }}</td>
                                     </tr>
                                     {% endfor %}
