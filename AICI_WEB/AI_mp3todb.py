@@ -24,7 +24,7 @@ def voc(audio_data):
     geniememo_client = GENIEMEMO()
     geniememo_client.__init__()
     geniememo_client.setAuth(clientKey, clientId, clientSecret)
-    callKey = "94"
+    callKey = "99"
     lastYn = "N"
     callIndex = 1
     #file_name = upload_file.read()
@@ -173,14 +173,12 @@ def construction(audio_data):
     geniememo_client = GENIEMEMO()
     geniememo_client.__init__()
     geniememo_client.setAuth(clientKey, clientId, clientSecret)
-    callKey = "96"
+    callKey = "97"
     lastYn = "N"
     callIndex = 1
     #file_name = upload_file.read()
     #audioData = Path(file_name).read_bytes()
 
-    audio_data = audio_data
-        
     #-------------------------------------------
     # 호출
     #-------------------------------------------
