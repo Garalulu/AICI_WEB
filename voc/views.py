@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.shortcuts import render
+from django.http import JsonResponse, HttpResponseRedirect
+
 import magic
 
 from users.decorators import login_required
@@ -30,7 +31,8 @@ def tmcheck(request):
                 if form.is_valid():
                     _file = form.save()
                     exceltodb(_file) ## extract data in VOCTB to CustomerTB
-                    return redirect('/')
+                    ## redirect to current page
+                    return HttpResponseRedirect(request.path_info)
                 else:
                     return JsonResponse({'message': 'Invalid form data'})
             elif mime_type == 'audio/mpeg' or mime_type == 'audio/x-m4a':
@@ -40,7 +42,8 @@ def tmcheck(request):
                 _data.tm_result = tm_result
                 _data.cust_importance = cust_importance
                 _data.save()
-                return redirect('/')
+                ## redirect to current page
+                return HttpResponseRedirect(request.path_info)
             else:
                 ## if the file is not .xls, .mp3
                 return JsonResponse({'message': 'Invalid file type'})
