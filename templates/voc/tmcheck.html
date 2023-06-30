@@ -74,7 +74,7 @@
                 border-radius: 7px;
                 color: black;
                 border: none;
-                transition: 0.6s ease;
+                transition: 0.3s ease;
             }
             #post_button:hover {
                 height: 40px;
@@ -85,27 +85,51 @@
             .p {
                 margin: 0;
             }
+            /*요게 테이블 사이즈*/
             .main_content {
                 overflow: auto;
-                height: 78vh;
+                height: 85vh;
                 width: 90vw;
+                border-bottom: 1px solid rgb(215,219,223);
             }
             table {
-                width: 140vw;
+                border: 1px solid rgb(215,219,223); 
                 table-layout: fixed;
                 text-align: center;
-            }
-            tr {
-                border: 1px solid gray;
             }
             td {
                 height: 50px;
                 word-break: break-all; 
-                padding: 5px;               
+                padding: 5px;  
+                border: 1px solid rgb(215,219,223);             
             }
             th {
                 height: 50px;
                 padding: 5px;
+                position: sticky;
+                top: 0px;
+                background-color: rgb(197,218,254) !important;;
+            }
+            .th1 {
+                width: 11vw;
+            }
+            .th2 {
+                width: 4vw;
+            }
+            .th3 {
+                width: 20vw;
+            }
+            .th4 {
+                width: 8vw;
+            }
+            .th5 {
+                width: 13vw;
+            }
+            .th6, .th7, .th8, .th9  {
+                width: 5vw;
+            }
+            .th10 {
+                width: 15vw;
             }
         </style>
     </head>
@@ -215,30 +239,30 @@
                     <div class="main_content">
                         <table>
                             <tr>
-                                <th>접수 시각</th>
-                                <th>고객</th>
-                                <th>신고자 의견</th>
-                                <th>전화번호</th>
-                                <th>주소</th>
-                                <th class="fix5_th">중요도</th>
-                                <th class="fix4_th">TM 상황</th>
-                                <th class="fix3_th">응답</th>
-                                <th class="fix2_th">응답결과</th>
-                                <th class="fix1_th">판단근거</th>
+                                <th class="th1">접수 시각</th>
+                                <th class="th2">고객</th>
+                                <th class="th3">신고자 의견</th>
+                                <th class="th4">전화번호</th>
+                                <th class="th5">주소</th>
+                                <th class="th6">중요도</th>
+                                <th class="th7">TM 상황</th>
+                                <th class="th8">응답</th>
+                                <th class="th9">응답결과</th>
+                                <th class="th10">판단근거</th>
                             </tr>
                             {% if data %}
                                     {% for vocs in data %}
                                     <tr>
-                                        <td class="fix10_td">{{ vocs.receipt }}</td>
-                                        <td class="fix9_td">{{ vocs.cust_name }}</td>
-                                        <td class="fix8_td">{{ vocs.declaration }}</td>
-                                        <td class="fix7_td">{{ vocs.cust_num }}</td>
-                                        <td class="fix6_td">{{ vocs.cust_ads }}</td>
-                                        <td class="fix5_td">{{ vocs.cust_importance }}</td>
-                                        <td class="fix4_td">{{ vocs.is_tm }}</td>
-                                        <td class="fix3_td">{{ vocs.is_answer }}</td>
-                                        <td class="fix2_td">{{ vocs.tm_result }}</td>
-                                        <td class="fix1_td">{{ vocs.tm_judge }}</td>
+                                        <td>{{ vocs.receipt }}</td>
+                                        <td>{{ vocs.cust_name }}</td>
+                                        <td>{{ vocs.declaration }}</td>
+                                        <td>{{ vocs.cust_num }}</td>
+                                        <td>{{ vocs.cust_ads }}</td>
+                                        <td>{{ vocs.cust_importance }}</td>
+                                        <td>{{ vocs.is_tm }}</td>
+                                        <td>{{ vocs.is_answer }}</td>
+                                        <td>{{ vocs.tm_result }}</td>
+                                        <td>{{ vocs.tm_judge }}</td>
                                     </tr>
                                     {% endfor %}
                             {% endif %}
