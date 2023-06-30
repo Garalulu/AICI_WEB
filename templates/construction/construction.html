@@ -109,57 +109,59 @@
             </div>
             <!-- 메인 컨텐츠 -->
             <div class="col p-0">
-                <!-- 메인 내용 -->
-                <div class="main">
-                    <div class="map">
-                        <div id="kakaomap" style="width:50vw;height:90vh;"></div>
-                    </div>
-                    <div class="today_construction">
-                        <div class="today_header">
-                            <span id="today_text">오늘의 사외공사</span>
-                            <form method="POST" enctype="multipart/form-data" id="myForm" action="{% url 'construction:construction_upload' %}" style="display:flex;">
-                                {% csrf_token %}
-                                <input type="hidden" name="cent" value="{{ request.user.uid.cent }}">
-                                <p class="p">
-                                  <label for="id_cstr_file">Construction File:</label>
-                                  <input type="file" name="cstr_file" required id="id_cstr_file">
-                                </p>
-                                <p class="p">
-                                  <label for="id_cstr_desc">File Description:</label>
-                                  <input type="text" name="cstr_desc" maxlength="20" id="id_cstr_desc">
-                                </p>
-                                <button type="submit" id="post_button">Upload</button>
-                            </form>
-                            <!-- 
-                            <p class="p">
-                            <label for="id_cstr_desc">파일 이름:</label>
-                            <input type="text" name="cstr_desc" maxlength="20" id="id_cstr_desc">
-                            </p>
-                            <label class="file-label" for="chooseFile">등록</label>
-                            <input class="file" id="chooseFile" type="file" name="cstr_file">
-                            <button type="submit" id="post_button">업로드</button> 
-                            -->
-                            
+                <div class="h-100 p-3">
+                    <!-- 메인 내용 -->
+                    <div class="row h-100">
+                        <div class="col">
+                            <div id="kakaomap" class="h-100 w-100"></div>
                         </div>
-                        <div class="main_content">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>주소</th><th>관리기관</th><th>공사</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% if data %}
-                                        {% for const in data %}
+                        <div class="col">
+                            <div class="today_header">
+                                <span id="today_text">오늘의 사외공사</span>
+                                <form method="POST" enctype="multipart/form-data" id="myForm" action="{% url 'construction:construction_upload' %}" style="display:flex;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="cent" value="{{ request.user.uid.cent }}">
+                                    <p class="p">
+                                      <label for="id_cstr_file">Construction File:</label>
+                                      <input type="file" name="cstr_file" required id="id_cstr_file">
+                                    </p>
+                                    <p class="p">
+                                      <label for="id_cstr_desc">File Description:</label>
+                                      <input type="text" name="cstr_desc" maxlength="20" id="id_cstr_desc">
+                                    </p>
+                                    <button type="submit" id="post_button">Upload</button>
+                                </form>
+                                <!-- 
+                                <p class="p">
+                                <label for="id_cstr_desc">파일 이름:</label>
+                                <input type="text" name="cstr_desc" maxlength="20" id="id_cstr_desc">
+                                </p>
+                                <label class="file-label" for="chooseFile">등록</label>
+                                <input class="file" id="chooseFile" type="file" name="cstr_file">
+                                <button type="submit" id="post_button">업로드</button> 
+                                -->
+                                
+                            </div>
+                            <div class="main_content">
+                                <table>
+                                    <thead>
                                         <tr>
-                                            <td>{{ const.receipt }}</td>
-                                            <td>{{ const.cstr_company }}</td>
-                                            <td>{{ const.cstr_location }}</td>
+                                            <th>주소</th><th>관리기관</th><th>공사</th>
                                         </tr>
-                                        {% endfor %}
-                                    {% endif %}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        {% if data %}
+                                            {% for const in data %}
+                                            <tr>
+                                                <td>{{ const.receipt }}</td>
+                                                <td>{{ const.cstr_company }}</td>
+                                                <td>{{ const.cstr_location }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
