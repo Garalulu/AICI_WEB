@@ -19,8 +19,6 @@ def construction(request):
         data = _data.filter(receipt__lte=now)
         return render(request, 'construction/construction.html', {'data': data})
     
-@login_required
-def upload_construction(request):
     if request.method == 'POST':
         try:
             uploaded_file = request.FILES['cstr_file']
