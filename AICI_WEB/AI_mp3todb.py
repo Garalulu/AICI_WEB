@@ -24,7 +24,7 @@ def voc(audio_data):
     geniememo_client = GENIEMEMO()
     geniememo_client.__init__()
     geniememo_client.setAuth(clientKey, clientId, clientSecret)
-    callKey = "80"
+    callKey = "94"
     lastYn = "N"
     callIndex = 1
     #file_name = upload_file.read()
@@ -92,9 +92,9 @@ def voc(audio_data):
     predicted_class = logits.argmax().item()
 
     if predicted_class == 1:
-        np_emotion = "양호 O"
+        np_emotion = 1
     else:
-        np_emotion = "양호 X"
+        np_emotion = 0
             
     print("분류:", np_emotion)
         
@@ -116,9 +116,9 @@ def voc(audio_data):
     predicted_class = logits.argmax().item()
 
     if predicted_class == 1:
-        np_emotion = "양호 O"
+        np_emotion = 1
     else:
-        np_emotion = "양호 X"
+        np_emotion = 0
             
     print("분류:", np_emotion)
 
@@ -133,9 +133,9 @@ def voc(audio_data):
 
     for keyword in emergency_keywords:
         if keyword in text:
-            emergency = '긴급'
+            emergency = 1
         else:
-            emergency = '보통'
+            emergency = 0
 
             break
             
@@ -173,7 +173,7 @@ def construction(audio_data):
     geniememo_client = GENIEMEMO()
     geniememo_client.__init__()
     geniememo_client.setAuth(clientKey, clientId, clientSecret)
-    callKey = "81"
+    callKey = "96"
     lastYn = "N"
     callIndex = 1
     #file_name = upload_file.read()
