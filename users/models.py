@@ -5,6 +5,9 @@ from django.utils.translation import gettext_lazy as _
 from .managers import CustomUserManager
 from voc.models import CenterTB
 
+## KT API DB
+class APITB(models.Model):
+    count = models.IntegerField(_("KT API Callback Key"))
 
 ## Engineer identification number DB
 ## - uid

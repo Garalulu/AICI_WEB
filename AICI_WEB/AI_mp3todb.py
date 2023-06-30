@@ -1,3 +1,7 @@
+from .settings import get_secret
+from users.models import APITB
+
+
 def voc(audio_data):
     import re
     import warnings
@@ -14,9 +18,9 @@ def voc(audio_data):
     from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
     import nltk
 
-    clientKey = "0fb26b7f-9b98-53cc-bc0f-eccf6988a793"
-    clientId = "239ea532-a145-45f4-8295-ee4876877fec"
-    clientSecret = "e35be7455626bde39956632c968b98df6e9d1458942f2c69888400166ca27f4e"
+    clientKey = get_secret("KT_KEY")
+    clientId =  get_secret("KT_ID")
+    clientSecret = get_secret("KT_SECRET")
     
     #-------------------------------------------
     # 호출용 데이터 설정
@@ -24,7 +28,8 @@ def voc(audio_data):
     geniememo_client = GENIEMEMO()
     geniememo_client.__init__()
     geniememo_client.setAuth(clientKey, clientId, clientSecret)
-    callKey = "99"
+    Keyvalue = APITB.object.filter(id=1)
+    callKey = Keyvalue.count
     lastYn = "N"
     callIndex = 1
     #file_name = upload_file.read()
@@ -39,6 +44,8 @@ def voc(audio_data):
     print(bcolors.ENDC, "========= 호출정보 =========")
     print(bcolors.WARNING, "audioData:", "callKey:", callKey, "lastYn:", lastYn, "callIndex:", callIndex)
     response = geniememo_client.requestGENIEMEMO(audio_data, callKey, lastYn, callIndex)
+    Keyvalue.count += 1
+    Keyvalue.save()
 
     #-------------------------------------------
     # 결과 출력
@@ -163,9 +170,9 @@ def construction(audio_data):
     import warnings
     import datetime
 
-    clientKey = "0fb26b7f-9b98-53cc-bc0f-eccf6988a793"
-    clientId = "239ea532-a145-45f4-8295-ee4876877fec"
-    clientSecret = "e35be7455626bde39956632c968b98df6e9d1458942f2c69888400166ca27f4e"
+    clientKey = get_secret("KT_KEY")
+    clientId =  get_secret("KT_ID")
+    clientSecret = get_secret("KT_SECRET")
 
     #-------------------------------------------
     # 호출용 데이터 설정
@@ -173,7 +180,8 @@ def construction(audio_data):
     geniememo_client = GENIEMEMO()
     geniememo_client.__init__()
     geniememo_client.setAuth(clientKey, clientId, clientSecret)
-    callKey = "97"
+    Keyvalue = APITB.object.filter(id=1)
+    callKey = Keyvalue.count
     lastYn = "N"
     callIndex = 1
     #file_name = upload_file.read()
@@ -186,6 +194,8 @@ def construction(audio_data):
     print(bcolors.ENDC, "========= 호출정보 =========")
     print(bcolors.WARNING, "audioData:", "callKey:", callKey, "lastYn:", lastYn, "callIndex:", callIndex)
     response = geniememo_client.requestGENIEMEMO(audio_data, callKey, lastYn, callIndex)
+    Keyvalue.count += 1
+    Keyvalue.save()
 
     #-------------------------------------------
     # 결과 출력
