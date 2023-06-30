@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponseRedirect
 from django.utils import timezone
 import magic
@@ -40,7 +40,7 @@ def upload_construction(request):
                                         cstrcall=_file)
                     _call.save()
                     ## redirect to current page
-                    return HttpResponseRedirect(request.path_info)
+                    return redirect('construction:construction')
         except KeyError:
             return JsonResponse({'message':'no file uploaded'})
         except Exception as e:
