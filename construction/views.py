@@ -31,7 +31,7 @@ def construction_upload(request):
                 if form.is_valid():
                     _file = form.save()
 
-                    receipt, cstr_company, cstr_location = construction(request.FILES)
+                    receipt, cstr_company, cstr_location = construction(request.FILES['cstr_file'])
                     _call = ConstructionTB(receipt=receipt,
                                            cstr_company=cstr_company,
                                            cstr_location=cstr_location,
