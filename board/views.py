@@ -14,14 +14,17 @@ def post(request):
         board_form = BoardForm(request.POST)
         file_form = UploadFileForm(request.POST, request.FILES)
         print(file_form.errors)
-        if board_form.is_valid() and file_form.is_valid():
+        if board_form.is_valid():
             board = board_form.save(commit=False)
             board.usr_id = EngineerTB.objects.get(id=request.user.id)
             board.save()
 
-            file = file_form.cleaned_data['file']
-            if file:
-                upload_file = UploadFile(brd_id=board, file=file)
+            if file_form.is_valid():
+                file = file_form.cleaned_data['file']
+                if file:
+                    upload_file = UploadFile(brd_id=board, file=file)
+                else:
+                    upload_file = UploadFile(brd_id=board, file=None)
                 upload_file.save()
 
         else:
@@ -86,8 +89,9 @@ def edit(request, brd_id):
             if file_form.is_valid():
                 board.uploadfile_set.all().delete()  # 기존 파일 삭제
                 file = file_form.cleaned_data['file']
-                upload_file = UploadFile(brd_id=board, file=file)
-                upload_file.save()
+                if file:
+                    upload_file = UploadFile(brd_id=board, file=file)
+                    upload_file.save()
 
             data = {
                 'message': '게시물이 성공적으로 수정되었습니다.'
