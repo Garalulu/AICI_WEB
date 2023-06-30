@@ -22,17 +22,15 @@ def construction(request):
     
     if request.method == 'POST':
         try:
-            _data_post = MultiValueDict()
-            _data_post['cstr_desc'] = request.POST['cstr_desc']
-            _data_post['cstr_file'] = request.POST['cstr_file']
             current_user = request.POST['user_data']
+            del request.POST['user_data']
             
             uploaded_file = request.FILES['cstr_file']
             file_content = uploaded_file.read(1024)
             mime_type = magic.from_buffer(file_content, mime=True)
             
             if mime_type == 'audio/mpeg' or mime_type == 'audio/x-m4a':
-                form = ConstructionCallForm(_data_post, request.FILES)
+                form = ConstructionCallForm(request.POST, request.FILES)
                 if form.is_valid():
                     _file = form.save()
                     
@@ -47,6 +45,7 @@ def construction(request):
                     return redirect('construction:construction')
         except KeyError:
             return JsonResponse({'message':'no file uploaded'})
+        
         except Exception as e:
             return JsonResponse({'message': str(e)})
         
