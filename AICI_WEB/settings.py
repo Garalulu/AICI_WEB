@@ -111,6 +111,11 @@ DATABASES = {
      }
 }
 
+## Custom User Backend
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 ## Custom User class
 AUTH_USER_MODEL = "users.EngineerTB"
 
