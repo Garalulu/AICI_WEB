@@ -13,7 +13,6 @@ def post(request):
     if request.method == 'POST':
         board_form = BoardForm(request.POST)
         file_form = UploadFileForm(request.POST, request.FILES)
-        print(file_form.errors)
         if board_form.is_valid():
             board = board_form.save(commit=False)
             board.usr_id = EngineerTB.objects.get(id=request.user.id)
@@ -21,8 +20,9 @@ def post(request):
 
             if file_form.is_valid():
                 file = file_form.cleaned_data['file']
-                upload_file = UploadFile(brd_id=board, file=file if file else None)
-                upload_file.save()
+                if file:
+                    upload_file = UploadFile(brd_id=board, file=file)
+                    upload_file.save()
 
         else:
             response_data = {'message': '게시글을 게시하는데 실패하였습니다.'}
@@ -35,6 +35,7 @@ def post(request):
         board_form = BoardForm()
         file_form = UploadFileForm()
         return render(request, 'board/post.html', {'board_form': board_form, 'file_form': file_form})
+
 
 
 
@@ -89,6 +90,7 @@ def edit(request, brd_id):
                 if file:
                     upload_file = UploadFile(brd_id=board, file=file)
                     upload_file.save()
+
 
             data = {
                 'message': '게시물이 성공적으로 수정되었습니다.'
