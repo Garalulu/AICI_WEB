@@ -272,7 +272,7 @@
             if (file) {
                 formData.append('file', file);
             } else {
-                formData.delete('file'); // 파일 필드 제거
+                formData.delete('file', null); // 파일 필드 제거
             }
 
             // AJAX 요청 보내기

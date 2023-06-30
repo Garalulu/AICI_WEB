@@ -10,3 +10,4 @@ class UploadFileForm(forms.ModelForm):
     class Meta:
         model = UploadFile
         fields = ['file']
+        required = {'file': False}
