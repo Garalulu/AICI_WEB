@@ -1,6 +1,5 @@
 {% load static %}
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AICI</title>
     <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
         body {
             background-color: rgb(234,239,244);
             height: 600vh;
         }
-        div {
+        .page {
             margin-top: 100vh;
             text-align: center;
             opacity: 0;
@@ -24,13 +27,75 @@
         h1 {
             font-size: 70px;
         }
+        .first_content {
+            background-image: url("{% static 'about/img/main.png' %}");
+            max-width: 100vw;
+            height: 100vh;
+            background-size: cover;
+        }
+        .text1 {
+            font-size:10rem; 
+            font-weight:900; 
+            color:white;
+            padding-top: 20vh;
+            padding-left: 10vw;
+        }
+        .text2 {
+           font-size:5rem; 
+           font-weight:600; 
+           padding-left: 10vw;
+           color:white;
+        }
+        .text3 {
+            font-size:3rem; 
+            font-weight:500; 
+            padding-top: 25vh;
+            padding-right: 6vw;
+            color:white;
+            text-align: right;
+        }
+        .text4 {
+            font-size:3rem; 
+            font-weight:500; 
+            padding-right: 6vw;
+            color:white;
+            text-align: right;
+        }
     </style>
 </head>
 <body>
-    <div><h1>hi</h1></div>
-    <div><h1>i</h1></div>
-    <div><h1>am</h1></div>
-    <div><h1>iron man</h1></div>
+    <div class="first_content">
+        <p class="text1">AICI</p>
+        <p class="text2">For Engineer</p>
+        <p class="text3">KT AIVLE SCHOOL</p>
+        <p class="text4">전남/전북 9반 36조</p>
+        <div class=text_line></div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="page"><h1>hi</h1></div>
+    <div class="page"><h1>i</h1></div>
+    <div class="page"><h1>am</h1></div>
+    <div class="page"><h1>iron man</h1></div>
+    
+    
+
+
+
+
+
+
+
+
+
+
+
     <script>
         let observer = new IntersectionObserver((e)=>{
             e.forEach((박스)=>{
@@ -38,7 +103,6 @@
                     박스.target.style.opacity = 1;
                     박스.target.style.transform = 'rotate(0deg)';
                 } 
-                
             })
         })
         let div = document.querySelectorAll('div')

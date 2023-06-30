@@ -1,18 +1,4 @@
-body {
-    background-color: rgb(234,239,244);
-    height: 600vh;
-}
-div {
-    margin-top: 100vh;
-    text-align: center;
-    opacity: 0;
-    transition: all 1s;
-    transform: rotate(-720deg);
-    border: 2px solid black;
-}
-h1 {
-    font-size: 70px;
-}
+
 /* div {
     margin-top:1000px;
     color: white;
