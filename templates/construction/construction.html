@@ -131,15 +131,6 @@
                                         </tr>
                                         {% endfor %}
                                     {% endif %}
-                                    {% comment %} <tr>
-                                        <td>1</td><td><button id="search_map1">광주 무등로202번길15</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td><td><button id="search_map2">광주 서구 운천로31번길 17</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td><td><button id="search_map3">광산구 월곡동 607-7</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
-                                    </tr> {% endcomment %}
                                 </tbody>
                             </table>
                         </div>
@@ -150,12 +141,13 @@
         <script type="text/javascript" src="{% static 'construction/style.js' %}"></script> 
     </body>
 </html>
-                                {% comment %} {% if data %}
-                                        {% for const in data %}
-                                        <tr>
-                                            <td >{{ const.receipt }}</td>
-                                            <td >{{ const.cstr_company }}</td>
-                                            <td >{{ const.cstr_location }}</td>
-                                        </tr>
-                                        {% endfor %}
-                                {% endif %} {% endcomment %}
+
+<!-- <tr>
+    <td>1</td><td><button id="search_map1">광주 무등로202번길15</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
+</tr>
+<tr>
+    <td>2</td><td><button id="search_map2">광주 서구 운천로31번길 17</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
+</tr>
+<tr>
+    <td>3</td><td><button id="search_map3">광산구 월곡동 607-7</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
+</tr> -->
