@@ -12,7 +12,7 @@ from .models import ConstructionTB
 @login_required
 def construction_list(request):
     now = timezone.now()
-    _data = ConstructionTB.objects.filter(cent=request.user.uid.cent).order_by('receipt')
+    _data = ConstructionTB.objects.filter(cstrcall__cent=request.user.uid.cent).order_by('receipt')
     data = _data.filter(receipt__lte=now)
     return render(request, 'construction/construction.html', {'data': data})
 
@@ -21,7 +21,6 @@ def construction_list(request):
 def construction_upload(request):
     if request.method == 'POST':
         try:
-            current_user = request.POST['user_data']
             uploaded_file = request.FILES['cstr_file']
             file_content = uploaded_file.read(1024)
             mime_type = magic.from_buffer(file_content, mime=True)
@@ -35,7 +34,6 @@ def construction_upload(request):
                     _call = ConstructionTB(receipt=receipt,
                                            cstr_company=cstr_company,
                                            cstr_location=cstr_location,
-                                           cent=current_user,
                                            cstrcall=_file)
                     _call.save()
                     # Redirect to current page
