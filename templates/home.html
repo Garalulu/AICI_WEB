@@ -119,26 +119,28 @@
                             <table>
                                 <colgroup>
                                     <col width=10%>
-                                    <col width=20%>
-                                    <col width=40%>
+                                    <col width=10%>
                                     <col width=30%>
+                                    <col width=40%>
                                 </colgroup>
                                 <thead>
                                     {% if data %}
                                         {% for boards in data %}
-                                        <tr class="mb-4">
-                                            <td >{{ boards.brd_id }}</td>
-                                            <td >{{ boards.usr_name }}</td>
-                                            <td>
-                                                <a href="{% url 'board:content' boards.brd_id %}" style="text-decoration: none; color: black;">
-                                                    {{ boards.brd_title }}
-                                                </a>
-                                            </td>
-                                            <td class="text-end">{{ boards.brd_create }}</td>
-                                        </tr>
+                                            {% if forloop.counter <= 3 %}
+                                                <tr class="mb-4">
+                                                    <td>{{ boards.brd_id }}</td>
+                                                    <td>{{ boards.usr_id.name }}</td>
+                                                    <td>
+                                                        <a href="{% url 'board:content' boards.brd_id %}" style="text-decoration: none; color: black;">
+                                                            {{ boards.brd_title }}
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-end">{{ boards.brd_create }}</td>
+                                                </tr>
+                                            {% endif %}
                                         {% endfor %}
                                     {% else %}
-                                        <h3 class="text-center">게시글이 존재하지 않습니다.</h3>
+                                        <h4 class="text-center">게시글이 존재하지 않습니다.</h4>
                                     {% endif %}
                                 </thead>
                             </table>
