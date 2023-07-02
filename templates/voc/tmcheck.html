@@ -77,15 +77,16 @@
             }
             #post_button {
                 height: 30px;
-                background-color: gray;
+                background-color: #5cb85c;
+                font-size: 13px;
                 border-radius: 7px;
-                color: black;
+                color: white;
                 border: none;
                 transition: 0.3s ease;
             }
             #post_button:hover {
                 height: 40px;
-                background-color: rgba(35,184,124);
+                background-color: #367c36;
                 color: white;
                 border: none;
             }
@@ -141,6 +142,9 @@
 
             .tm_table:hover {
                 background-color: #F0F0F0;
+            }
+            #file-upload-button {
+                color: red;
             }
         </style>
     </head>
@@ -233,7 +237,7 @@
                         {% csrf_token %}
                         <p class="p">
                             <label for="id_voc_file"></label>
-                            <input type="file" name="voc_file" required id="id_voc_file"> 
+                            <input type="file" name="voc_file" required id="id_voc_file" accept=".xlsx"> 
                         </p>
                         <p class="p">
                             <label for="id_voc_desc">파일 이름:</label>

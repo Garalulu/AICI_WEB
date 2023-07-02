@@ -118,18 +118,18 @@
                         <div class="col">
                             <div class="today_header">
                                 <span id="today_text">오늘의 사외공사</span>
-                                <form method="POST" enctype="multipart/form-data" id="myForm" action="{% url 'construction:construction_upload' %}" style="display:flex;">
+                                <form method="POST" enctype="multipart/form-data" id="myForm" action="{% url 'construction:construction_upload' %}" style="display:flex; align-items:center">
                                     {% csrf_token %}
                                     <input type="hidden" name="cent" value="{{ request.user.uid.cent.id }}">
                                     <p class="p">
-                                      <label for="id_cstr_file">Construction File:</label>
-                                      <input type="file" name="cstr_file" required id="id_cstr_file">
+                                        <label for="id_cstr_file"></label>
+                                        <input type="file" name="cstr_file" required id="id_cstr_file;" accept=".mp3">
                                     </p>
-                                    <p class="p">
-                                      <label for="id_cstr_desc">File Description:</label>
-                                      <input type="text" name="cstr_desc" maxlength="20" id="id_cstr_desc">
+                                    <p class="p" style="text-align:center">
+                                        <label for="id_cstr_desc">파일 설명</label>
+                                        <input type="text" name="cstr_desc" maxlength="20" id="id_cstr_desc">
                                     </p>
-                                    <button type="submit" id="post_button">Upload</button>
+                                    <button type="submit" id="post_button">업로드</button>
                                 </form>
                             </div>
                             <div class="main_content">
@@ -143,9 +143,9 @@
                                         {% if data %}
                                             {% for const in data %}
                                             <tr>
-                                                <td>{{ const.receipt }}</td>
-                                                <td><button class="map_button" style="background-color:transparent; border:0; color:#1EC28F">{{ const.cstr_location }}</button></td>
-                                                <td>{{ const.cstr_company }}</td>
+                                                <td style="text-align: center;">{{ const.receipt }}</td>
+                                                <td style="text-align: center;" ><button class="map_button" style="background-color:transparent; border:0; color:#1EC28F; font-weight:700">{{ const.cstr_location }}</button></td>
+                                                <td style="text-align: center;">{{ const.cstr_company }}</td>
                                             </tr>
                                             {% endfor %}
                                         {% endif %}
@@ -204,13 +204,3 @@
         <script type="text/javascript" src="{% static 'construction/style.js' %}"></script> 
     </body>
 </html>
-
-<!-- <tr>
-    <td>1</td><td><button id="search_map1">광주 무등로202번길15</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
-</tr>
-<tr>
-    <td>2</td><td><button id="search_map2">광주 서구 운천로31번길 17</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
-</tr>
-<tr>
-    <td>3</td><td><button id="search_map3">광산구 월곡동 607-7</button></td><td>수자원공사</td><td>수도공사</td><td>이준용</td><td>010-1234-5678</td>
-</tr> -->

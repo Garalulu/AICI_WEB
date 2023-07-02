@@ -124,7 +124,6 @@
                                 <hr>
                                 <table>
                                     <colgroup>
-                                        
                                         <col width=15%>
                                         <col width=45%>
                                         <col width=40%>
@@ -163,17 +162,19 @@
                                 </div>
                                 <hr>
                                 <table>
-                                    <thead>
-                                        <tr>
-                                            <td>[공지]</td><td>6/22(목) AICI 정기점검 안내</td><td>2023-06-21</td>
-                                        </tr>
-                                        <tr>
-                                            <td>[공지]</td><td>6/22(목) AICI 정기점검 안내</td><td>2023-06-21</td>
-                                        </tr>
-                                        <tr>
-                                            <td>[공지]</td><td>6/22(목) AICI 정기점검 안내</td><td>2023-06-21</td>
-                                        </tr>
-                                    </thead>
+                                    {% if cons %}
+                                            {% for con in cons %}
+                                                {% if forloop.counter <= 3 %}
+                                                    <tr class="mb-4">
+                                                        <td>{{ con.receipt }}</td>
+                                                        <td>{{ con.cstr_location }}</td>
+                                                        <td class="text-end">{{ con.cstr_company }}</td>
+                                                    </tr>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% else %}
+                                            <h4 class="text-center">시외공사가 존재하지 않습니다.</h4>
+                                        {% endif %}
                                 </table>
                             </div>
                         </div>
@@ -195,20 +196,22 @@
                                     </thead>
                                     <tbody>
                                         {% if df %}
-                                                {% for vocs in df %}
-                                                <tr>
-                                                    <td >{{ vocs.receipt }}</td>
-                                                    <td >{{ vocs.cust_name }}</td>
-                                                    <td >{{ vocs.declaration }}</td>
-                                                    <td >{{ vocs.cust_num }}</td>
-                                                    <td >{{ vocs.cust_ads }}</td>
-                                                    <td >{{ vocs.cust_importance }}</td>
-                                                    <td >{{ vocs.is_tm }}</td>
-                                                    <td >{{ vocs.is_answer }}</td>
-                                                    <td >{{ vocs.tm_result }}</td>
-                                                    <td >{{ vocs.tm_judge }}</td>
-                                                </tr>
-                                                {% endfor %}
+                                            {% for vocs in df %}
+                                            <tr>
+                                                <td >{{ vocs.receipt }}</td>
+                                                <td >{{ vocs.cust_name }}</td>
+                                                <td >{{ vocs.declaration }}</td>
+                                                <td >{{ vocs.cust_num }}</td>
+                                                <td >{{ vocs.cust_ads }}</td>
+                                                <td >{{ vocs.cust_importance }}</td>
+                                                <td >{{ vocs.is_tm }}</td>
+                                                <td >{{ vocs.is_answer }}</td>
+                                                <td >{{ vocs.tm_result }}</td>
+                                                <td >{{ vocs.tm_judge }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        {% else %}
+                                        <h4 class="text-center">고객정보가 존재하지 않습니다.</h4>
                                         {% endif %}
                                     </tbody>
                                     
