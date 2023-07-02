@@ -25,9 +25,24 @@
         }
         .first_content {
             background-image: url("{% static 'about/img/main.png' %}");
+            background-size: cover;
             max-width: 100vw;
             height: 100vh;
-            background-size: cover;
+        }
+        #p1_t1 {
+            font-size: 90px;
+            color: white;
+            font-weight: 800;
+            padding-top: 20vh;
+            padding-left: 8vw;
+        }
+        #p1_t2 {
+            font-size: 40px;
+            color: white;
+            font-weight: 600;
+            padding-left: 70vw;
+            padding-top: 20vh;
+            padding-right: 8vw;
         }
 
 
@@ -35,43 +50,45 @@
     </style>
 </head>
 <body>
-    <h1 id="title">DreamCoding Youtube</h1>
-    <!-- <div class="first_content">
-        <p class="text_toleft" id="text1">AICI</p>
-        <p class="text_toleft" id="text2">For Engineer</p>
-        <p class="text_toright" id="text3">KT AIVLE SCHOOL</p>
-        <p class="text_toright" id="text4">전남/전북 9반 36조</p>
+    <div class="first_content">
+        <p id="p1_t1"></p>
+        <p id="p1_t2"></p>
     </div>
     <div class="second_content">
         <div>
-            <p class="text_toop" id="p2_text1">고객부터 엔지니어 까지</p>
-            <p class="text_toop" id="p2_text2">이장시간 단축과 VOC발생 최소화를 위해</p>
-            <p class="text_toop" id="p2_text3">업무의 효율성을 위해 AICI가 도와드립니다!</p>
+            <p >고객부터 엔지니어 까지</p>
+            <p >이장시간 단축과 VOC발생 최소화를 위해</p>
+            <p >업무의 효율성을 위해 AICI가 도와드립니다!</p>
         </div>
         <img src="{% static 'about/img/cumunication.png' %}" alt="이미지가 없나봐요.." class="second_content_img">
 
-    </div> -->
+    </div>
     
     
 
-
-
-
-
-
-
-
-
-
-    
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            new TypeIt('#title')
-            .pause(1000)
-            .delete(7, {delay:1000})
-            .type('Academy')
-            .go();
-        });
+
+        
+        new TypeIt('#p1_t1', {cursor:false})
+            .type('AICI')
+            .pause(700)
+            .break()
+            .type('For Enginner!')
+            .go()
+            
+
+        new TypeIt('#p1_t2',{startDelay: 3500, cursor:false})
+            .type('KT AIVLE SCHOOL')
+            .pause(700)
+            .break()
+            .type('전남/전북 9반 36조')
+            .go()
+                
+
+
+
+        
+
     </script>
     
 </body>
