@@ -128,21 +128,11 @@
                                     </p>
                                     <button type="submit" id="post_button">Upload</button>
                                 </form>
-                                <!-- 
-                                <p class="p">
-                                <label for="id_cstr_desc">파일 이름:</label>
-                                <input type="text" name="cstr_desc" maxlength="20" id="id_cstr_desc">
-                                </p>
-                                <label class="file-label" for="chooseFile">등록</label>
-                                <input class="file" id="chooseFile" type="file" name="cstr_file">
-                                <button type="submit" id="post_button">업로드</button> 
-                                -->
-                                
                             </div>
                             <div class="main_content">
                                 <table>
                                     <thead>
-                                        <tr>
+                                        <tr style="text-align: center;">
                                             <th>날짜</th><th>위치</th><th>공사종류</th>
                                         </tr>
                                     </thead>
@@ -151,7 +141,7 @@
                                             {% for const in data %}
                                             <tr>
                                                 <td>{{ const.receipt }}</td>
-                                                <td>{{ const.cstr_location }}</td>
+                                                <td><button class="map_button" style="background-color:transparent; border:0; color:#1EC28F">{{ const.cstr_location }}</button></td>
                                                 <td>{{ const.cstr_company }}</td>
                                             </tr>
                                             {% endfor %}

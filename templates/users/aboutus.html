@@ -15,6 +15,11 @@
         body {
             background-color: rgb(234,239,244);
             height: 600vh;
+            overflow-x: hidden
+
+        }
+        body::-webkit-scrollbar {
+            display: none; /* 크롬, 사파리, 오페라, 엣지에서 스크롤바 없애기 */
         }
         .page {
             margin-top: 100vh;
@@ -33,20 +38,29 @@
             height: 100vh;
             background-size: cover;
         }
-        .text1 {
+        .text_toleft {
+            transition: all 3s;
+            transform: translateX(-10vw);
+        }
+        #text1 {
             font-size:10rem; 
             font-weight:900; 
             color:white;
             padding-top: 20vh;
             padding-left: 10vw;
+            
         }
-        .text2 {
+        #text2 {
            font-size:5rem; 
            font-weight:600; 
            padding-left: 10vw;
            color:white;
         }
-        .text3 {
+        .text_toright {
+            transition: all 3s;
+            transform: translateX(10vw);
+        }
+        #text3 {
             font-size:3rem; 
             font-weight:500; 
             padding-top: 25vh;
@@ -54,32 +68,72 @@
             color:white;
             text-align: right;
         }
-        .text4 {
+        #text4 {
             font-size:3rem; 
             font-weight:500; 
             padding-right: 6vw;
             color:white;
             text-align: right;
         }
+        .second_content {
+            max-width: 100vw;
+            height: 100vh;
+            display: flex;
+
+        }
+        .second_content_img {
+            width: 25vw;
+            height: 40vh;
+        }
+
+
+
+        .text_toop {
+            transition: all 2s;
+            opacity: 1;
+        }
+        #p2_text1 {
+            font-size:3rem; 
+            font-weight:900; 
+            color:black;
+        }
+        #p2_text2 {
+           font-size:2rem; 
+           font-weight:600; 
+           color:black;
+        }
+        #p2_text3 {
+            font-size:1rem; 
+            font-weight:500; 
+            color:gray;
+        }
+
+
+
     </style>
 </head>
 <body>
     <div class="first_content">
-        <p class="text1">AICI</p>
-        <p class="text2">For Engineer</p>
-        <p class="text3">KT AIVLE SCHOOL</p>
-        <p class="text4">전남/전북 9반 36조</p>
+        <p class="text_toleft" id="text1">AICI</p>
+        <p class="text_toleft" id="text2">For Engineer</p>
+        <p class="text_toright" id="text3">KT AIVLE SCHOOL</p>
+        <p class="text_toright" id="text4">전남/전북 9반 36조</p>
         <div class=text_line></div>
+    </div>
+    <div class="second_content">
+        <div>
+            <p class="text_toop" id="p2_text1">고객부터 엔지니어 까지</p>
+            <p class="text_toop" id="p2_text2">이장시간 단축과 VOC발생 최소화를 위해</p>
+            <p class="text_toop" id="p2_text3">업무의 효율성을 위해 AICI가 도와드립니다!</p>
+        </div>
+        <img src="{% static 'about/img/cumunication.png' %}" alt="이미지가 없나봐요.." class="second_content_img">
+
     </div>
 
 
 
 
 
-
-
-
-    <div class="page"><h1>hi</h1></div>
     <div class="page"><h1>i</h1></div>
     <div class="page"><h1>am</h1></div>
     <div class="page"><h1>iron man</h1></div>
@@ -100,16 +154,30 @@
         let observer = new IntersectionObserver((e)=>{
             e.forEach((박스)=>{
                 if (박스.isIntersecting){
+                    박스.target.style.transform = 'translateX(10vw) ';
+                    박스.target.style.transform = 'translateX(10vw) ';
+                    박스.target.style.transform = 'translateX(-10vw)'; 
+                    박스.target.style.transform = 'translateX(-10vw)';        
                     박스.target.style.opacity = 1;
-                    박스.target.style.transform = 'rotate(0deg)';
+                    박스.target.style.opacity = 1;
+                    박스.target.style.opacity = 1;
+
                 } 
             })
         })
         let div = document.querySelectorAll('div')
-        observer.observe(div[0])
-        observer.observe(div[1])
-        observer.observe(div[2])
-        observer.observe(div[3])
+        let text_main_left = document.querySelectorAll('.text_toleft')
+        let text_main_right = document.querySelectorAll('.text_toright')
+        let text_p2 = document.querySelectorAll('.text_toop')
+
+        observer.observe(text_main_left[0])
+        observer.observe(text_main_left[1])
+        observer.observe(text_main_right[0])
+        observer.observe(text_main_right[1])
+        observer.observe(text_p2[0])
+        observer.observe(text_p2[1])
+        observer.observe(text_p2[2])    
+
     </script>
     
 </body>

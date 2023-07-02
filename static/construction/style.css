@@ -72,7 +72,7 @@ th,td {
     border-bottom: 0.5px solid gray;
     padding:10px
 }
-#search_map1, #search_map2, #search_map3{
+.map_button{
     border: 0;
     background-color: transparent;
     color: #1EC28F;
