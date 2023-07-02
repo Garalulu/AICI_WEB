@@ -142,6 +142,22 @@
             margin-top: 30px;
             color: gray;
         }
+        #scrollTopBtn {
+            display: none; 
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            height: 40px;
+            background-color: black;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+        #scrollTopBtn.show {
+            display: block; 
+        }
         
 
     </style>
@@ -252,9 +268,26 @@
             <p>© 2023 AICI_36 Corp. All rights reserved.</p>
         </div>
     </footer>
+    <button id="scrollTopBtn" onclick="scrollToTop()">맨 위로</button>
     
 
     <script>
+        window.onscroll = function() {
+            scrollFunction();
+          };
+          
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("scrollTopBtn").classList.add("show");
+            } else {
+                document.getElementById("scrollTopBtn").classList.remove("show");
+            }
+        }
+          
+        function scrollToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        }
         ScrollOut({
             onShown: (element) => {
                 new TypeIt(element.querySelector('.t1'), {
