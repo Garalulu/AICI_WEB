@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script> -->
+    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
     <title>AICI</title>
     <style>
         * {
@@ -21,91 +23,11 @@
         body::-webkit-scrollbar {
             display: none; /* 크롬, 사파리, 오페라, 엣지에서 스크롤바 없애기 */
         }
-        .page {
-            margin-top: 100vh;
-            text-align: center;
-            opacity: 0;
-            transition: all 1s;
-            transform: rotate(-720deg);
-            border: 2px solid black;
-        }
-        h1 {
-            font-size: 70px;
-        }
         .first_content {
             background-image: url("{% static 'about/img/main.png' %}");
             max-width: 100vw;
             height: 100vh;
             background-size: cover;
-        }
-        .text_toleft {
-            transition: all 3s;
-            transform: translateX(-10vw);
-        }
-        #text1 {
-            font-size:10rem; 
-            font-weight:900; 
-            color:white;
-            padding-top: 20vh;
-            padding-left: 10vw;
-            
-        }
-        #text2 {
-           font-size:5rem; 
-           font-weight:600; 
-           padding-left: 10vw;
-           color:white;
-        }
-        .text_toright {
-            transition: all 3s;
-            transform: translateX(10vw);
-        }
-        #text3 {
-            font-size:3rem; 
-            font-weight:500; 
-            padding-top: 25vh;
-            padding-right: 6vw;
-            color:white;
-            text-align: right;
-        }
-        #text4 {
-            font-size:3rem; 
-            font-weight:500; 
-            padding-right: 6vw;
-            color:white;
-            text-align: right;
-        }
-        .second_content {
-            max-width: 100vw;
-            height: 100vh;
-            display: flex;
-
-        }
-        .second_content_img {
-            width: 25vw;
-            height: 40vh;
-        }
-
-
-
-        .text_toop {
-            transition: all 2s;
-            opacity: 1;
-        }
-        #p2_text1 {
-            font-size:3rem; 
-            font-weight:900; 
-            color:black;
-        }
-        #p2_text2 {
-           font-size:2rem; 
-           font-weight:600; 
-           color:black;
-        }
-        #p2_text3 {
-            font-size:1rem; 
-            font-weight:500; 
-            color:gray;
         }
 
 
@@ -113,12 +35,12 @@
     </style>
 </head>
 <body>
-    <div class="first_content">
+    <h1 id="title">DreamCoding Youtube</h1>
+    <!-- <div class="first_content">
         <p class="text_toleft" id="text1">AICI</p>
         <p class="text_toleft" id="text2">For Engineer</p>
         <p class="text_toright" id="text3">KT AIVLE SCHOOL</p>
         <p class="text_toright" id="text4">전남/전북 9반 36조</p>
-        <div class=text_line></div>
     </div>
     <div class="second_content">
         <div>
@@ -128,15 +50,7 @@
         </div>
         <img src="{% static 'about/img/cumunication.png' %}" alt="이미지가 없나봐요.." class="second_content_img">
 
-    </div>
-
-
-
-
-
-    <div class="page"><h1>i</h1></div>
-    <div class="page"><h1>am</h1></div>
-    <div class="page"><h1>iron man</h1></div>
+    </div> -->
     
     
 
@@ -149,35 +63,15 @@
 
 
 
-
+    
     <script>
-        let observer = new IntersectionObserver((e)=>{
-            e.forEach((박스)=>{
-                if (박스.isIntersecting){
-                    박스.target.style.transform = 'translateX(10vw) ';
-                    박스.target.style.transform = 'translateX(10vw) ';
-                    박스.target.style.transform = 'translateX(-10vw)'; 
-                    박스.target.style.transform = 'translateX(-10vw)';        
-                    박스.target.style.opacity = 1;
-                    박스.target.style.opacity = 1;
-                    박스.target.style.opacity = 1;
-
-                } 
-            })
-        })
-        let div = document.querySelectorAll('div')
-        let text_main_left = document.querySelectorAll('.text_toleft')
-        let text_main_right = document.querySelectorAll('.text_toright')
-        let text_p2 = document.querySelectorAll('.text_toop')
-
-        observer.observe(text_main_left[0])
-        observer.observe(text_main_left[1])
-        observer.observe(text_main_right[0])
-        observer.observe(text_main_right[1])
-        observer.observe(text_p2[0])
-        observer.observe(text_p2[1])
-        observer.observe(text_p2[2])    
-
+        document.addEventListener('DOMContentLoaded', () => {
+            new TypeIt('#title')
+            .pause(1000)
+            .delete(7, {delay:1000})
+            .type('Academy')
+            .go();
+        });
     </script>
     
 </body>

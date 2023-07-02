@@ -61,8 +61,8 @@ i {
 }
 .today_header{
     padding-top: 20px;
-    padding-bottom: 20px;
-    border-bottom: 3px solid gray;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid gray;
 }
 table{
     width: 100%;
@@ -76,4 +76,22 @@ th,td {
     border: 0;
     background-color: transparent;
     color: #1EC28F;
+}
+#post_button {
+    height: 30px;
+    width: 100px;
+    margin-top: 10px;
+    background-color: #5cb85c;
+    border-radius: 7px;
+    color: white;
+    border: none;
+    transition: 0.3s ease;
+}
+#post_button:hover {
+    height: 40px;
+    background-color: #367c36;
+    color: white;
+}
+#myForm {
+    border-top: 2px solid gray; 
 }
