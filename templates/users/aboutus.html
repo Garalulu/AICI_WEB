@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{% static 'favicon/favicon_square.png' %}"/>
     <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
+    <script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script>
     <title>AICI</title>
     <style>
         * {
@@ -17,11 +18,10 @@
         body {
             background-color: rgb(234,239,244);
             height: 600vh;
-            overflow-x: hidden
-
+            overflow-x: hidden;
         }
         body::-webkit-scrollbar {
-            display: none; /* 크롬, 사파리, 오페라, 엣지에서 스크롤바 없애기 */
+            display: none;
         }
         .first_content {
             background-image: url("{% static 'about/img/main.png' %}");
@@ -44,6 +44,42 @@
             padding-top: 20vh;
             padding-right: 8vw;
         }
+        section {
+            margin-top: 50vh;
+        }
+        .second_content{
+            display: flex;
+            justify-content: center;
+        }
+        [data-scroll] {
+            opacity: 0;
+            will-change: transform, scale, opacity;
+            transform: translateX(10rem) scale(0.8);
+            transition: all 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        [data-scroll='in'] {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        [data-scroll='out'] {
+            opacity: 0;
+        }
+        .p2 {
+            margin-left: 5vw;
+            padding-right: 15vw;
+        }
+        .t1 {
+            font-size: 60px;
+        }
+        .t2 {
+            font-size: 30px;
+        }
+        .t3 {
+            font-size: 20px;
+            color: gray;
+            padding-top: 3vh;
+        }
 
 
 
@@ -54,41 +90,50 @@
         <p id="p1_t1"></p>
         <p id="p1_t2"></p>
     </div>
-    <div class="second_content">
+    <section data-scroll class="second_content">
         <div>
-            <p >고객부터 엔지니어 까지</p>
+            <div class="p2">
+                <p class="t1">고객부터 엔지니어 까지</p>
+                <p class="t2">이장시간 단축과 VOC발생 최소화를 위해</p>
+                <p class="t3">업무의 효율성을 위해 AICI가 도와드립니다!</p>
+            </div>
+        </div>
+        <img src="{% static 'about/img/cumunication.png' %}" alt="이미지가 없나봐요.." class="second_content_img">
+    </section>
+    <section data-scroll class="second_content">
+        <div>
+            <p class="t1">고객부터 엔지니어 까지</p>
             <p >이장시간 단축과 VOC발생 최소화를 위해</p>
             <p >업무의 효율성을 위해 AICI가 도와드립니다!</p>
         </div>
         <img src="{% static 'about/img/cumunication.png' %}" alt="이미지가 없나봐요.." class="second_content_img">
-
-    </div>
+    </section>
     
     
 
     <script>
-
-        
+        ScrollOut({
+            onShown: (element) => {
+                new TypeIt(element.querySelector('.t1'), {
+                    startDelay:500,cursor:false,
+                })
+                .pause(2000)
+                .go()
+            }
+        });
         new TypeIt('#p1_t1', {cursor:false})
             .type('AICI')
             .pause(700)
             .break()
             .type('For Enginner!')
             .go()
-            
-
         new TypeIt('#p1_t2',{startDelay: 3500, cursor:false})
             .type('KT AIVLE SCHOOL')
             .pause(700)
             .break()
             .type('전남/전북 9반 36조')
             .go()
-                
-
-
-
         
-
     </script>
     
 </body>
