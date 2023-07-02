@@ -17,7 +17,7 @@
         }
         body {
             background-color: rgb(234,239,244);
-            height: 600vh;
+            height: 1140vh;
             overflow-x: hidden;
         }
         body::-webkit-scrollbar {
@@ -44,12 +44,10 @@
             padding-top: 20vh;
             padding-right: 8vw;
         }
-        section {
-            margin-top: 50vh;
-        }
         .second_content{
             display: flex;
             justify-content: center;
+            margin-top: 70vh;
         }
         [data-scroll] {
             opacity: 0;
@@ -80,8 +78,71 @@
             color: gray;
             padding-top: 3vh;
         }
-
-
+        .ppt {
+            width: 80vw;
+            height: 80vh;
+            border-radius: 30px;
+        }
+        .ppt_page {
+            text-align: center;
+            margin-top: 70vh;
+        }
+        .team {
+            text-align: center;
+            margin-top: 70vh;
+        }
+        .our_team_img {
+            width: 80vw;
+            height: 80vh;
+            border-radius: 30px;
+            margin-top: 100px;
+        }
+        .individual {
+            width: 10vw;
+            height: 20vh;
+        }
+        table {
+            margin-left:auto; 
+            margin-right:auto;
+            padding-top: 50px;
+        }
+        td {
+            border-collapse : collapse;
+            border : 1px solid rgb(122,122,122);
+            padding: 10px;
+            margin-left: 5vw;
+            margin-right: 5vw;
+            border-radius: 5px;
+        }
+        .team_margin {
+            margin-top: 40vh;
+        }
+        footer{
+            margin-top: 300px;
+            padding-top: 20px;
+            background-color: rgba(0,0,0,0.9);
+            width: 100vw;
+            height: 100px;
+        }
+        
+        .ul{
+            margin-top: 20px;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+        li a{
+            padding-left: 20px;
+            padding-right: 20px;
+            text-decoration: none;
+            color: gray;
+        }
+        .footer-bottom{
+            text-align: center;
+            margin-top: 30px;
+            color: gray;
+        }
+        
 
     </style>
 </head>
@@ -101,40 +162,123 @@
         <img src="{% static 'about/img/cumunication.png' %}" alt="이미지가 없나봐요.." class="second_content_img">
     </section>
     <section data-scroll class="second_content">
-        <div>
-            <p class="t1">고객부터 엔지니어 까지</p>
-            <p >이장시간 단축과 VOC발생 최소화를 위해</p>
-            <p >업무의 효율성을 위해 AICI가 도와드립니다!</p>
+        <div class="p2">
+            <p class="t1">AICI시스템으로 사외공사 신고</p>
+            <p class="t3" >사외 공사자는 AICI시스템에 음성으로 신고하여 공사정보 관리 및 위치 검색</p>
         </div>
-        <img src="{% static 'about/img/cumunication.png' %}" alt="이미지가 없나봐요.." class="second_content_img">
+        <img src="{% static 'about/img/16.png' %}" alt="이미지가 없나봐요.." class="second_content_img">
     </section>
-    
+    <section data-scroll class="ppt_page">
+        <p class="t1">고객관리 AI Service.</p>
+        <img src="{% static 'about/img/14.png' %}" alt="이미지가 없나봐요.." class="ppt">
+    </section>
+    <section data-scroll class="ppt_page">
+        <p class="t1">사외공사 AI Service.</p>
+        <img src="{% static 'about/img/15.png' %}" alt="이미지가 없나봐요.." class="ppt">
+    </section>
+    <section data-scroll class="team">
+        <p class="t1">Introduce Our Team.</p>
+        <img src="{% static 'about/img/our_team.png' %}" alt="이미지가 없나봐요.." class="our_team_img">
+    </section>
+    <section data-scroll style="text-align:center;" class="team_margin">
+        <p class="t1">AI</p>
+        <div>
+            <table>
+                <tr>
+                    <td>강다솔</td>
+                    <td>이지수</td>
+                    <td>박수연</td>
+                </tr>
+                <tr>
+                    <td><img src="{% static 'about/img/1.png' %}" alt="이미지가 없나봐요.." class="individual"></td>
+                    <td><img src="{% static 'about/img/2.png' %}" alt="이미지가 없나봐요.." class="individual"></td>
+                    <td><img src="{% static 'about/img/3.png' %}" alt="이미지가 없나봐요.." class="individual"></td>
+                </tr>
+                <tr>
+                    <td><a href="https://github.com/Dasolss">@Dasolss</a></td>
+                    <td><a href="https://github.com/jisoo29">@jisoo29</a></td>
+                    <td><a href="https://github.com/zmfla1">@zmfla1</a></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <section data-scroll style="text-align:center;" class="team_margin">
+        <p class="t1">Front-End</p>
+        <div>
+            <table>
+                <tr>
+                    <td>이준용</td>
+                    <td>한세린</td>
+                </tr>
+                <tr>
+                    <td><img src="{% static 'about/img/4.jpeg' %}" alt="이미지가 없나봐요.." class="individual"></td>
+                    <td><img src="{% static 'about/img/5.png' %}" alt="이미지가 없나봐요.." class="individual"></td>
+                </tr>
+                <tr>
+                    <td><a href="https://github.com/diqkrgo">@JUNYONG</a></td>
+                    <td><a href="https://github.com/jhsy0429">@jhsy0429</a></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <section data-scroll style="text-align:center;" class="team_margin">
+        <p class="t1">Back-End</p>
+        <div>
+            <table>
+                <tr>
+                    <td>고준석</td>
+                    <td>박시온</td>
+                </tr>
+                <tr>
+                    <td><img src="{% static 'about/img/6.png' %}" alt="이미지가 없나봐요.." class="individual"></td>
+                    <td><img src="{% static 'about/img/7.png' %}" alt="이미지가 없나봐요.." class="individual"></td>
+                </tr>
+                <tr>
+                    <td><a href="https://github.com/junseok123">@junseok123</a></td>
+                    <td><a href="https://github.com/Garalulu">@Sion</a></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <footer>
+        <div class="footer">
+            <ul class="ul">
+                <li><a href="../privacy_policy">Privacy Policy</a></li>
+                <li><a href="../terms_of_service">Terms of Service</a></li>
+                <li><a href="/users/aboutus">About us</a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 AICI_36 Corp. All rights reserved.</p>
+        </div>
+    </footer>
     
 
     <script>
         ScrollOut({
             onShown: (element) => {
                 new TypeIt(element.querySelector('.t1'), {
-                    startDelay:500,cursor:false,
+                    startDelay:500,
+                    cursor:false,
+                    once:true,
                 })
                 .pause(2000)
                 .go()
             }
         });
+
         new TypeIt('#p1_t1', {cursor:false})
             .type('AICI')
-            .pause(700)
+            .pause(500)
             .break()
-            .type('For Enginner!')
+            .type('For Enginner')
             .go()
-        new TypeIt('#p1_t2',{startDelay: 3500, cursor:false})
+        new TypeIt('#p1_t2',{startDelay: 3000, cursor:false})
             .type('KT AIVLE SCHOOL')
-            .pause(700)
+            .pause(500)
             .break()
             .type('전남/전북 9반 36조')
             .go()
-        
     </script>
-    
 </body>
 </html>
