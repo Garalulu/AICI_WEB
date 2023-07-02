@@ -22,6 +22,34 @@
                 text-decoration: none;
                 color: white;
             }
+
+            .btn-bd-primary {
+                --bs-btn-font-weight: 600;
+                --bs-btn-color: white;
+                --bs-btn-bg: #1F2858;
+                --bs-btn-border-color: #1F2858;
+                --bs-btn-hover-color: var(--bs-white);
+                --bs-btn-hover-bg: #59B2E9;
+                --bs-btn-hover-border-color: #59B2E9;
+                --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+                --bs-btn-active-color: var(--bs-btn-hover-color);
+                --bs-btn-active-bg: #59B2E9;
+                --bs-btn-active-border-color: #59B2E9;
+              }
+
+            .btn-current {
+                --bs-btn-font-weight: 600;
+                --bs-btn-color: #ffffff;
+                --bs-btn-bg:  #59B2E9;
+                --bs-btn-border-color:  #59B2E9;
+                --bs-btn-hover-color: var(--bs-white);
+                --bs-btn-hover-bg: #59B2E9;
+                --bs-btn-hover-border-color: #59B2E9;
+                --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+                --bs-btn-active-color: var(--bs-btn-hover-color);
+                --bs-btn-active-bg: #59B2E9;
+                --bs-btn-active-border-color: #59B2E9;
+            }
         </style>
     </head>
     <body style="min-height: 100vh;">
@@ -109,16 +137,16 @@
             </div>
             <div class="col p-0">
                 <!-- 메인 컨텐츠 -->
-                <div class="pb-5" style="background-color:#F2F6FC;">
+                <div class="pb-5" style="background-color:#F3F9FC">
                     <div class="content">
                         <div class="wrap">
                             <div class="board">
                                 <div class="row">
                                     <p class="text col">
-                                        공지사항
+                                        <i class="bi bi-journal-check" style="font-size: 1.5rem; color: #AABBD0;"></i> 공지사항
                                     </p>
-                                    <div class="see_more col text-end me-4 mt-2">
-                                        <a href="/board">더보기</a>
+                                    <div class="col text-end me-4 mt-2">
+                                        <a href="/board"><i class="bi bi-plus-circle" style="font-size: 1.5rem; color: #AABBD0;"></i></a>
                                     </div>
                                 </div>
                                 <hr>
@@ -154,10 +182,10 @@
                             <div class="construction">
                                 <div class="row">
                                     <p class="text col">
-                                        오늘의 사외공사
+                                        <i class="bi bi-cone-striped" style="font-size: 1.5rem; color: #AABBD0;"></i> 오늘의 사외공사
                                     </p>
-                                    <div class="see_more col text-end me-4 mt-2">
-                                        <a href="/construction">더보기</a>
+                                    <div class="col text-end me-4 mt-2">
+                                        <a href="/construction" style="color: black;"><i class="bi bi-plus-circle" style="font-size: 1.5rem; color: #AABBD0;"></i></a>
                                     </div>
                                 </div>
                                 <hr>
@@ -181,10 +209,10 @@
                         <div class="tm_check">
                             <div class="row">
                                 <p class="text_cus col">
-                                    고객 관리
+                                    <i class="bi bi-display" style="font-size: 1.5rem; color: #AABBD0;"></i> 고객 관리
                                 </p>
-                                <div class="see_more_cus col text-end me-4 mt-2">
-                                    <a href="/voc">더보기</a>
+                                <div class="col text-end me-4 mt-2">
+                                    <a href="/voc"><i class="bi bi-plus-circle" style="font-size: 1.5rem; color: #AABBD0;"></i></a>
                                 </div>
                             </div>
                             <div class="voc_content">
@@ -224,7 +252,7 @@
                 <!-- Footer -->
                 <footer
                         class="text-center text-lg-start text-white"
-                        style="background-color: #929fba"
+                        style="background-color: #5E6B8F"
                         >
                     <!-- Grid container -->
                     <div class="p-3 pb-3">
