@@ -244,10 +244,12 @@ def construction(audio_data):
     is_today_mentioned = any(word == '오늘' for word, pos in kkma.pos(decoded_output))
     has_no_number = not any(pos.startswith('NR') for (word, pos) in kkma.pos(decoded_output))
 
-        
+
     date = None
     if is_today_mentioned or has_no_number:
-        today = datetime.datetime.now().strftime('%Y-%m-%d')
+
+        today = datetime.datetime.today().strftime('%Y-%m-%d')
+
         print("\n오늘 날짜:", today)
     else:
         words = kkma.pos(decoded_output)
@@ -258,19 +260,27 @@ def construction(audio_data):
         if num_chunks:
             date = " ".join(num_chunks)
             date_obj = parse(date, fuzzy=True)
-            formatted_date = date_obj.strftime("%m월 %d일")
-            print("\n공사 날짜:", formatted_date)
-        
+
+            formatted_date = date_obj.strftime('%Y-%m-%d')
+
+            construction_date = datetime.datetime.strptime(formatted_date, "%Y-%m-%d")
+
+            print("\n공사 날짜:", construction_date)
+
+       
+
     # 공사 내용
     content = [x for (x, y) in kkma.pos(decoded_output) if y == 'NNG' and x != '오늘' and x in data]
     print('\n내용 추출 :', ' '.join(content))
-        
+
     content = ' '.join(content)
-        
+
     # 장소
     location = [x for (x, y) in kkma.pos(decoded_output) if( y == 'NNG' and x != '오늘' and x not in content) or (y == 'NNP' and x != '오늘' and x not in content)]
     print('\n장소 추출 :', ' '.join(location))
-        
+
     location = ' '.join(location)
-    
-    return formatted_date, content, location
+
+   
+
+    return construction_date, content, location
