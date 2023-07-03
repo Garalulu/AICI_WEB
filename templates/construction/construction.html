@@ -161,7 +161,7 @@
                                 <table>
                                     <thead>
                                         <tr style="text-align: center;">
-                                            <th>날짜</th><th>위치</th><th>공사종류</th>
+                                            <th>날짜</th><th>담당자</th><th>번호</th><th>위치</th><th>공사종류</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -169,6 +169,8 @@
                                             {% for const in data %}
                                             <tr>
                                                 <td style="text-align: center;">{{ const.receipt }}</td>
+                                                <td style="text-align: center;">{{ const.cstr_manager }}</td>
+                                                <td style="text-align: center;">{{ const.cstr_num }}</td>
                                                 <td style="text-align: center;" ><button class="map_button" style="background-color:transparent; border:0; color:#1EC28F; font-weight:700">{{ const.cstr_location }}</button></td>
                                                 <td style="text-align: center;">{{ const.cstr_company }}</td>
                                             </tr>
