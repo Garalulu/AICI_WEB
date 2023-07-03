@@ -44,8 +44,8 @@ def voc(audio_data):
     print(bcolors.ENDC, "========= 호출정보 =========")
     print(bcolors.WARNING, "audioData:", "callKey:", callKey, "lastYn:", lastYn, "callIndex:", callIndex)
     response = geniememo_client.requestGENIEMEMO(audio_data, callKey, lastYn, callIndex)
-    Keyvalue.count += 1
-    Keyvalue.save()
+    count = Keyvalue.count + 1
+    Keyvalue.update(count=count)
 
     #-------------------------------------------
     # 결과 출력
@@ -194,8 +194,8 @@ def construction(audio_data):
     print(bcolors.ENDC, "========= 호출정보 =========")
     print(bcolors.WARNING, "audioData:", "callKey:", callKey, "lastYn:", lastYn, "callIndex:", callIndex)
     response = geniememo_client.requestGENIEMEMO(audio_data, callKey, lastYn, callIndex)
-    Keyvalue.count += 1
-    Keyvalue.save()
+    count = Keyvalue.count + 1
+    Keyvalue.update(count=count)
 
     #-------------------------------------------
     # 결과 출력
