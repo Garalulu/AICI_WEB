@@ -31,7 +31,7 @@ def voc(audio_data):
     geniememo_client.__init__()
     geniememo_client.setAuth(clientKey, clientId, clientSecret)
     Keyvalue = APITB.objects.filter(id=1)
-    callKey = Keyvalue.count
+    callKey = Keyvalue.key_count
     lastYn = "N"
     callIndex = 1
     #file_name = upload_file.read()
@@ -46,8 +46,7 @@ def voc(audio_data):
     print(bcolors.ENDC, "========= 호출정보 =========")
     print(bcolors.WARNING, "audioData:", "callKey:", callKey, "lastYn:", lastYn, "callIndex:", callIndex)
     response = geniememo_client.requestGENIEMEMO(audio_data, callKey, lastYn, callIndex)
-    Keyvalue.count = F('count') + 1
-    Keyvalue.save()
+    APITB.objects.filter(id=1).update(key_count=F('key_count') + 1)
 
     #-------------------------------------------
     # 결과 출력
@@ -183,7 +182,7 @@ def construction(audio_data):
     geniememo_client.__init__()
     geniememo_client.setAuth(clientKey, clientId, clientSecret)
     Keyvalue = APITB.objects.filter(id=1)
-    callKey = Keyvalue.count
+    callKey = Keyvalue.key_count
     lastYn = "N"
     callIndex = 1
     #file_name = upload_file.read()
@@ -196,8 +195,7 @@ def construction(audio_data):
     print(bcolors.ENDC, "========= 호출정보 =========")
     print(bcolors.WARNING, "audioData:", "callKey:", callKey, "lastYn:", lastYn, "callIndex:", callIndex)
     response = geniememo_client.requestGENIEMEMO(audio_data, callKey, lastYn, callIndex)
-    Keyvalue.count = F('count') + 1
-    Keyvalue.save()
+    APITB.objects.filter(id=1).update(key_count=F('key_count') + 1)
 
     #-------------------------------------------
     # 결과 출력

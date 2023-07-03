@@ -7,7 +7,7 @@ from voc.models import CenterTB
 
 ## KT API DB
 class APITB(models.Model):
-    count = models.IntegerField(_("KT API Callback Key"))
+    key_count = models.IntegerField(_("KT API Callback Key"))
 
 ## Engineer identification number DB
 ## - uid
