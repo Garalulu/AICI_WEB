@@ -143,7 +143,7 @@
                         <div class="col">
                             <div class="today_header">
                                 <span id="today_text">오늘의 사외공사</span>
-                                <form method="POST" enctype="multipart/form-data" id="myForm" action="{% url 'construction:construction_upload' %}" style="display:flex;  justify-content:center">
+                                <form method="POST" enctype="multipart/form-data" id="myForm" action="{% url 'construction:construction_upload' %}" style="display:flex; align-items: center;">
                                     {% csrf_token %}
                                     <input type="hidden" name="cent" value="{{ request.user.uid.cent.id }}">
                                     <p class="p">

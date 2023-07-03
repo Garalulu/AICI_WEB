@@ -18,108 +18,161 @@
         <link rel="shortcut icon" href="{% static 'favicon/favicon_square.png' %}"/>
 
         <title>AICI : 회원가입</title>
+
+        <style>
+            a {
+                text-decoration: none;
+            }
+        </style> 
         
     </head>
     <body>
-        <div class="wrap container w-50 mb-5">
+        <div>
+            <div class="wrap container w-50 mb-5">
 
-            <header>
-                <div class="text-center p-5">
-                    <a href="/"><img src="{% static 'privacy/logo.png' %}" class="w-25 me-5" id="logo"></a>
-                </div>
-            </header>
-
-            <div class="terms__check__all border p-5">
-                <div class="border-bottom border-4 mb-4 ms-1 ps-4 pe-4 pb-3">
-                    <h3>회원 가입</h3>
-                </div>
-                
-                <div>
-                    <form class="row" id="myForm">
-                        {% csrf_token %}
-                        <div class="mb-3 row">
-                            <label for="staticEmail" class="col-sm-3 col-form-label">아이디</label>
-                            <div class="col">
-                                <input type="text" class="form-control" id="inputId" name="usr_id" placeholder="아이디를 입력해주세요." check_result="fail" required onKeyUp="inputDataCheck(this.id)">
-                                <div class="invalid-feedback" id="validId">
-                                    아이디를 입력해주세요.
+                <header>
+                    <div class="text-center p-5">
+                        <a href="/"><img src="{% static 'privacy/logo.png' %}" class="w-25 me-5" id="logo"></a>
+                    </div>
+                </header>
+    
+                <div class="terms__check__all border p-5">
+                    <div class="border-bottom border-4 mb-4 ms-1 ps-4 pe-4 pb-3">
+                        <h3>회원 가입</h3>
+                    </div>
+                    
+                    <div>
+                        <form class="row" id="myForm">
+                            {% csrf_token %}
+                            <div class="mb-3 row">
+                                <label for="staticEmail" class="col-sm-3 col-form-label">아이디</label>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="inputId" name="usr_id" placeholder="아이디를 입력해주세요." check_result="fail" required onKeyUp="inputDataCheck(this.id)">
+                                    <div class="invalid-feedback" id="validId">
+                                        아이디를 입력해주세요.
+                                    </div>
+                                    <div class="valid-feedback" id="validId_2">
+                                        사용가능한 아이디입니다.
+                                    </div>
                                 </div>
-                                <div class="valid-feedback" id="validId_2">
-                                    사용가능한 아이디입니다.
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <button type="button" class="btn btn-primary" id="id_button" return false; onclick="id_check()">중복 확인</button>
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <div class="col-sm-3 col-form-label"></div>
-                            <div class="col">
-                                <p class="text-primary" style="font-size: 14px;">※ 6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합해주세요.</p>
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label for="inputPassword" class="col-sm-3 col-form-label">비밀번호</label>
-                            <div class="col">
-                                <input type="password" class="form-control" id="inputPassword" name="password1" placeholder="비밀번호를 입력해주세요." required onKeyUp="inputDataCheck(this.id)">
-                                <div class="invalid-feedback" id="validPW">
-                                    비밀번호를 입력해주세요.
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-primary" id="id_button" return false; onclick="id_check()">중복 확인</button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <div class="col-sm-3 col-form-label"></div>
-                            <div class="col">
-                                <p class="text-primary" style="font-size: 14px;">※ 영문, 숫자, 특수 문자를 포함해 최소 8자 이상으로 조합해주세요.<br>(사용가능: ~?!@#$%^&*_-)</p>
-                            </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label for="inputPasswordCk" class="col-sm-3 col-form-label">비밀번호 확인</label>
-                            <div class="col">
-                                <input type="password" class="form-control" id="inputPasswordCk" name="password2" placeholder="비밀번호를 한번 더 입력해주세요." required onKeyUp="inputDataCheck(this.id)">
-                                <div class="invalid-feedback" id="validPWCK">
-                                    비밀번호를 한번 더 입력해주세요.
+    
+                            <div class="mb-3 row">
+                                <div class="col-sm-3 col-form-label"></div>
+                                <div class="col">
+                                    <p class="text-primary" style="font-size: 14px;">※ 6자 이상 16자 이하의 영문 혹은 영문과 숫자를 조합해주세요.</p>
                                 </div>
                             </div>
-                        </div>
- 
-                        <div class="mb-3 row">
-                            <label for="inputName" class="col-sm-3 col-form-label">이름</label>
-                            <div class="col">
-                                <input type="text" class="form-control" id="inputName" name="name" placeholder="이름을 입력해주세요." required pattern="^[가-힣]{2,5}$" onKeyUp="inputDataCheck(this.id)">
-                                <div class="invalid-feedback" id="validName">
-                                    이름을 입력해주세요.
+    
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-3 col-form-label">비밀번호</label>
+                                <div class="col">
+                                    <input type="password" class="form-control" id="inputPassword" name="password1" placeholder="비밀번호를 입력해주세요." required onKeyUp="inputDataCheck(this.id)">
+                                    <div class="invalid-feedback" id="validPW">
+                                        비밀번호를 입력해주세요.
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="mb-3 row">
-                            <label for="inputNumber" class="col-sm-3 col-form-label">사원번호</label>
-                            <div class="col">
-                                <input type="text" class="form-control" id="inputNumber" name="uid" placeholder="사원번호를 입력해주세요." required onKeyUp="inputDataCheck(this.id)">
-                                <div class="invalid-feedback">
-                                    사원번호를 입력해주세요.
+                            <div class="mb-3 row">
+                                <div class="col-sm-3 col-form-label"></div>
+                                <div class="col">
+                                    <p class="text-primary" style="font-size: 14px;">※ 영문, 숫자, 특수 문자를 포함해 최소 8자 이상으로 조합해주세요.<br>(사용가능: ~?!@#$%^&*_-)</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <div class="col-sm-3 col-form-label"></div>
-                            <div class="col">
-                                <p class="text-primary" style="font-size: 14px;">※ AICI 서비스를 이용하기 위해서는 사원번호가 필요합니다.</p>
+    
+                            <div class="mb-3 row">
+                                <label for="inputPasswordCk" class="col-sm-3 col-form-label">비밀번호 확인</label>
+                                <div class="col">
+                                    <input type="password" class="form-control" id="inputPasswordCk" name="password2" placeholder="비밀번호를 한번 더 입력해주세요." required onKeyUp="inputDataCheck(this.id)">
+                                    <div class="invalid-feedback" id="validPWCK">
+                                        비밀번호를 한번 더 입력해주세요.
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="mt-5 mb-3">
-                            <input type="button" id="login_button" class="next-button btn btn-primary container-fluid btn-lg" value="가입하기" onClick="checkValid()">
-                        </div>
-
-                    </form>
+     
+                            <div class="mb-3 row">
+                                <label for="inputName" class="col-sm-3 col-form-label">이름</label>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="inputName" name="name" placeholder="이름을 입력해주세요." required pattern="^[가-힣]{2,5}$" onKeyUp="inputDataCheck(this.id)">
+                                    <div class="invalid-feedback" id="validName">
+                                        이름을 입력해주세요.
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="mb-3 row">
+                                <label for="inputNumber" class="col-sm-3 col-form-label">사원번호</label>
+                                <div class="col">
+                                    <input type="text" class="form-control" id="inputNumber" name="uid" placeholder="사원번호를 입력해주세요." required onKeyUp="inputDataCheck(this.id)">
+                                    <div class="invalid-feedback">
+                                        사원번호를 입력해주세요.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <div class="col-sm-3 col-form-label"></div>
+                                <div class="col">
+                                    <p class="text-primary" style="font-size: 14px;">※ AICI 서비스를 이용하기 위해서는 사원번호가 필요합니다.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-5 mb-3">
+                                <input type="button" id="login_button" class="next-button btn btn-primary container-fluid btn-lg" value="가입하기" onClick="checkValid()">
+                            </div>
+    
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- Footer -->
+        <footer
+            class="text-center text-lg-start text-white"
+            style="background-color: #9baec8;"
+            >
+            <!-- Grid container -->
+            <div class="p-3 pb-3">
+                <section class="">
+                <div class="row column-gap-5">
+                    <div class="col 6mx-auto mt-3">
+                    </div>
+                    <!-- Grid column -->
+                    <div class="col-md-5 col-lg-5 col-xl-5 ms-5 mx-auto mt-3 text-center">
+                        <div class="row text-center">
+                            <h6 class="col text-uppercase mb-4 font-weight-bold">
+                                <a href="/users/privacy_policy" style="color:white;">Privacy Policy</a>
+                            </h6>
+                            <h6 class="col text-uppercase mb-4 font-weight-bold">
+                                <a href="/users/terms_of_service" style="color:white;">Terms of Service</a>
+                            </h6>
+                            <h6 class="col text-uppercase mb-4 font-weight-bold">
+                                <a href="/users/aboutus" style="color:white;">About us</a>
+                            </h6>
+                        </div>
+                        <div
+                            class="text-center p-3" >
+                            2023 AICI_36 Corp. All rights reserved.
+                        </div>
+                    </div>
+                    <div class="col mx-auto ms-5 mt-3 text-center">
+                        <div class="ms-5">
+                            <h6 class="text-uppercase font-weight-bold">Follow us</h6>
+                            <a
+                                class="btn-floating mb-4 rounded-circle"
+                                href="https://github.com/jisoo29/AI_36_Project"
+                                role="button"
+                                ><i class="bi bi-github" style="font-size:2.3rem; color:white;"></i
+                                ></a>
+                        </div>
+                    </div>
+                </div>
+                </section>
+            </div>
+        </footer>
+
     </body>
 </html>
 
