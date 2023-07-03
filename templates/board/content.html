@@ -189,7 +189,7 @@
                                 </colgroup>
                                 <tr>
                                     <td class="table-active">작성자</td>
-                                    <td>{{ data.usr_id.name }}</td>
+                                    <td>{{ data.engineer.name }}</td>
                                     <td class="table-active">날짜</td>
                                     <td>{{ data.brd_create }}</td>
                                 </tr>
@@ -238,7 +238,7 @@
                         
                         </div>
                     </div>
-                    {% if data.usr_id.name == request.user.name %}
+                    {% if data.engineer.name == request.user.name %}
                         <div class="row row-cols-auto d-flex justify-content-end">
                             <!-- 수정하기 -->
                             <div class="col p-0">

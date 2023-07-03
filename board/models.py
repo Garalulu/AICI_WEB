@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 class BoardTB(models.Model):
     brd_id = models.AutoField(primary_key=True)
-    usr_id = models.ForeignKey(EngineerTB, on_delete=models.CASCADE)
+    engineer = models.ForeignKey(EngineerTB, on_delete=models.CASCADE)
     brd_title = models.CharField(_("게시판 제목"), max_length=200)
     brd_content = models.TextField(_("게시판 내용"))
     brd_create = models.DateTimeField(auto_now_add=True)

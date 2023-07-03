@@ -17,7 +17,7 @@ def post(request):
         file_form = UploadFileForm(request.POST, request.FILES)
         if board_form.is_valid():
             board = board_form.save(commit=False)
-            board.usr_id = EngineerTB.objects.get(id=request.user.id)
+            board.engineer = EngineerTB.objects.get(id=request.user.id)
             board.save()
 
             if file_form.is_valid():
