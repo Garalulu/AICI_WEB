@@ -1,16 +1,20 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
+
 from .forms import BoardForm, UploadFileForm
 from .models import BoardTB, UploadFile
 from users.models import EngineerTB
+from users.decorators import login_required
 
 
+@login_required
 def notice(request):
     data = BoardTB.objects.all().order_by("-brd_id")
     user_data = EngineerTB.objects.all()
     return render(request, "board/notice.html", {"data": data, "user_data": user_data})
 
 
+@login_required
 def post(request):
     if request.method == "POST":
         board_form = BoardForm(request.POST)

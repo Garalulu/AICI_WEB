@@ -173,7 +173,7 @@
                                         {% for boards in data %}
                                         <tr class="mb-4">
                                             <td >{{ forloop.counter }}</td>
-                                            <td >{{ boards.usr_id.name }}</td>
+                                            <td >{{ boards.engineer.name }}</td>
                                             <td>
                                                 <a href="{% url 'board:content' boards.brd_id %}">
                                                     {{ boards.brd_title }}
