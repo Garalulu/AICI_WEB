@@ -6,6 +6,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'favicon/favicon_square.png' %}"/>
+    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
+    <script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script>
     <title>AICI</title>
     <style>
         * {
@@ -14,103 +17,309 @@
         }
         body {
             background-color: rgb(234,239,244);
-            height: 600vh;
+            height: 1140vh;
+            overflow-x: hidden;
         }
-        .page {
-            margin-top: 100vh;
-            text-align: center;
-            opacity: 0;
-            transition: all 1s;
-            transform: rotate(-720deg);
-            border: 2px solid black;
-        }
-        h1 {
-            font-size: 70px;
+        body::-webkit-scrollbar {
+            display: none;
         }
         .first_content {
             background-image: url("{% static 'about/img/main.png' %}");
+            background-size: cover;
             max-width: 100vw;
             height: 100vh;
-            background-size: cover;
         }
-        .text1 {
-            font-size:10rem; 
-            font-weight:900; 
-            color:white;
+        #p1_t1 {
+            font-size: 90px;
+            color: white;
+            font-weight: 800;
             padding-top: 20vh;
-            padding-left: 10vw;
+            padding-left: 8vw;
         }
-        .text2 {
-           font-size:5rem; 
-           font-weight:600; 
-           padding-left: 10vw;
-           color:white;
+        #p1_t2 {
+            font-size: 40px;
+            color: white;
+            font-weight: 600;
+            padding-left: 70vw;
+            padding-top: 20vh;
+            padding-right: 8vw;
         }
-        .text3 {
-            font-size:3rem; 
-            font-weight:500; 
-            padding-top: 25vh;
-            padding-right: 6vw;
-            color:white;
-            text-align: right;
+        .second_content{
+            display: flex;
+            justify-content: center;
+            margin-top: 70vh;
         }
-        .text4 {
-            font-size:3rem; 
-            font-weight:500; 
-            padding-right: 6vw;
-            color:white;
-            text-align: right;
+        [data-scroll] {
+            opacity: 0;
+            will-change: transform, scale, opacity;
+            transform: translateX(10rem) scale(0.8);
+            transition: all 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
+
+        [data-scroll='in'] {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        [data-scroll='out'] {
+            opacity: 0;
+        }
+        .p2 {
+            margin-left: 5vw;
+            padding-right: 15vw;
+        }
+        .t1 {
+            font-size: 60px;
+        }
+        .t2 {
+            font-size: 30px;
+        }
+        .t3 {
+            font-size: 20px;
+            color: gray;
+            padding-top: 3vh;
+        }
+        .ppt {
+            width: 80vw;
+            height: 80vh;
+            border-radius: 30px;
+        }
+        .ppt_page {
+            text-align: center;
+            margin-top: 70vh;
+        }
+        .team {
+            text-align: center;
+            margin-top: 70vh;
+        }
+        .our_team_img {
+            width: 80vw;
+            height: 80vh;
+            border-radius: 30px;
+            margin-top: 100px;
+        }
+        .individual {
+            width: 10vw;
+            height: 20vh;
+        }
+        table {
+            margin-left:auto; 
+            margin-right:auto;
+            padding-top: 50px;
+        }
+        td {
+            border-collapse : collapse;
+            border : 1px solid rgb(122,122,122);
+            padding: 10px;
+            margin-left: 5vw;
+            margin-right: 5vw;
+            border-radius: 5px;
+        }
+        .team_margin {
+            margin-top: 40vh;
+        }
+        footer{
+            margin-top: 300px;
+            padding-top: 20px;
+            background-color: rgba(0,0,0,0.9);
+            width: 100vw;
+            height: 100px;
+        }
+        
+        .ul{
+            margin-top: 20px;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+        li a{
+            padding-left: 20px;
+            padding-right: 20px;
+            text-decoration: none;
+            color: gray;
+        }
+        .footer-bottom{
+            text-align: center;
+            margin-top: 30px;
+            color: gray;
+        }
+        #scrollTopBtn {
+            display: none; 
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            height: 40px;
+            background-color: black;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+        #scrollTopBtn.show {
+            display: block; 
+        }
+        #logo{
+            height: 60px;
+            width: 150px;
+            position: absolute;
+            top: 15px;
+            left: 30px;
+        }
+        
+
     </style>
 </head>
 <body>
+    <a href="/"><img src="{% static 'logo(white).png' %}" alt="logo" id="logo"></a>
     <div class="first_content">
-        <p class="text1">AICI</p>
-        <p class="text2">For Engineer</p>
-        <p class="text3">KT AIVLE SCHOOL</p>
-        <p class="text4">전남/전북 9반 36조</p>
-        <div class=text_line></div>
+        <p id="p1_t1"></p>
+        <p id="p1_t2"></p>
     </div>
-
-
-
-
-
-
-
-
-    <div class="page"><h1>hi</h1></div>
-    <div class="page"><h1>i</h1></div>
-    <div class="page"><h1>am</h1></div>
-    <div class="page"><h1>iron man</h1></div>
+    <section data-scroll class="second_content">
+        <div>
+            <div class="p2">
+                <p class="t1">고객부터 엔지니어 까지</p>
+                <p class="t2">이장시간 단축과 VOC발생 최소화를 위해</p>
+                <p class="t3">업무의 효율성을 위해 AICI가 도와드립니다!</p>
+            </div>
+        </div>
+        <img src="{% static 'about/img/cumunication.png' %}" alt="이미지가 없나봐요.." class="second_content_img">
+    </section>
+    <section data-scroll class="second_content">
+        <div class="p2">
+            <p class="t1">AICI시스템으로 사외공사 신고</p>
+            <p class="t3" >사외 공사자는 AICI시스템에 음성으로 신고하여 공사정보 관리 및 위치 검색</p>
+        </div>
+        <img src="{% static 'about/img/16.png' %}" alt="이미지가 없나봐요.." class="second_content_img">
+    </section>
+    <section data-scroll class="ppt_page">
+        <p class="t1">고객관리 AI Service.</p>
+        <img src="{% static 'about/img/14.png' %}" alt="이미지가 없나봐요.." class="ppt">
+    </section>
+    <section data-scroll class="ppt_page">
+        <p class="t1">사외공사 AI Service.</p>
+        <img src="{% static 'about/img/15.png' %}" alt="이미지가 없나봐요.." class="ppt">
+    </section>
+    <section data-scroll class="team">
+        <p class="t1">Introduce Our Team.</p>
+        <img src="{% static 'about/img/our_team.png' %}" alt="이미지가 없나봐요.." class="our_team_img">
+    </section>
+    <section data-scroll style="text-align:center;" class="team_margin">
+        <p class="t1">AI</p>
+        <div>
+            <table>
+                <tr>
+                    <td>강다솔</td>
+                    <td>이지수</td>
+                    <td>박수연</td>
+                </tr>
+                <tr>
+                    <td><img src="{% static 'about/img/1.png' %}" alt="이미지가 없나봐요.." class="individual"></td>
+                    <td><img src="{% static 'about/img/2.png' %}" alt="이미지가 없나봐요.." class="individual"></td>
+                    <td><img src="{% static 'about/img/3.png' %}" alt="이미지가 없나봐요.." class="individual"></td>
+                </tr>
+                <tr>
+                    <td><a href="https://github.com/Dasolss">@Dasolss</a></td>
+                    <td><a href="https://github.com/jisoo29">@jisoo29</a></td>
+                    <td><a href="https://github.com/zmfla1">@zmfla1</a></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <section data-scroll style="text-align:center;" class="team_margin">
+        <p class="t1">Front-End</p>
+        <div>
+            <table>
+                <tr>
+                    <td>이준용</td>
+                    <td>한세린</td>
+                </tr>
+                <tr>
+                    <td><img src="{% static 'about/img/4.jpeg' %}" alt="이미지가 없나봐요.." class="individual"></td>
+                    <td><img src="{% static 'about/img/5.png' %}" alt="이미지가 없나봐요.." class="individual"></td>
+                </tr>
+                <tr>
+                    <td><a href="https://github.com/diqkrgo">@JUNYONG</a></td>
+                    <td><a href="https://github.com/jhsy0429">@jhsy0429</a></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <section data-scroll style="text-align:center;" class="team_margin">
+        <p class="t1">Back-End</p>
+        <div>
+            <table>
+                <tr>
+                    <td>고준석</td>
+                    <td>박시온</td>
+                </tr>
+                <tr>
+                    <td><img src="{% static 'about/img/6.png' %}" alt="이미지가 없나봐요.." class="individual"></td>
+                    <td><img src="{% static 'about/img/7.png' %}" alt="이미지가 없나봐요.." class="individual"></td>
+                </tr>
+                <tr>
+                    <td><a href="https://github.com/junseok123">@junseok123</a></td>
+                    <td><a href="https://github.com/Garalulu">@Sion</a></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <footer>
+        <div class="footer">
+            <ul class="ul">
+                <li><a href="../privacy_policy">Privacy Policy</a></li>
+                <li><a href="../terms_of_service">Terms of Service</a></li>
+                <li><a href="/users/aboutus">About us</a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 AICI_36 Corp. All rights reserved.</p>
+        </div>
+    </footer>
+    <button id="scrollTopBtn" onclick="scrollToTop()">맨 위로</button>
     
-    
-
-
-
-
-
-
-
-
-
-
 
     <script>
-        let observer = new IntersectionObserver((e)=>{
-            e.forEach((박스)=>{
-                if (박스.isIntersecting){
-                    박스.target.style.opacity = 1;
-                    박스.target.style.transform = 'rotate(0deg)';
-                } 
-            })
-        })
-        let div = document.querySelectorAll('div')
-        observer.observe(div[0])
-        observer.observe(div[1])
-        observer.observe(div[2])
-        observer.observe(div[3])
+        window.onscroll = function() {
+            scrollFunction();
+          };
+          
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("scrollTopBtn").classList.add("show");
+            } else {
+                document.getElementById("scrollTopBtn").classList.remove("show");
+            }
+        }
+          
+        function scrollToTop() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        }
+        ScrollOut({
+            onShown: (element) => {
+                new TypeIt(element.querySelector('.t1'), {
+                    startDelay:500,
+                    cursor:false,
+                    once:true,
+                })
+                .pause(2000)
+                .go()
+            }
+        });
+
+        new TypeIt('#p1_t1', {cursor:false})
+            .type('AICI')
+            .pause(500)
+            .break()
+            .type('For Enginner')
+            .go()
+        new TypeIt('#p1_t2',{startDelay: 3000, cursor:false})
+            .type('KT AIVLE SCHOOL')
+            .pause(500)
+            .break()
+            .type('전남/전북 9반 36조')
+            .go()
     </script>
-    
 </body>
 </html>

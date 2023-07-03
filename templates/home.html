@@ -9,6 +9,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
         
+        <!-- favicon -->
+        <link rel="shortcut icon" href="{% static 'favicon/favicon_square.png' %}"/>
+
         <!-- bootstrap 아이콘 -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
         <link rel="stylesheet" href="{% static 'home/home.css' %}">
@@ -19,6 +22,7 @@
                 text-decoration: none;
                 color: white;
             }
+
         </style>
     </head>
     <body style="min-height: 100vh;">
@@ -30,7 +34,7 @@
                     <div class="col-2 row">
                         {% comment %} 로고 {% endcomment %}
                         <div>
-                            <a href="/"><img src="{% static 'privacy/logo.png' %}" class="w-50" id="logo"></a>
+                            <a href="/"><img src="{% static 'logo_7.png' %}" class="w-50" id="logo"></a>
                         </div>
                     </div>
                     <div class="col">
@@ -94,10 +98,9 @@
                         <li class="nav-item m-2">
                             <a class="nav-link mt-4" href="#">
                                 <button type="button" class="btn btn-bd-primary rounded-circle" style="width: 50px; height: 50px;" onclick ="location.href='/construction'">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
-                                        <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                                      </svg>
                                 </button>
                             </a>   
                         </li>
@@ -106,22 +109,21 @@
             </div>
             <div class="col p-0">
                 <!-- 메인 컨텐츠 -->
-                <div class="pb-5" style="background-color:#F2F6FC;">
+                <div class="pb-5" style="background-color:#F1F2F6">
                     <div class="content">
                         <div class="wrap">
                             <div class="board">
                                 <div class="row">
                                     <p class="text col">
-                                        공지사항
+                                        <i class="bi bi-journal-check" style="font-size: 1.5rem; color: #AABBD0;"></i> 공지사항
                                     </p>
-                                    <div class="see_more col text-end me-4 mt-2">
-                                        <a href="/board">더보기</a>
+                                    <div class="col text-end me-4 mt-2">
+                                        <a href="/board"><i class="bi bi-plus-circle" style="font-size: 1.5rem; color: #AABBD0;"></i></a>
                                     </div>
                                 </div>
                                 <hr>
                                 <table>
                                     <colgroup>
-                                        
                                         <col width=15%>
                                         <col width=45%>
                                         <col width=40%>
@@ -152,35 +154,37 @@
                             <div class="construction">
                                 <div class="row">
                                     <p class="text col">
-                                        오늘의 사외공사
+                                        <i class="bi bi-cone-striped" style="font-size: 1.5rem; color: #AABBD0;"></i> 오늘의 사외공사
                                     </p>
-                                    <div class="see_more col text-end me-4 mt-2">
-                                        <a href="/construction">더보기</a>
+                                    <div class="col text-end me-4 mt-2">
+                                        <a href="/construction" style="color: black;"><i class="bi bi-plus-circle" style="font-size: 1.5rem; color: #AABBD0;"></i></a>
                                     </div>
                                 </div>
                                 <hr>
                                 <table>
-                                    <thead>
-                                        <tr>
-                                            <td>[공지]</td><td>6/22(목) AICI 정기점검 안내</td><td>2023-06-21</td>
-                                        </tr>
-                                        <tr>
-                                            <td>[공지]</td><td>6/22(목) AICI 정기점검 안내</td><td>2023-06-21</td>
-                                        </tr>
-                                        <tr>
-                                            <td>[공지]</td><td>6/22(목) AICI 정기점검 안내</td><td>2023-06-21</td>
-                                        </tr>
-                                    </thead>
+                                    {% if cons %}
+                                            {% for con in cons %}
+                                                {% if forloop.counter <= 3 %}
+                                                    <tr class="mb-4">
+                                                        <td>{{ con.receipt }}</td>
+                                                        <td>{{ con.cstr_location }}</td>
+                                                        <td class="text-end">{{ con.cstr_company }}</td>
+                                                    </tr>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% else %}
+                                            <h4 class="text-center">시외공사가 존재하지 않습니다.</h4>
+                                        {% endif %}
                                 </table>
                             </div>
                         </div>
                         <div class="tm_check">
                             <div class="row">
                                 <p class="text_cus col">
-                                    고객 관리
+                                    <i class="bi bi-display" style="font-size: 1.5rem; color: #AABBD0;"></i> 고객 관리
                                 </p>
-                                <div class="see_more_cus col text-end me-4 mt-2">
-                                    <a href="/voc">더보기</a>
+                                <div class="col text-end me-4 mt-2">
+                                    <a href="/voc"><i class="bi bi-plus-circle" style="font-size: 1.5rem; color: #AABBD0;"></i></a>
                                 </div>
                             </div>
                             <div class="voc_content">
@@ -192,20 +196,22 @@
                                     </thead>
                                     <tbody>
                                         {% if df %}
-                                                {% for vocs in df %}
-                                                <tr>
-                                                    <td >{{ vocs.receipt }}</td>
-                                                    <td >{{ vocs.cust_name }}</td>
-                                                    <td >{{ vocs.declaration }}</td>
-                                                    <td >{{ vocs.cust_num }}</td>
-                                                    <td >{{ vocs.cust_ads }}</td>
-                                                    <td >{{ vocs.cust_importance }}</td>
-                                                    <td >{{ vocs.is_tm }}</td>
-                                                    <td >{{ vocs.is_answer }}</td>
-                                                    <td >{{ vocs.tm_result }}</td>
-                                                    <td >{{ vocs.tm_judge }}</td>
-                                                </tr>
-                                                {% endfor %}
+                                            {% for vocs in df %}
+                                            <tr>
+                                                <td >{{ vocs.receipt }}</td>
+                                                <td >{{ vocs.cust_name }}</td>
+                                                <td >{{ vocs.declaration }}</td>
+                                                <td >{{ vocs.cust_num }}</td>
+                                                <td >{{ vocs.cust_ads }}</td>
+                                                <td >{{ vocs.cust_importance }}</td>
+                                                <td >{{ vocs.is_tm }}</td>
+                                                <td >{{ vocs.is_answer }}</td>
+                                                <td >{{ vocs.tm_result }}</td>
+                                                <td >{{ vocs.tm_judge }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        {% else %}
+                                        <h4 class="text-center">고객정보가 존재하지 않습니다.</h4>
                                         {% endif %}
                                     </tbody>
                                     
@@ -218,7 +224,7 @@
                 <!-- Footer -->
                 <footer
                         class="text-center text-lg-start text-white"
-                        style="background-color: #929fba"
+                        style="background-color: #9baec8"
                         >
                     <!-- Grid container -->
                     <div class="p-3 pb-3">

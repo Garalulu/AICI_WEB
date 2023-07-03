@@ -15,40 +15,44 @@
         <!-- jqueary -->
         <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     
+        <!-- favicon -->
+        <link rel="shortcut icon" href="{% static 'favicon/favicon_square.png' %}"/>
+
         <title>AICI : 공지사항</title>
         
         <style>
 
             i {
                 font-size: 28px;
+                color: black;
             }
 
             .btn-bd-primary {
                 --bs-btn-font-weight: 600;
-                --bs-btn-color: #CCCCCC;
-                --bs-btn-bg: #2B3A4B;
-                --bs-btn-border-color: #2B3A4B;
+                --bs-btn-color: white;
+                --bs-btn-bg: #304070;
+                --bs-btn-border-color: #304070;
                 --bs-btn-hover-color: var(--bs-white);
-                --bs-btn-hover-bg: #1EC28F;
-                --bs-btn-hover-border-color: #1EC28F;
+                --bs-btn-hover-bg: #8EC0E4;
+                --bs-btn-hover-border-color: #8EC0E4;
                 --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
                 --bs-btn-active-color: var(--bs-btn-hover-color);
-                --bs-btn-active-bg: #1EC28F;
-                --bs-btn-active-border-color: #1EC28F;
+                --bs-btn-active-bg: #8EC0E4;
+                --bs-btn-active-border-color: #8EC0E4;
               }
-
+            
             .btn-current {
                 --bs-btn-font-weight: 600;
                 --bs-btn-color: #ffffff;
-                --bs-btn-bg:  #1EC28F;
-                --bs-btn-border-color:  #1EC28F;
+                --bs-btn-bg:  #8EC0E4;
+                --bs-btn-border-color:  #8EC0E4;
                 --bs-btn-hover-color: var(--bs-white);
-                --bs-btn-hover-bg: #1EC28F;
-                --bs-btn-hover-border-color: #1EC28F;
+                --bs-btn-hover-bg: #8EC0E4;
+                --bs-btn-hover-border-color: #8EC0E4;
                 --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
                 --bs-btn-active-color: var(--bs-btn-hover-color);
-                --bs-btn-active-bg: #1EC28F;
-                --bs-btn-active-border-color: #1EC28F;
+                --bs-btn-active-bg: #8EC0E4;
+                --bs-btn-active-border-color: #8EC0E4;
             }
 
             a {
@@ -67,7 +71,7 @@
                     <div class="col-2 row">
                         {% comment %} 로고 {% endcomment %}
                         <div>
-                            <a href="/"><img src="{% static 'privacy/logo.png' %}" class="w-50" id="logo"></a>
+                            <a href="/"><img src="{% static 'logo_7.png' %}" class="w-50" id="logo"></a>
                         </div>
                     </div>
                     <div class="col">
@@ -131,17 +135,16 @@
                         <li class="nav-item m-2">
                             <a class="nav-link mt-4" href="#">
                                 <button type="button" class="btn btn-bd-primary rounded-circle" style="width: 50px; height: 50px;" onclick ="location.href='/construction'">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
-                                        <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                                      </svg>
                                 </button>
                             </a>   
                         </li>
                       </ul>
                 </div>
             </div>
-            <div class="col p-0">
+            <div class="col p-0" style="background-color:#F1F2F6;">
                 <!-- 메인 컨텐츠 -->
                 <div>
                     <!-- 메인 내용 -->
@@ -151,15 +154,6 @@
                             <div class="border-bottom border-4 mb-4 ms-1 ps-4 pe-4 pb-3 row">
                                 <div class="col-4">
                                     <h2>공지사항</h2>
-                                </div>
-                                <div class="col-4">
-
-                                </div>
-                                <div class="col-4">
-                                    <form class="d-flex">
-                                        <input class="form-control me-sm-2" type="search" placeholder="검색어를 입력하세요.">
-                                        <button class="btn btn-secondary my-2 my-sm-0" type="submit"><i class="bi bi-search" style="font-size:16px;"></i></button>
-                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -199,7 +193,9 @@
                         {% csrf_token %}
                         {% if request.user.is_staff %}
                             <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-secondary btn-sm" onclick ="location.href='post'"><i class="bi bi-plus-square" style="font-size: 14px;"></i> New </button>
+                                <button type="submit" class="btn btn-secondary btn-sm" onclick ="location.href='post'">
+                                    <i class="bi bi-plus-square" style="font-size: 14px; color:white;"></i> New 
+                                </button>
                             </div>
                         {% else %}
                         {% endif %}
@@ -235,7 +231,7 @@
                 <!-- Footer -->
                 <footer
                         class="text-center text-lg-start text-white"
-                        style="background-color: #929fba;"
+                        style="background-color: #9baec8;"
                         >
                     <!-- Grid container -->
                     <div class="p-3 pb-3">
