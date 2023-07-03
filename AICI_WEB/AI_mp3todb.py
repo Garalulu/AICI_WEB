@@ -1,4 +1,6 @@
 from .settings import get_secret
+from django.db.models import F
+
 from users.models import APITB
 
 
@@ -44,8 +46,7 @@ def voc(audio_data):
     print(bcolors.ENDC, "========= 호출정보 =========")
     print(bcolors.WARNING, "audioData:", "callKey:", callKey, "lastYn:", lastYn, "callIndex:", callIndex)
     response = geniememo_client.requestGENIEMEMO(audio_data, callKey, lastYn, callIndex)
-    count = Keyvalue.count + 1
-    Keyvalue.update(count=count)
+    Keyvalue.update(count=F('count')+1)
 
     #-------------------------------------------
     # 결과 출력
@@ -194,8 +195,7 @@ def construction(audio_data):
     print(bcolors.ENDC, "========= 호출정보 =========")
     print(bcolors.WARNING, "audioData:", "callKey:", callKey, "lastYn:", lastYn, "callIndex:", callIndex)
     response = geniememo_client.requestGENIEMEMO(audio_data, callKey, lastYn, callIndex)
-    count = Keyvalue.count + 1
-    Keyvalue.update(count=count)
+    Keyvalue.update(count=F('count')+1)
 
     #-------------------------------------------
     # 결과 출력
