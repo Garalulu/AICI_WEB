@@ -28,7 +28,7 @@ def voc(audio_data):
     geniememo_client = GENIEMEMO()
     geniememo_client.__init__()
     geniememo_client.setAuth(clientKey, clientId, clientSecret)
-    Keyvalue = APITB.object.filter(id=1)
+    Keyvalue = APITB.objects.filter(id=1)
     callKey = Keyvalue.count
     lastYn = "N"
     callIndex = 1
@@ -180,7 +180,7 @@ def construction(audio_data):
     geniememo_client = GENIEMEMO()
     geniememo_client.__init__()
     geniememo_client.setAuth(clientKey, clientId, clientSecret)
-    Keyvalue = APITB.object.filter(id=1)
+    Keyvalue = APITB.objects.filter(id=1)
     callKey = Keyvalue.count
     lastYn = "N"
     callIndex = 1
