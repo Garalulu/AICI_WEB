@@ -1,19 +1,16 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from django.utils import timezone
 import magic
 
 from users.decorators import login_required
-from AICI_WEB.AI_mp3todb import construction, voc
+from AICI_WEB.AI_mp3todb import construction
 from .forms import ConstructionCallForm
 from .models import ConstructionTB
 
 
 @login_required
 def construction_list(request):
-    now = timezone.now()
-    _data = ConstructionTB.objects.filter(cstrcall__cent=request.user.uid.cent).order_by('receipt')
-    data = _data.filter(receipt__lte=now)
+    data = ConstructionTB.objects.filter(cstrcall__cent=request.user.uid.cent).order_by('receipt')
     return render(request, 'construction/construction.html', {'data': data})
 
 
@@ -33,6 +30,7 @@ def construction_upload(request):
                     _call = ConstructionTB(receipt=receipt,
                                            cstr_company=cstr_company,
                                            cstr_location=cstr_location,
+                                           
                                            cstrcall=_file)
                     _call.save()
                     # Redirect to current page
