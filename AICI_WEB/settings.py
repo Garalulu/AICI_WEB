@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-from django.core.exceptions import ImproperlyConfigured # for importing error
-import os, json # for importing secret key
+from django.core.exceptions import ImproperlyConfigured  # for importing error
+import os, json  # for importing secret key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,12 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 ## Import secret key from secrets.json
-secret_file = os.path.join(BASE_DIR, 'secrets.json')
+secret_file = os.path.join(BASE_DIR, "secrets.json")
 
-with open (secret_file) as f:
+with open(secret_file) as f:
     secrets = json.load(f)
 
-##  Get secret key or return error msg    
+
+##  Get secret key or return error msg
 def get_secret(setting):
     try:
         return secrets[setting]
@@ -37,13 +38,14 @@ def get_secret(setting):
         error_msg = f"Set the {setting} environment variable"
         raise ImproperlyConfigured(error_msg)
 
+
 SECRET_KEY = get_secret("SECRET_KEY")
 SECRET_KEY = "django-insecure-*(coa&dad3uc@c9bl18==z5jpa0*0wbzd4e!g$k=ixk((af&o-"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '52.78.234.62'] ## localhost and server IP
+ALLOWED_HOSTS = ["127.0.0.1", "52.78.234.62"]  ## localhost and server IP
 
 
 # Application definition
@@ -55,7 +57,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "users", ## USER
+    "users",  ## USER
     "board",
     "construction",
     "voc",
@@ -76,7 +78,7 @@ ROOT_URLCONF = "AICI_WEB.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [f'{BASE_DIR}/templates'],
+        "DIRS": [f"{BASE_DIR}/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -98,22 +100,22 @@ WSGI_APPLICATION = "AICI_WEB.wsgi.application"
 ## connect with AWS RDS (MySQL)
 
 DATABASES = {
-    'default': {
-         'ENGINE': 'django.db.backends.mysql',
-         'OPTIONS': {
-             'sql_mode': 'STRICT_TRANS_TABLES',
-         },
-         'NAME': get_secret("DB_NAME"),
-         'USER': get_secret("DB_USER"),
-         'PASSWORD': get_secret("DB_PWD"),
-         'HOST': get_secret("DB_HOST"),
-         'PORT': '3306', 
-     }
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "OPTIONS": {
+            "sql_mode": "STRICT_TRANS_TABLES",
+        },
+        "NAME": get_secret("DB_NAME"),
+        "USER": get_secret("DB_USER"),
+        "PASSWORD": get_secret("DB_PWD"),
+        "HOST": get_secret("DB_HOST"),
+        "PORT": "3306",
+    }
 }
 
 ## Custom User Backend
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
 ## Custom User class
@@ -142,13 +144,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = "ko-kr" ## Korean in admin page
+LANGUAGE_CODE = "ko-kr"  ## Korean in admin page
 
-TIME_ZONE = "Asia/Seoul" ## KST
+TIME_ZONE = "Asia/Seoul"  ## KST
 
 USE_I18N = True
 
-USE_TZ = False ## False to set KST in DB
+USE_TZ = False  ## False to set KST in DB
 
 
 # Static files (CSS, JavaScript, Images)
@@ -159,11 +161,11 @@ USE_TZ = False ## False to set KST in DB
 # STATIC_URL = '/static/'
 # STATIC_ROOT=os.path.join(BASE_DIR, 'static/')
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = os.path.join(BASE_DIR,'static'),
+STATIC_URL = "static/"
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -171,9 +173,9 @@ MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-## Login / Logout redirect URL 
-LOGIN_REDIRECT_URL = '/home/'
-LOGOUT_REDIRECT_URL = '/login/'
+## Login / Logout redirect URL
+LOGIN_REDIRECT_URL = "/home/"
+LOGOUT_REDIRECT_URL = "/login/"
 
 ## Maintain Session in 1 hour
 ACCOUNT_SESSION_REMEMBER = True

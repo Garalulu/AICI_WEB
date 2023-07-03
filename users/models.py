@@ -5,21 +5,29 @@ from django.utils.translation import gettext_lazy as _
 from .managers import CustomUserManager
 from voc.models import CenterTB
 
+
 ## KT API DB
 class APITB(models.Model):
     key_count = models.IntegerField(_("KT API Callback Key"))
+
 
 ## Engineer identification number DB
 ## - uid
 ## - name
 ## - cent_id
 class UidTB(models.Model):
-    uid = models.CharField(_("engineer identification number"), primary_key=True, unique=True, max_length=30) 
+    uid = models.CharField(
+        _("engineer identification number"),
+        primary_key=True,
+        unique=True,
+        max_length=30,
+    )
     name = models.CharField(_("engineer name"), max_length=30)
     cent = models.ForeignKey(CenterTB, on_delete=models.CASCADE, default=1)
-    
+
     def __str__(self):
         return self.uid
+
 
 ## User DB
 ## - id: primary key. auto-created
@@ -55,7 +63,7 @@ class EngineerTB(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.usr_id
-    
+
     def has_perm(self, perm, obj=None):
         return True
 

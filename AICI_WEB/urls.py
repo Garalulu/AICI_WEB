@@ -16,24 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.shortcuts import render
 
 from .views import home
 
 urlpatterns = [
-    path("admin/", admin.site.urls), ## admin site
-    
-    path('', home, name='home'), # 메인 홈
-    path('users/', include("users.urls")), # 로그인, 회원가입, 약관
-    path('board/', include("board.urls"), name='board'), # 게시판
-    path('voc/', include("voc.urls")), # VOC
-    path('construction/', include("construction.urls")), # 시외공사
-    
+    path("admin/", admin.site.urls),  ## admin site
+    path("", home, name="home"),  # 메인 홈
+    path("users/", include("users.urls")),  # 로그인, 회원가입, 약관
+    path("board/", include("board.urls"), name="board"),  # 게시판
+    path("voc/", include("voc.urls")),  # VOC
+    path("construction/", include("construction.urls")),  # 시외공사
 ]
 
 from django.conf import settings
 from django.conf.urls.static import static
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
