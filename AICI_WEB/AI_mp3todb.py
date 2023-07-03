@@ -31,7 +31,7 @@ def voc(audio_data):
     geniememo_client.__init__()
     geniememo_client.setAuth(clientKey, clientId, clientSecret)
     Keyvalue = APITB.objects.filter(id=1)
-    callKey = Keyvalue.count
+    callKey = int(Keyvalue.values('count', flat=True).get(pk=1))
     lastYn = "N"
     callIndex = 1
     #file_name = upload_file.read()
@@ -182,7 +182,7 @@ def construction(audio_data):
     geniememo_client.__init__()
     geniememo_client.setAuth(clientKey, clientId, clientSecret)
     Keyvalue = APITB.objects.filter(id=1)
-    callKey = Keyvalue.count
+    callKey = int(Keyvalue.values('count', flat=True).get(pk=1))
     lastYn = "N"
     callIndex = 1
     #file_name = upload_file.read()
