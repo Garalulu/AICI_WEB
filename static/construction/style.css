@@ -60,7 +60,7 @@ i {
     font-size: 28px;
 }
 .today_header{
-    padding-top: 20px;
+    padding-top:10px;
     padding-bottom: 10px;
     border-bottom: 1.5px solid gray;
 }
@@ -94,5 +94,4 @@ th,td {
 }
 #myForm {
     border-top: 2px solid gray; 
-    padding-top: 20px;
 }
