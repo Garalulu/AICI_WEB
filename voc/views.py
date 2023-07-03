@@ -1,13 +1,15 @@
-from django.shortcuts import render, redirect
-from django.http import JsonResponse
-
 import magic
 
+from django.http import JsonResponse
+from django.shortcuts import render, redirect
+
 from users.decorators import login_required
+
 from AICI_WEB.AI_mp3todb import voc
 from .exceltodb import exceltodb
-from .forms import VOCForm
+
 from .models import CustomerTB
+from .forms import VOCForm
 
 
 ## tmcheck

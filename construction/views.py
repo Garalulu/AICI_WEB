@@ -1,11 +1,14 @@
-from django.shortcuts import render, redirect
-from django.http import JsonResponse
 import magic
 
+from django.http import JsonResponse
+from django.shortcuts import render, redirect
+
 from users.decorators import login_required
+
 from AICI_WEB.AI_mp3todb import construction
-from .forms import ConstructionCallForm
+
 from .models import ConstructionTB
+from .forms import ConstructionCallForm
 
 
 @login_required

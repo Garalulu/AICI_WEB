@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from users.decorators import login_required
-from board.models import BoardTB, UploadFile
+from board.models import BoardTB
 from voc.models import CustomerTB
 from construction.models import ConstructionTB
 

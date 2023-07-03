@@ -40,7 +40,6 @@ def get_secret(setting):
 
 
 SECRET_KEY = get_secret("SECRET_KEY")
-SECRET_KEY = "django-insecure-*(coa&dad3uc@c9bl18==z5jpa0*0wbzd4e!g$k=ixk((af&o-"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -175,7 +174,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 ## Login / Logout redirect URL
 LOGIN_REDIRECT_URL = "/home/"
-LOGOUT_REDIRECT_URL = "/login/"
+LOGOUT_REDIRECT_URL = "users/login/"
 
 ## Maintain Session in 1 hour
 ACCOUNT_SESSION_REMEMBER = True
