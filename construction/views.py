@@ -28,9 +28,7 @@ def construction_upload(request):
             if mime_type == 'audio/mpeg' or mime_type == 'audio/x-m4a':
                 form = ConstructionCallForm(request.POST, request.FILES)
                 if form.is_valid():
-                    # Reset the file pointer
-                    uploaded_file.seek(0)
-                    receipt, cstr_company, cstr_location = construction(uploaded_file)
+                    receipt, cstr_company, cstr_location = construction(request.FILES['cstr_file'])
                     _file = form.save()
                     _call = ConstructionTB(receipt=receipt,
                                            cstr_company=cstr_company,

@@ -37,9 +37,7 @@ def tmcheck(request):
                     return JsonResponse({'message': 'Invalid form data'})
             elif mime_type == 'audio/mpeg' or mime_type == 'audio/x-m4a':
                 _data = CustomerTB.objects.last()
-                # Reset the file pointer
-                uploaded_file.seek(0)
-                tm_judge, tm_result, cust_importance = voc(uploaded_file)
+                tm_judge, tm_result, cust_importance = voc(request.FILES['voc_file'])
                 _data.is_tm = True
                 _data.is_answer = True
                 _data.tm_judge = tm_judge
