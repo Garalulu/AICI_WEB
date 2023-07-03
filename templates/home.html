@@ -188,33 +188,55 @@
                                 </div>
                             </div>
                             <div class="voc_content">
-                                <table class="voc_table">
-                                    <thead>
-                                        <tr>
-                                            <th>접수 시각</th><th>고객</th><th>신고자 의견</th><th>전화번호</th><th>주소</th><th>중요도</th><th>TM 상황</th><th>응답</th><th>응답결과</th><th>판단근거</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% if df %}
+                                <table class="voc_table">      
+                                    <tr>
+                                        <th class="th1">접수 시각</th>
+                                        <th class="th2">고객</th>
+                                        <th class="th3">신고자 의견</th>
+                                        <th class="th4">전화번호</th>
+                                        <th class="th5">주소</th>
+                                        <th class="th6">중요도</th>
+                                        <th class="th7">TM 상황</th>
+                                        <th class="th8">응답</th>
+                                        <th class="th9">응답결과</th>
+                                        <th class="th10">판단근거</th>
+                                    </tr>
+                                    {% if df %}
                                             {% for vocs in df %}
-                                            <tr>
-                                                <td >{{ vocs.receipt }}</td>
-                                                <td >{{ vocs.cust_name }}</td>
-                                                <td >{{ vocs.declaration }}</td>
-                                                <td >{{ vocs.cust_num }}</td>
-                                                <td >{{ vocs.cust_ads }}</td>
-                                                <td >{{ vocs.cust_importance }}</td>
-                                                <td >{{ vocs.is_tm }}</td>
-                                                <td >{{ vocs.is_answer }}</td>
-                                                <td >{{ vocs.tm_result }}</td>
-                                                <td >{{ vocs.tm_judge }}</td>
+                                            <tr class="tm_table">
+                                                <td>{{ vocs.receipt }}</td>
+                                                <td>{{ vocs.cust_name }}</td>
+                                                <td>{{ vocs.declaration }}</td>
+                                                <td>{{ vocs.cust_num }}</td>
+                                                <td>{{ vocs.cust_ads }}</td>
+                                                {% csrf_token %}
+                                                    {% if vocs.cust_importance %}
+                                                        <td style="color:red; font-weight:800">긴급</td>
+                                                    {% else %}
+                                                    <td>일반</td>
+                                                    {% endif %}
+                                                {% csrf_token %}
+                                                    {% if vocs.is_tm %}
+                                                        <td style="color:#1EC28F; font-weight:600; font-size:large"><i class="bi bi-check"></i></td>
+                                                    {% else %}
+                                                    <td style="color:red; font-weight:600; font-size:large"><i class="bi bi-x"></i></td>
+                                                    {% endif %}
+                                                {% csrf_token %}
+                                                    {% if vocs.answer %}
+                                                        <td style="color:#1EC28F; font-weight:600; font-size:large"><i class="bi bi-check"></i></td>
+                                                    {% else %}
+                                                    <td style="color:red; font-weight:600; font-size:large"><i class="bi bi-x"></i></td>
+                                                    {% endif %}
+                                                    {% csrf_token %}
+                                                    {% if vocs.result %}
+                                                        <td>양호</td>
+                                                    {% else %}
+                                                    <td>불량</td>
+                                                    {% endif %}
+                                                <td>{{ vocs.tm_judge }}</td>
                                             </tr>
                                             {% endfor %}
-                                        {% else %}
-                                        <h4 class="text-center">고객정보가 존재하지 않습니다.</h4>
-                                        {% endif %}
-                                    </tbody>
-                                    
+                                    {% endif %}
                                 </table>
                             </div>
                         </div>
