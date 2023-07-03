@@ -80,12 +80,12 @@ th,td {
 #post_button {
     height: 30px;
     width: 100px;
-    margin-top: 10px;
     background-color: #5cb85c;
     border-radius: 7px;
     color: white;
     border: none;
     transition: 0.3s ease;
+    margin-left: 20px;
 }
 #post_button:hover {
     height: 40px;
@@ -94,4 +94,5 @@ th,td {
 }
 #myForm {
     border-top: 2px solid gray; 
+    padding-top: 20px;
 }
