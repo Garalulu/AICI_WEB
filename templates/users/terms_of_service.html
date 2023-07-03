@@ -12,10 +12,16 @@
         <!-- favicon -->
         <link rel="shortcut icon" href="{% static 'favicon/favicon_square.png' %}"/>
         <style>
+            
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+              
             .wrap{
                 background-color: rgb(240,242,247);
                 width: auto;
-                height: 490vh;
                 margin-top: 100px;
             }
             .center {
@@ -75,7 +81,7 @@
     </head>
 <body>
     <a href="/"><img src="{% static 'service/logo.png' %}" id="logo"></a>
-    <div class="wrap">
+    <div class="wrap pb-5">
         <h2 class="title">이용약관</h2>
         <div class="white">
             <div class="content">
