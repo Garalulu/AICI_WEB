@@ -391,7 +391,7 @@
                 {% endif %} {% csrf_token %} {% if vocs.tm_result %}
                 <td>양호</td>
                 {% else %}
-                <td>불량</td>
+                <td style="color:red;">불량</td>
                 {% endif %}
                 <td>{{ vocs.tm_judge }}</td>
               </tr>
