@@ -210,7 +210,7 @@
                                 {% if file.brd_id_id == data.brd_id %}
                                     {% if file.file.name %}
                                         <!-- 이미지 파일일 경우 화면에 띄우기, 아닐 경우 첨부파일 다운로드 -->
-                                        {% if file.file.name|lower|endswith:".jpg" or file.file.name|endswith:".png" or file.file.name|endswith:".gif" %}
+                                        {% if file.file.name|lower|endswith:".jpg" or file.file.name|lower|endswith:".png" or file.file.name|lower|endswith:".gif" %}
                                             <!-- 이미지 파일 로드 -->
                                             <div>
                                                 <img src="{{ file.file.url }}" alt="{{ file.file.name }}">
