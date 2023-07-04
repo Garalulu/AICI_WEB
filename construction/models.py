@@ -7,7 +7,6 @@ from voc.models import CenterTB
 
 class ConstructionCallTB(models.Model):
     cent = models.ForeignKey(CenterTB, on_delete=models.CASCADE)
-    cstr_desc = models.CharField(_("file name"), max_length=20)
     cstr_file = models.FileField(_("uploaded file"), upload_to="construction/%Y/%m/%d")
     cstr_manager = models.CharField(
         _("construction manager"), max_length=30, blank=True
