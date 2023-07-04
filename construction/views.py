@@ -33,13 +33,16 @@ def construction_upload(request):
                     receipt, cstr_company, cstr_location = construction(
                         request.FILES["cstr_file"]
                     )
+                    cstr_num = request.POST["cstr_num"]
+                    cstr_manager = request.POST["cstr_manager"]
+
                     _file = form.save()
                     _call = ConstructionTB(
                         receipt=receipt,
                         cstr_company=cstr_company,
                         cstr_location=cstr_location,
-                        ##cstr_company=.
-                        ##cstr_manager=.
+                        cstr_num=cstr_num,
+                        cstr_manager=cstr_manager,
                         cstrcall=_file,
                     )
                     _call.save()
