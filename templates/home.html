@@ -222,13 +222,13 @@
                                                     <td style="color:red; font-weight:600; font-size:large"><i class="bi bi-x"></i></td>
                                                     {% endif %}
                                                 {% csrf_token %}
-                                                    {% if vocs.answer %}
+                                                    {% if vocs.is_answer %}
                                                         <td style="color:#1EC28F; font-weight:600; font-size:large"><i class="bi bi-check"></i></td>
                                                     {% else %}
                                                     <td style="color:red; font-weight:600; font-size:large"><i class="bi bi-x"></i></td>
                                                     {% endif %}
                                                     {% csrf_token %}
-                                                    {% if vocs.result %}
+                                                    {% if vocs.tm_result %}
                                                         <td>양호</td>
                                                     {% else %}
                                                     <td>불량</td>
