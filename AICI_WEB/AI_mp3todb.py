@@ -151,18 +151,20 @@ def voc(audio_data):
 
     okt = Okt()
 
-    text = okt.nouns(combined_text)
+    text = okt.nouns(predicted_title)
 
     emergency_keywords = ["병원", "요양원", "학교", "공장", "소방서", "경찰서"]
-    emergency = ""
 
     for keyword in emergency_keywords:
         if keyword in text:
             emergency = 1
+            
+            break
+        
         else:
             emergency = 0
 
-            break
+
 
     print("판단근거:", predicted_title)
     print("분류:", np_emotion)
@@ -173,7 +175,6 @@ def voc(audio_data):
 
 def construction(audio_data):
     from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-
     from konlpy.tag import Kkma
     from dateutil.parser import parse
 
@@ -279,9 +280,9 @@ def construction(audio_data):
 
     date = None
     if is_today_mentioned or has_no_number:
-        today = datetime.datetime.today().strftime("%Y-%m-%d")
+        construction_date = datetime.datetime.today().strftime("%Y-%m-%d")
 
-        print("\n오늘 날짜:", today)
+        print("\n오늘 날짜:", construction_date)
     else:
         words = kkma.pos(decoded_output)
         num_chunks = []
