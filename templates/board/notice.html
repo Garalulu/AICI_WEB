@@ -22,6 +22,12 @@
         
         <style>
 
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
             i {
                 font-size: 28px;
                 color: black;
@@ -59,6 +65,7 @@
                 text-decoration: none;
                 color:black;
             }
+            
 
         </style>
     </head>
@@ -144,90 +151,90 @@
                       </ul>
                 </div>
             </div>
-            <div class="col p-0" style="background-color:#F1F2F6;">
+            <div class="col p-0" style="background-color:#F1F2F6; min-height: 100vh;">
                 <!-- 메인 컨텐츠 -->
-                <div>
-                    <!-- 메인 내용 -->
+                
+                <!-- 메인 내용 -->
 
-                    <div class="container border rounded-3 w-75 p-5 mt-5 mb-5" style="background-color:white;">
-                        <div class="mb-3">
-                            <div class="border-bottom border-4 mb-4 ms-1 ps-4 pe-4 pb-3 row">
-                                <div class="col-4">
-                                    <h2>공지사항</h2>
-                                </div>
+                <div class="container border rounded-3 w-75 p-5 mt-5 mb-5" style="background-color:white; min-height: 70vh;">
+                    <div class="mb-3">
+                        <div class="border-bottom border-4 mb-4 ms-1 ps-4 pe-4 pb-3 row">
+                            <div class="col-4">
+                                <h2>공지사항</h2>
                             </div>
-                        </div>
-
-                        <!-- 글 목록 -->
-                        
-                        <div class="mb-5 p-3">
-                            <table class="table table-hover" style="border-collapse: separate; border-spacing: 0 10px;">
-                                <tbody id="table-body">
-                                    <colgroup>
-                                        <col width=10%>
-                                        <col width=20%>
-                                        <col width=40%>
-                                        <col width=30%>
-                                    </colgroup>
-                                    {% if data %}
-                                        {% for boards in data %}
-                                        <tr class="mb-4">
-                                            <td >{{ forloop.counter }}</td>
-                                            <td >{{ boards.engineer.name }}</td>
-                                            <td>
-                                                <a href="{% url 'board:content' boards.brd_id %}">
-                                                    {{ boards.brd_title }}
-                                                </a>
-                                            </td>
-                                            <td class="text-end">{{ boards.brd_create }}</td>
-                                        </tr>
-                                        {% endfor %}
-                                    {% else %}
-                                        <h3 class="text-center">게시글이 존재하지 않습니다.</h3>
-                                    {% endif %}
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                        <!-- 권한 있는 사용자만 게시글 작성 허용 -->
-                        {% csrf_token %}
-                        {% if request.user.is_staff %}
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-secondary btn-sm" onclick ="location.href='post'">
-                                    <i class="bi bi-plus-square" style="font-size: 14px; color:white;"></i> New 
-                                </button>
-                            </div>
-                        {% else %}
-                        {% endif %}
-                        
-                        <!-- 페이지 넘기기 -->
-                        <div class="d-flex justify-content-center">
-                            <ul class="pagination pagination-sm">
-                                <li class="page-item disabled me-2">
-                                    <a class="page-link" href="#"><i class="bi bi-caret-left-fill" style="font-size: 12px;"></i></a>
-                                </li>
-                                <li class="page-item active me-2">
-                                    <a class="page-link" href="#">1</a>
-                                </li>
-                                <li class="page-item me-2">
-                                    <a class="page-link" href="#">2</a>
-                                </li>
-                                <li class="page-item me-2">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item me-2">
-                                    <a class="page-link" href="#">4</a>
-                                </li>
-                                <li class="page-item me-2">
-                                    <a class="page-link" href="#">5</a>
-                                </li>
-                                <li class="page-item me-2">
-                                    <a class="page-link" href="#"><i class="bi bi-caret-right-fill" style="font-size: 12px;"></i></a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
+
+                    <!-- 글 목록 -->
+                    
+                    <div class="mb-5 p-3">
+                        <table class="table table-hover" style="border-collapse: separate; border-spacing: 0 10px;">
+                            <tbody id="table-body">
+                                <colgroup>
+                                    <col width=10%>
+                                    <col width=20%>
+                                    <col width=40%>
+                                    <col width=30%>
+                                </colgroup>
+                                {% if data %}
+                                    {% for boards in data %}
+                                    <tr class="mb-4">
+                                        <td >{{ forloop.counter }}</td>
+                                        <td >{{ boards.engineer.name }}</td>
+                                        <td>
+                                            <a href="{% url 'board:content' boards.brd_id %}">
+                                                {{ boards.brd_title }}
+                                            </a>
+                                        </td>
+                                        <td class="text-end">{{ boards.brd_create }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <h3 class="text-center pt-3">게시글이 존재하지 않습니다.</h3>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- 권한 있는 사용자만 게시글 작성 허용 -->
+                    {% csrf_token %}
+                    {% if request.user.is_staff %}
+                        <div class="d-flex justify-content-end pt-5">
+                            <button type="submit" class="btn btn-secondary btn-sm" onclick ="location.href='post'">
+                                <i class="bi bi-plus-square" style="font-size: 14px; color:white;"></i> New 
+                            </button>
+                        </div>
+                    {% else %}
+                    {% endif %}
+                    
+                    <!-- 페이지 넘기기 -->
+                    <div class="d-flex justify-content-center">
+                        <ul class="pagination pagination-sm">
+                            <li class="page-item disabled me-2">
+                                <a class="page-link" href="#"><i class="bi bi-caret-left-fill" style="font-size: 12px;"></i></a>
+                            </li>
+                            <li class="page-item active me-2">
+                                <a class="page-link" href="#">1</a>
+                            </li>
+                            <li class="page-item me-2">
+                                <a class="page-link" href="#">2</a>
+                            </li>
+                            <li class="page-item me-2">
+                                <a class="page-link" href="#">3</a>
+                            </li>
+                            <li class="page-item me-2">
+                                <a class="page-link" href="#">4</a>
+                            </li>
+                            <li class="page-item me-2">
+                                <a class="page-link" href="#">5</a>
+                            </li>
+                            <li class="page-item me-2">
+                                <a class="page-link" href="#"><i class="bi bi-caret-right-fill" style="font-size: 12px;"></i></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+                
                 <!-- Footer -->
                 <footer
                         class="text-center text-lg-start text-white"
@@ -272,8 +279,9 @@
                         </section>
                     </div>
                 </footer>
-
             </div>
+            
+            
         </div>
 
     </body>
